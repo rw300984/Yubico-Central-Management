@@ -120,13 +120,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\" />
-    <Folder Include="Ressources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\libjson-c-2.dll" />
     <Content Include="Libraries\libykpers-1-1.dll" />
     <Content Include="Libraries\libyubikey-0.dll" />
     <Content Include="Libraries\ykinfo.exe" />
+    <Resource Include="Resources\Yubico_Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
