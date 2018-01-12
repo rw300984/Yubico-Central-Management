@@ -72,13 +72,33 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Form1.vb">
+    <Compile Include="Forms\frm_2fa.Designer.vb">
+      <DependentUpon>frm_2fa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_2fa.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Forms\frm_admin.Designer.vb">
+      <DependentUpon>frm_admin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_admin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frm_main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_main.Designer.vb">
+      <DependentUpon>frm_main.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_monitor.Designer.vb">
+      <DependentUpon>frm_monitor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_monitor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Localization.vb" />
+    <Compile Include="Modules\Others.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -96,8 +116,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\frm_2fa.resx">
+      <DependentUpon>frm_2fa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_admin.resx">
+      <DependentUpon>frm_admin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_main.resx">
+      <DependentUpon>frm_main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_monitor.resx">
+      <DependentUpon>frm_monitor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -118,17 +147,14 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Libraries\libjson-c-2.dll" />
     <Content Include="Libraries\libykpers-1-1.dll" />
     <Content Include="Libraries\libyubikey-0.dll" />
     <Content Include="Libraries\ykinfo.exe" />
-    <Resource Include="Resources\Yubico_Logo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <None Include="Resources\Yubico_icon.ico" />
+    <None Include="Resources\Yubico-Logo-Small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
