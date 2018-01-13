@@ -53,8 +53,6 @@
 
     Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoadForms()
-        '  YK_Agent_GetSystemInfo()
-        ' YK_Agent_GetKeyInfo()
     End Sub
 
     Private Function LoadForms()
@@ -95,6 +93,13 @@
         frm_monitor.lbl_monitor_yub_serial_text.Text = "Serial"
         frm_monitor.lbl_monitor_yub_touch_text.Text = "Touch Level"
         frm_monitor.lbl_monitor_yub_vendor_text.Text = "Vendor"
+        frm_admin.lbl_admin_central_auth.Text = "Authentication"
+        frm_admin.lbl_admin_central_password.Text = "Password"
+        frm_admin.lbl_admin_central_username.Text = "Username"
+        frm_admin.lbl_admin_central_server.Text = "Server"
+        frm_admin.lbl_admin_general_language.Text = "Language"
+        frm_admin.lbl_admin_general_mode.Text = "Mode"
+        frm_admin.lbl_admin_general_theme.Text = "Theme"
         cms_notify_agent_about.Text = "About"
         cms_notify_agent_close.Text = "Exit"
         cms_notify_agent_open.Text = "Open"
