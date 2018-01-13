@@ -51,6 +51,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -66,6 +67,7 @@
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
+    <Import Include="System.Management" />
     <Import Include="System.Windows.Forms" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
@@ -98,6 +100,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\Localization.vb" />
+    <Compile Include="Modules\monitor.vb" />
     <Compile Include="Modules\Others.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -149,10 +152,18 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Libraries\libjson-c-2.dll" />
-    <Content Include="Libraries\libykpers-1-1.dll" />
-    <Content Include="Libraries\libyubikey-0.dll" />
-    <Content Include="Libraries\ykinfo.exe" />
+    <Content Include="Libraries\libjson-c-2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\libykpers-1-1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\libyubikey-0.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\ykinfo.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Yubico_icon.ico" />
     <None Include="Resources\Yubico-Logo-Small.png" />
   </ItemGroup>

@@ -1,26 +1,4 @@
 ﻿Module Others
-    Public Enum Location
-        Top
-        Bottom
-        Left
-        Right
-    End Enum
-    Public Function GetTaskbarLocation() As Location
-        Dim bounds As Rectangle = Screen.PrimaryScreen.Bounds
-        Dim working As Rectangle = Screen.PrimaryScreen.WorkingArea
-        If working.Height < bounds.Height And working.Y > 0 Then
-            Return Location.Top
-        ElseIf working.Height < bounds.Height And working.Y = 0 Then
-            Return Location.Bottom
-        ElseIf working.Width < bounds.Width And working.X > 0 Then
-            Return Location.Left
-        ElseIf working.Width < bounds.Width And working.X = 0 Then
-            Return Location.Right
-        Else
-            Return Nothing
-        End If
-    End Function
-
     'Public Function FindDockedTaskBars(ByRef DockedRectCounter As Integer) As Rectangle()
     '    Dim TmpScrn As Screen = Nothing
     '    Dim LeftDockedWidth As Integer = 0

@@ -53,6 +53,8 @@
 
     Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoadForms()
+        '  YK_Agent_GetSystemInfo()
+        ' YK_Agent_GetKeyInfo()
     End Sub
 
     Private Function LoadForms()
@@ -79,9 +81,23 @@
         btn_main_admin_login.Text = "Open configuration"
         frm_monitor.grb_monitor_systeminfo.Text = "System information"
         frm_monitor.grb_monitor_yubiinfo.Text = "Yubikey information"
-        frm_admin.grb_admin_general.Text = ""
-        frm_admin.grb_admin_management.Text = ""
-
+        frm_admin.grb_admin_general.Text = "General settings"
+        frm_admin.grb_admin_management.Text = "Central management settings"
+        frm_monitor.lbl_monitor_sys_devicemodel_text.Text = "Device model"
+        '  frm_monitor.lbl_monitor_sys_geo_text.Text = "Geo location"
+        frm_monitor.lbl_monitor_sys_hostname_text.Text = "Hostname"
+        frm_monitor.lbl_monitor_sys_ip_text.Text = "IP address"
+        frm_monitor.lbl_monitor_sys_os_text.Text = "OS"
+        frm_monitor.lbl_monitor_sys_username_text.Text = "Username"
+        ' frm_monitor.lbl_monitor_yub_capabilities_text.Text = "Features"
+        frm_monitor.lbl_monitor_yub_firmware_text.Text = "Firmware"
+        frm_monitor.lbl_monitor_yub_model_text.Text = "Model"
+        frm_monitor.lbl_monitor_yub_serial_text.Text = "Serial"
+        frm_monitor.lbl_monitor_yub_touch_text.Text = "Touch Level"
+        frm_monitor.lbl_monitor_yub_vendor_text.Text = "Vendor"
+        cms_notify_agent_about.Text = "About"
+        cms_notify_agent_close.Text = "Exit"
+        cms_notify_agent_open.Text = "Open"
 
     End Function
 

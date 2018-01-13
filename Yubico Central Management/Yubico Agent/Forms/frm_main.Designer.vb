@@ -120,25 +120,23 @@ Partial Class frm_main
         '
         Me.cms_notify_agent.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cms_notify_agent_open, Me.cms_notify_agent_about, Me.cms_notify_agent_close})
         Me.cms_notify_agent.Name = "cms_notify_agent"
-        Me.cms_notify_agent.Size = New System.Drawing.Size(108, 70)
+        Me.cms_notify_agent.ShowImageMargin = False
+        Me.cms_notify_agent.Size = New System.Drawing.Size(128, 92)
         '
         'cms_notify_agent_open
         '
         Me.cms_notify_agent_open.Name = "cms_notify_agent_open"
-        Me.cms_notify_agent_open.Size = New System.Drawing.Size(107, 22)
-        Me.cms_notify_agent_open.Text = "Open"
+        Me.cms_notify_agent_open.Size = New System.Drawing.Size(127, 22)
         '
         'cms_notify_agent_about
         '
         Me.cms_notify_agent_about.Name = "cms_notify_agent_about"
-        Me.cms_notify_agent_about.Size = New System.Drawing.Size(107, 22)
-        Me.cms_notify_agent_about.Text = "About"
+        Me.cms_notify_agent_about.Size = New System.Drawing.Size(127, 22)
         '
         'cms_notify_agent_close
         '
         Me.cms_notify_agent_close.Name = "cms_notify_agent_close"
-        Me.cms_notify_agent_close.Size = New System.Drawing.Size(107, 22)
-        Me.cms_notify_agent_close.Text = "Close"
+        Me.cms_notify_agent_close.Size = New System.Drawing.Size(127, 22)
         '
         'frm_main
         '
