@@ -27,19 +27,19 @@ Partial Class frm_admin
         Me.lbl_admin_general_language = New System.Windows.Forms.Label()
         Me.lbl_admin_general_theme = New System.Windows.Forms.Label()
         Me.lbl_admin_general_mode = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.cbx_admin_general_language = New System.Windows.Forms.ComboBox()
+        Me.cbx_admin_general_theme = New System.Windows.Forms.ComboBox()
+        Me.cbx_admin_general_mode = New System.Windows.Forms.ComboBox()
         Me.grb_admin_management = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.lbl_admin_central_server = New System.Windows.Forms.Label()
         Me.lbl_admin_central_auth = New System.Windows.Forms.Label()
         Me.lbl_admin_central_username = New System.Windows.Forms.Label()
         Me.lbl_admin_central_password = New System.Windows.Forms.Label()
-        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.cbx_admin_central_auth = New System.Windows.Forms.ComboBox()
+        Me.txt_admin_central_server = New System.Windows.Forms.TextBox()
+        Me.txt_admin_central_username = New System.Windows.Forms.TextBox()
+        Me.txt_admin_central_password = New System.Windows.Forms.TextBox()
         Me.grb_admin_general.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.grb_admin_management.SuspendLayout()
@@ -66,9 +66,9 @@ Partial Class frm_admin
         Me.TableLayoutPanel1.Controls.Add(Me.lbl_admin_general_language, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.lbl_admin_general_theme, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.lbl_admin_general_mode, 0, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.ComboBox1, 1, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.ComboBox2, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.ComboBox3, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.cbx_admin_general_language, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.cbx_admin_general_theme, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.cbx_admin_general_mode, 1, 2)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(2, 15)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -104,41 +104,41 @@ Partial Class frm_admin
         Me.lbl_admin_general_mode.Size = New System.Drawing.Size(0, 15)
         Me.lbl_admin_general_mode.TabIndex = 2
         '
-        'ComboBox1
+        'cbx_admin_general_language
         '
-        Me.ComboBox1.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"English", "Deutsch"})
-        Me.ComboBox1.Location = New System.Drawing.Point(117, 5)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 23)
-        Me.ComboBox1.TabIndex = 3
+        Me.cbx_admin_general_language.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.cbx_admin_general_language.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_admin_general_language.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbx_admin_general_language.FormattingEnabled = True
+        Me.cbx_admin_general_language.Items.AddRange(New Object() {"English", "Deutsch"})
+        Me.cbx_admin_general_language.Location = New System.Drawing.Point(117, 5)
+        Me.cbx_admin_general_language.Name = "cbx_admin_general_language"
+        Me.cbx_admin_general_language.Size = New System.Drawing.Size(121, 23)
+        Me.cbx_admin_general_language.TabIndex = 3
         '
-        'ComboBox2
+        'cbx_admin_general_theme
         '
-        Me.ComboBox2.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {"Gray (default)", "Light", "Dark"})
-        Me.ComboBox2.Location = New System.Drawing.Point(117, 31)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(121, 23)
-        Me.ComboBox2.TabIndex = 4
+        Me.cbx_admin_general_theme.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.cbx_admin_general_theme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_admin_general_theme.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbx_admin_general_theme.FormattingEnabled = True
+        Me.cbx_admin_general_theme.Items.AddRange(New Object() {"Gray (default)", "Light", "Dark"})
+        Me.cbx_admin_general_theme.Location = New System.Drawing.Point(117, 31)
+        Me.cbx_admin_general_theme.Name = "cbx_admin_general_theme"
+        Me.cbx_admin_general_theme.Size = New System.Drawing.Size(121, 23)
+        Me.cbx_admin_general_theme.TabIndex = 4
         '
-        'ComboBox3
+        'cbx_admin_general_mode
         '
-        Me.ComboBox3.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Items.AddRange(New Object() {"Personal", "Business"})
-        Me.ComboBox3.Location = New System.Drawing.Point(117, 57)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(121, 23)
-        Me.ComboBox3.TabIndex = 5
+        Me.cbx_admin_general_mode.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.cbx_admin_general_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_admin_general_mode.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbx_admin_general_mode.FormattingEnabled = True
+        Me.cbx_admin_general_mode.Items.AddRange(New Object() {"Personal", "Business"})
+        Me.cbx_admin_general_mode.Location = New System.Drawing.Point(117, 57)
+        Me.cbx_admin_general_mode.Name = "cbx_admin_general_mode"
+        Me.cbx_admin_general_mode.Size = New System.Drawing.Size(121, 23)
+        Me.cbx_admin_general_mode.TabIndex = 5
         '
         'grb_admin_management
         '
@@ -161,10 +161,10 @@ Partial Class frm_admin
         Me.TableLayoutPanel2.Controls.Add(Me.lbl_admin_central_auth, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.lbl_admin_central_username, 0, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.lbl_admin_central_password, 0, 3)
-        Me.TableLayoutPanel2.Controls.Add(Me.ComboBox4, 1, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox1, 1, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox2, 1, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox3, 1, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.cbx_admin_central_auth, 1, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.txt_admin_central_server, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.txt_admin_central_username, 1, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.txt_admin_central_password, 1, 3)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(2, 15)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
@@ -208,43 +208,44 @@ Partial Class frm_admin
         Me.lbl_admin_central_password.Size = New System.Drawing.Size(0, 15)
         Me.lbl_admin_central_password.TabIndex = 3
         '
-        'ComboBox4
+        'cbx_admin_central_auth
         '
-        Me.ComboBox4.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Location = New System.Drawing.Point(116, 33)
-        Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(121, 23)
-        Me.ComboBox4.TabIndex = 6
+        Me.cbx_admin_central_auth.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.cbx_admin_central_auth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_admin_central_auth.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbx_admin_central_auth.FormattingEnabled = True
+        Me.cbx_admin_central_auth.Items.AddRange(New Object() {"Basic", "Windows"})
+        Me.cbx_admin_central_auth.Location = New System.Drawing.Point(116, 33)
+        Me.cbx_admin_central_auth.Name = "cbx_admin_central_auth"
+        Me.cbx_admin_central_auth.Size = New System.Drawing.Size(121, 23)
+        Me.cbx_admin_central_auth.TabIndex = 6
         '
-        'TextBox1
+        'txt_admin_central_server
         '
-        Me.TextBox1.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Location = New System.Drawing.Point(116, 3)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(121, 23)
-        Me.TextBox1.TabIndex = 7
+        Me.txt_admin_central_server.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.txt_admin_central_server.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txt_admin_central_server.Location = New System.Drawing.Point(116, 3)
+        Me.txt_admin_central_server.Name = "txt_admin_central_server"
+        Me.txt_admin_central_server.Size = New System.Drawing.Size(121, 13)
+        Me.txt_admin_central_server.TabIndex = 7
         '
-        'TextBox2
+        'txt_admin_central_username
         '
-        Me.TextBox2.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Location = New System.Drawing.Point(116, 63)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(121, 23)
-        Me.TextBox2.TabIndex = 8
+        Me.txt_admin_central_username.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.txt_admin_central_username.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txt_admin_central_username.Location = New System.Drawing.Point(116, 63)
+        Me.txt_admin_central_username.Name = "txt_admin_central_username"
+        Me.txt_admin_central_username.Size = New System.Drawing.Size(121, 13)
+        Me.txt_admin_central_username.TabIndex = 8
         '
-        'TextBox3
+        'txt_admin_central_password
         '
-        Me.TextBox3.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox3.Location = New System.Drawing.Point(116, 93)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(121, 23)
-        Me.TextBox3.TabIndex = 9
+        Me.txt_admin_central_password.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.txt_admin_central_password.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txt_admin_central_password.Location = New System.Drawing.Point(116, 93)
+        Me.txt_admin_central_password.Name = "txt_admin_central_password"
+        Me.txt_admin_central_password.Size = New System.Drawing.Size(121, 13)
+        Me.txt_admin_central_password.TabIndex = 9
         '
         'frm_admin
         '
@@ -276,16 +277,16 @@ Partial Class frm_admin
     Friend WithEvents lbl_admin_general_language As Label
     Friend WithEvents lbl_admin_general_theme As Label
     Friend WithEvents lbl_admin_general_mode As Label
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents cbx_admin_general_language As ComboBox
+    Friend WithEvents cbx_admin_general_theme As ComboBox
+    Friend WithEvents cbx_admin_general_mode As ComboBox
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents lbl_admin_central_server As Label
     Friend WithEvents lbl_admin_central_auth As Label
     Friend WithEvents lbl_admin_central_username As Label
     Friend WithEvents lbl_admin_central_password As Label
-    Friend WithEvents ComboBox4 As ComboBox
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents cbx_admin_central_auth As ComboBox
+    Friend WithEvents txt_admin_central_server As TextBox
+    Friend WithEvents txt_admin_central_username As TextBox
+    Friend WithEvents txt_admin_central_password As TextBox
 End Class

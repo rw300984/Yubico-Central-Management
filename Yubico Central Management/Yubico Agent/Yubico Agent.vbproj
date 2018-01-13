@@ -87,6 +87,12 @@
     <Compile Include="Forms\frm_admin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frm_admin_save.Designer.vb">
+      <DependentUpon>frm_admin_save.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_admin_save.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frm_main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_admin.resx">
       <DependentUpon>frm_admin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_admin_save.resx">
+      <DependentUpon>frm_admin_save.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_main.resx">
       <DependentUpon>frm_main.vb</DependentUpon>

@@ -4,6 +4,8 @@
 
     Dim frm_monitor As New frm_monitor
     Dim frm_admin As New frm_admin
+    Dim frm_admin_save As New frm_admin_save
+
 
     ' Context Menu strip item on click event to show version and copyright
 
@@ -73,26 +75,38 @@
         frm_monitor.FormBorderStyle = FormBorderStyle.None
         frm_monitor.Dock = DockStyle.Fill
 
+        frm_admin_save.TopLevel = False
+        frm_admin_save.WindowState = FormWindowState.Maximized
+        frm_admin_save.FormBorderStyle = FormBorderStyle.None
+        frm_admin_save.Dock = DockStyle.Fill
+
         panel_main_form.Controls.Add(frm_monitor)
         panel_main_form.Controls.Add(frm_admin)
+        panel_main_form.Controls.Add(frm_admin_save)
+
+        ' Localization for frm_main
 
         btn_main_admin_login.Text = "Open configuration"
+
+        ' Localization for frm_monitor
+
         frm_monitor.grb_monitor_systeminfo.Text = "System information"
         frm_monitor.grb_monitor_yubiinfo.Text = "Yubikey information"
-        frm_admin.grb_admin_general.Text = "General settings"
-        frm_admin.grb_admin_management.Text = "Central management settings"
         frm_monitor.lbl_monitor_sys_devicemodel_text.Text = "Device model"
-        '  frm_monitor.lbl_monitor_sys_geo_text.Text = "Geo location"
         frm_monitor.lbl_monitor_sys_hostname_text.Text = "Hostname"
         frm_monitor.lbl_monitor_sys_ip_text.Text = "IP address"
         frm_monitor.lbl_monitor_sys_os_text.Text = "OS"
         frm_monitor.lbl_monitor_sys_username_text.Text = "Username"
-        ' frm_monitor.lbl_monitor_yub_capabilities_text.Text = "Features"
         frm_monitor.lbl_monitor_yub_firmware_text.Text = "Firmware"
         frm_monitor.lbl_monitor_yub_model_text.Text = "Model"
         frm_monitor.lbl_monitor_yub_serial_text.Text = "Serial"
         frm_monitor.lbl_monitor_yub_touch_text.Text = "Touch Level"
         frm_monitor.lbl_monitor_yub_vendor_text.Text = "Vendor"
+
+        ' Localization for frm_admin
+
+        frm_admin.grb_admin_general.Text = "General settings"
+        frm_admin.grb_admin_management.Text = "Central management settings"
         frm_admin.lbl_admin_central_auth.Text = "Authentication"
         frm_admin.lbl_admin_central_password.Text = "Password"
         frm_admin.lbl_admin_central_username.Text = "Username"
@@ -100,6 +114,15 @@
         frm_admin.lbl_admin_general_language.Text = "Language"
         frm_admin.lbl_admin_general_mode.Text = "Mode"
         frm_admin.lbl_admin_general_theme.Text = "Theme"
+
+        ' Localization for frm_admin_save
+
+        frm_admin_save.lbl_admin_save.Text = "Are you sure?"
+        frm_admin_save.btn_admin_save_no.Text = "No"
+        frm_admin_save.btn_admin_save_yes.Text = "Yes"
+
+        ' Localization for ContextMenu (NotifyIcon)
+
         cms_notify_agent_about.Text = "About"
         cms_notify_agent_close.Text = "Exit"
         cms_notify_agent_open.Text = "Open"
@@ -109,19 +132,34 @@
     ' Show child forms on button click event (monitor / admin)
 
     Private Sub btn_main_admin_login_Click(sender As Object, e As EventArgs) Handles btn_main_admin_login.Click
-        If btn_main_admin_login.Text = "Open configuration" Then
-            frm_monitor.Visible = False
-            frm_monitor.Hide()
-            frm_admin.Visible = True
-            frm_admin.Show()
-            btn_main_admin_login.Text = "Close configuration"
-        Else
-            frm_monitor.Visible = True
-            frm_monitor.Show()
-            frm_admin.Visible = False
-            frm_admin.Hide()
-            btn_main_admin_login.Text = "Open configuration"
-        End If
+        Select Case btn_main_admin_login.Text
+            Case "Open configuration"
+                frm_monitor.Visible = False
+                frm_monitor.Hide()
+                frm_admin_save.Visible = False
+                frm_admin_save.Hide()
+                frm_admin.Visible = True
+                frm_admin.Show()
+                btn_main_admin_login.Text = "Close configuration"
+            Case "Close configuration"
+                frm_monitor.Visible = True
+                frm_monitor.Show()
+                frm_admin_save.Visible = False
+                frm_admin_save.Hide()
+                frm_admin.Visible = False
+                frm_admin.Hide()
+                btn_main_admin_login.Text = "Open configuration"
+            Case "Save configuration"
+                frm_monitor.Visible = False
+                frm_monitor.Hide()
+                frm_admin.Visible = False
+                frm_admin.Hide()
+                frm_admin_save.Visible = True
+                frm_admin_save.Show()
+                btn_main_admin_login.Text = "Close configuration"
+            Case Else
+
+        End Select
     End Sub
     Public Function PositionMainForm()
         Dim Size As Rectangle = FindDockedTaskBars(Screen.FromControl(Me).Bounds, Screen.FromControl(Me).WorkingArea)
@@ -129,19 +167,19 @@
         Select Case Position
             Case 0
                 Me.Left = Size.Right + 2
-                Me.Top = Size.Bottom - 300 - 2
+                Me.Top = Size.Bottom - Me.MaximumSize.Height - 2
             Case 1
-                Me.Left = Size.Left - 350 - 2
-                Me.Top = Size.Bottom - 300 - 2
+                Me.Left = Size.Left - Me.MaximumSize.Width - 2
+                Me.Top = Size.Bottom - Me.MaximumSize.Height - 2
             Case 2
-                Me.Left = Size.Right - 350 - 2
+                Me.Left = Size.Right - Me.MaximumSize.Width - 2
                 Me.Top = Size.Bottom + 2
             Case 3
-                Me.Left = Size.Right - 350 - 2
-                Me.Top = Size.Top - 300 - 2
+                Me.Left = Size.Right - Me.MaximumSize.Width - 2
+                Me.Top = Size.Top - Me.MaximumSize.Height - 2
             Case 4
-                Me.Left = Size.Right - 350 - 2
-                Me.Top = Size.Top - 300 - 2
+                Me.Left = Size.Right - Me.MaximumSize.Width - 2
+                Me.Top = Size.Top - Me.MaximumSize.Height - 2
         End Select
     End Function
 End Class
