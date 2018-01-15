@@ -1,5 +1,4 @@
 ﻿Public Class frm_admin_save
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btn_admin_save_yes.Click
-
+    Private Sub frm_admin_save_Load(sender As Object, e As EventArgs) Handles Me.Load
     End Sub
 End Class

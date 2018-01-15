@@ -27,9 +27,9 @@ Partial Class frm_admin
         Me.lbl_admin_general_language = New System.Windows.Forms.Label()
         Me.lbl_admin_general_theme = New System.Windows.Forms.Label()
         Me.lbl_admin_general_mode = New System.Windows.Forms.Label()
-        Me.cbx_admin_general_language = New System.Windows.Forms.ComboBox()
         Me.cbx_admin_general_theme = New System.Windows.Forms.ComboBox()
         Me.cbx_admin_general_mode = New System.Windows.Forms.ComboBox()
+        Me.cbx_admin_general_language = New System.Windows.Forms.ComboBox()
         Me.grb_admin_management = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.lbl_admin_central_server = New System.Windows.Forms.Label()
@@ -48,8 +48,10 @@ Partial Class frm_admin
         '
         'grb_admin_general
         '
+        Me.grb_admin_general.BackColor = System.Drawing.SystemColors.Control
         Me.grb_admin_general.Controls.Add(Me.TableLayoutPanel1)
         Me.grb_admin_general.Dock = System.Windows.Forms.DockStyle.Top
+        Me.grb_admin_general.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.grb_admin_general.Location = New System.Drawing.Point(2, 3)
         Me.grb_admin_general.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.grb_admin_general.Name = "grb_admin_general"
@@ -66,9 +68,9 @@ Partial Class frm_admin
         Me.TableLayoutPanel1.Controls.Add(Me.lbl_admin_general_language, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.lbl_admin_general_theme, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.lbl_admin_general_mode, 0, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.cbx_admin_general_language, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.cbx_admin_general_theme, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.cbx_admin_general_mode, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.cbx_admin_general_language, 1, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(2, 15)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -104,21 +106,8 @@ Partial Class frm_admin
         Me.lbl_admin_general_mode.Size = New System.Drawing.Size(0, 15)
         Me.lbl_admin_general_mode.TabIndex = 2
         '
-        'cbx_admin_general_language
-        '
-        Me.cbx_admin_general_language.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.cbx_admin_general_language.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbx_admin_general_language.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbx_admin_general_language.FormattingEnabled = True
-        Me.cbx_admin_general_language.Items.AddRange(New Object() {"English", "Deutsch"})
-        Me.cbx_admin_general_language.Location = New System.Drawing.Point(117, 5)
-        Me.cbx_admin_general_language.Name = "cbx_admin_general_language"
-        Me.cbx_admin_general_language.Size = New System.Drawing.Size(121, 23)
-        Me.cbx_admin_general_language.TabIndex = 3
-        '
         'cbx_admin_general_theme
         '
-        Me.cbx_admin_general_theme.BackColor = System.Drawing.SystemColors.ControlLight
         Me.cbx_admin_general_theme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbx_admin_general_theme.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbx_admin_general_theme.FormattingEnabled = True
@@ -140,10 +129,23 @@ Partial Class frm_admin
         Me.cbx_admin_general_mode.Size = New System.Drawing.Size(121, 23)
         Me.cbx_admin_general_mode.TabIndex = 5
         '
+        'cbx_admin_general_language
+        '
+        Me.cbx_admin_general_language.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.cbx_admin_general_language.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_admin_general_language.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbx_admin_general_language.FormattingEnabled = True
+        Me.cbx_admin_general_language.Items.AddRange(New Object() {"English", "Deutsch"})
+        Me.cbx_admin_general_language.Location = New System.Drawing.Point(117, 5)
+        Me.cbx_admin_general_language.Name = "cbx_admin_general_language"
+        Me.cbx_admin_general_language.Size = New System.Drawing.Size(121, 23)
+        Me.cbx_admin_general_language.TabIndex = 6
+        '
         'grb_admin_management
         '
         Me.grb_admin_management.Controls.Add(Me.TableLayoutPanel2)
         Me.grb_admin_management.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grb_admin_management.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.grb_admin_management.Location = New System.Drawing.Point(2, 101)
         Me.grb_admin_management.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.grb_admin_management.Name = "grb_admin_management"
@@ -277,7 +279,6 @@ Partial Class frm_admin
     Friend WithEvents lbl_admin_general_language As Label
     Friend WithEvents lbl_admin_general_theme As Label
     Friend WithEvents lbl_admin_general_mode As Label
-    Friend WithEvents cbx_admin_general_language As ComboBox
     Friend WithEvents cbx_admin_general_theme As ComboBox
     Friend WithEvents cbx_admin_general_mode As ComboBox
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
@@ -289,4 +290,5 @@ Partial Class frm_admin
     Friend WithEvents txt_admin_central_server As TextBox
     Friend WithEvents txt_admin_central_username As TextBox
     Friend WithEvents txt_admin_central_password As TextBox
+    Friend WithEvents cbx_admin_general_language As ComboBox
 End Class

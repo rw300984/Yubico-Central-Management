@@ -97,6 +97,7 @@ Partial Class frm_admin_save
         '
         'TableLayoutPanel3
         '
+        Me.TableLayoutPanel3.BackColor = System.Drawing.SystemColors.Control
         Me.TableLayoutPanel3.ColumnCount = 3
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))

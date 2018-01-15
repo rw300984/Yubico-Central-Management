@@ -93,6 +93,12 @@
     <Compile Include="Forms\frm_admin_save.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frm_initial.Designer.vb">
+      <DependentUpon>frm_initial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_initial.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frm_main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -106,9 +112,11 @@
     <Compile Include="Forms\frm_monitor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modules\Config.vb" />
     <Compile Include="Modules\Localization.vb" />
     <Compile Include="Modules\monitor.vb" />
     <Compile Include="Modules\Others.vb" />
+    <Compile Include="Modules\themes.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -134,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_admin_save.resx">
       <DependentUpon>frm_admin_save.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_initial.resx">
+      <DependentUpon>frm_initial.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_main.resx">
       <DependentUpon>frm_main.vb</DependentUpon>

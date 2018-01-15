@@ -101,7 +101,6 @@ Partial Class frm_main
         '
         'panel_main_form
         '
-        Me.panel_main_form.BackColor = System.Drawing.SystemColors.Control
         Me.panel_main_form.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panel_main_form.Location = New System.Drawing.Point(0, 0)
         Me.panel_main_form.Margin = New System.Windows.Forms.Padding(0)
