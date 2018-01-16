@@ -49,11 +49,9 @@
         Dim Hash As Byte()
         Dim Result As String = ""
         Dim Tmp As String = ""
-
         Dim FN As New System.IO.FileStream(File, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read, 8192)
         MD5.ComputeHash(FN)
         FN.Close()
-
         Hash = MD5.Hash
         For i As Integer = 0 To Hash.Length - 1
             Tmp = Hex(Hash(i))

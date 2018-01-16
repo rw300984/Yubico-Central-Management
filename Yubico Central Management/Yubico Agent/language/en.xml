@@ -8,31 +8,31 @@
   <btn_main_admin_login_login_failed>Login failed... wait 5 sec.</btn_main_admin_login_login_failed>
   <btn_main_admin_login_login_success>Login successful... start in 2sec.</btn_main_admin_login_login_success>
   <btn_main_admin_login_empty>Empty</btn_main_admin_login_empty>
-  <frm_initial.lbl_initial_enc>Please enter a new encryption key:</frm_initial.lbl_initial_enc>
-  <frm_monitor.grb_monitor_systeminfo>System information</frm_monitor.grb_monitor_systeminfo>
-  <frm_monitor.grb_monitor_yubiinfo>Yubikey information</frm_monitor.grb_monitor_yubiinfo>
-  <frm_monitor.lbl_monitor_sys_devicemodel_text>Device model</frm_monitor.lbl_monitor_sys_devicemodel_text>
-  <frm_monitor.lbl_monitor_sys_hostname_text>Hostname</frm_monitor.lbl_monitor_sys_hostname_text>
-  <frm_monitor.lbl_monitor_sys_ip_text>IP address</frm_monitor.lbl_monitor_sys_ip_text>
-  <frm_monitor.lbl_monitor_sys_os_text>OS</frm_monitor.lbl_monitor_sys_os_text>
-  <frm_monitor.lbl_monitor_sys_username>Username</frm_monitor.lbl_monitor_sys_username>
-  <frm_monitor.lbl_monitor_yub_firmware_text>Firmware</frm_monitor.lbl_monitor_yub_firmware_text>
-  <frm_monitor.lbl_monitor_yub_model_text>Model</frm_monitor.lbl_monitor_yub_model_text>
-  <frm_monitor.lbl_monitor_yub_serial_text>Serial</frm_monitor.lbl_monitor_yub_serial_text>
-  <frm_monitor.lbl_monitor_yub_touch_text>Touch level</frm_monitor.lbl_monitor_yub_touch_text>
-  <frm_monitor.lbl_monitor_yub_vendor_text>Vendor</frm_monitor.lbl_monitor_yub_vendor_text>
-  <frm_admin.grb_admin_general>General settings</frm_admin.grb_admin_general>
-  <frm_admin.grb_admin_management>Central management settings</frm_admin.grb_admin_management>
-  <frm_admin.lbl_admin_central_auth>Authentication</frm_admin.lbl_admin_central_auth>
-  <frm_admin.lbl_admin_central_password>Password</frm_admin.lbl_admin_central_password>
-  <frm_admin.lbl_admin_central_username>Username</frm_admin.lbl_admin_central_username>
-  <frm_admin.lbl_admin_central_server>Server</frm_admin.lbl_admin_central_server>
-  <frm_admin.lbl_admin_general_language>Language</frm_admin.lbl_admin_general_language>
-  <frm_admin.lbl_admin_general_mode>Mode</frm_admin.lbl_admin_general_mode>
-  <frm_admin.lbl_admin_general_theme>Theme</frm_admin.lbl_admin_general_theme>
-  <frm_admin_save.lbl_admin_save>Are you sure?</frm_admin_save.lbl_admin_save>
-  <frm_admin_save.btn_admin_save_no>No</frm_admin_save.btn_admin_save_no>
-  <frm_admin_save.btn_admin_save_yes>Yes</frm_admin_save.btn_admin_save_yes>
+  <frm_initial_lbl_initial_enc>Please enter a new encryption key:</frm_initial_lbl_initial_enc>
+  <frm_monitor_grb_monitor_systeminfo>System information</frm_monitor_grb_monitor_systeminfo>
+  <frm_monitor_grb_monitor_yubiinfo>Yubikey information</frm_monitor_grb_monitor_yubiinfo>
+  <frm_monitor_lbl_monitor_sys_devicemodel_text>Device model</frm_monitor_lbl_monitor_sys_devicemodel_text>
+  <frm_monitor_lbl_monitor_sys_hostname_text>Hostname</frm_monitor_lbl_monitor_sys_hostname_text>
+  <frm_monitor_lbl_monitor_sys_ip_text>IP address</frm_monitor_lbl_monitor_sys_ip_text>
+  <frm_monitor_lbl_monitor_sys_os_text>OS</frm_monitor_lbl_monitor_sys_os_text>
+  <frm_monitor_lbl_monitor_sys_username>Username</frm_monitor_lbl_monitor_sys_username>
+  <frm_monitor_lbl_monitor_yub_firmware_text>Firmware</frm_monitor_lbl_monitor_yub_firmware_text>
+  <frm_monitor_lbl_monitor_yub_model_text>Model</frm_monitor_lbl_monitor_yub_model_text>
+  <frm_monitor_lbl_monitor_yub_serial_text>Serial</frm_monitor_lbl_monitor_yub_serial_text>
+  <frm_monitor_lbl_monitor_yub_touch_text>Touch level</frm_monitor_lbl_monitor_yub_touch_text>
+  <frm_monitor_lbl_monitor_yub_vendor_text>Vendor</frm_monitor_lbl_monitor_yub_vendor_text>
+  <frm_admin_grb_admin_general>General settings</frm_admin_grb_admin_general>
+  <frm_admin_grb_admin_management>Central management settings</frm_admin_grb_admin_management>
+  <frm_admin_lbl_admin_central_auth>Authentication</frm_admin_lbl_admin_central_auth>
+  <frm_admin_lbl_admin_central_password>Password</frm_admin_lbl_admin_central_password>
+  <frm_admin_lbl_admin_central_username>Username</frm_admin_lbl_admin_central_username>
+  <frm_admin_lbl_admin_central_server>Server</frm_admin_lbl_admin_central_server>
+  <frm_admin_lbl_admin_general_language>Language</frm_admin_lbl_admin_general_language>
+  <frm_admin_lbl_admin_general_mode>Mode</frm_admin_lbl_admin_general_mode>
+  <frm_admin_lbl_admin_general_theme>Theme</frm_admin_lbl_admin_general_theme>
+  <frm_admin_save_lbl_admin_save>Are you sure?</frm_admin_save_lbl_admin_save>
+  <frm_admin_save_btn_admin_save_no>No</frm_admin_save_btn_admin_save_no>
+  <frm_admin_save_btn_admin_save_yes>Yes</frm_admin_save_btn_admin_save_yes>
   <cms_notify_agent_about>About</cms_notify_agent_about>
   <cms_notify_agent_close>Exit</cms_notify_agent_close>
   <cms_notify_agent_open>Open</cms_notify_agent_open>
