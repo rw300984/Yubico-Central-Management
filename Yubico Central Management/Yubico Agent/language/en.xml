@@ -5,7 +5,7 @@
   <btn_main_admin_login_close>Close configuration</btn_main_admin_login_close>
   <btn_main_admin_login_initial>Save key and start Yubico agent</btn_main_admin_login_initial>
   <btn_main_admin_login_login>Login</btn_main_admin_login_login>
-  <btn_main_admin_login_login_failed>Login failed... wait 5 sec.</btn_main_admin_login_login_failed>
+  <btn_main_admin_login_login_failed>Login failed</btn_main_admin_login_login_failed>
   <btn_main_admin_login_login_success>Login successful... start in 2sec.</btn_main_admin_login_login_success>
   <btn_main_admin_login_empty>Empty</btn_main_admin_login_empty>
   <frm_initial_lbl_initial_enc>Please enter a new encryption key:</frm_initial_lbl_initial_enc>
@@ -38,4 +38,7 @@
   <cms_notify_agent_open>Open</cms_notify_agent_open>
   <frm_initial_lbl_initial_enc_login>Please enter your password</frm_initial_lbl_initial_enc_login>
   <btn_main_admin_login_integrity>Integrity check failed, exit in 5 sec.</btn_main_admin_login_integrity>
+  <btn_main_admin_login_login_failed_delay>... delay in sec: </btn_main_admin_login_login_failed_delay>
+  <btn_main_admin_login_login_failed_count_reached>5 failed logons, exit in 5 sec.</btn_main_admin_login_login_failed_count_reached>
+  <btn_main_admin_login_initial_password_complexity>"Doesn't match password complexity"</btn_main_admin_login_initial_password_complexity>
 </language>

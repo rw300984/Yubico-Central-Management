@@ -6,6 +6,8 @@
     Dim frm_admin As New frm_admin
     Dim frm_admin_save As New frm_admin_save
     Dim frm_initial As New frm_initial
+    Dim frm_admin_personal As New frm_admin_personal
+    Dim login_count As Integer = 0
 
     ' Context Menu strip item on click event to show version and copyright
 
@@ -23,36 +25,12 @@
 
     Private Sub cms_notify_agent_open_Click(sender As Object, e As EventArgs) Handles cms_notify_agent_open.Click
         frm_initial.txt_initial_enc_password.Text = ""
-        If System.IO.File.Exists("config.xml") Then
-            ThemeForm(Read_Config("config.xml", "3"))
-            SetLanguage(Read_Config("config.xml", "2"))
-            FillTextWithLanguagefile()
-            '   cfg_config.integrity_config_file = "config.xml"
-            cfg_config.integrity_lang_de = "de.xml"
-            cfg_config.integrity_lang_en = "en.xml"
-        Else
-            ThemeForm("Gray (default)")
-            SetLanguage("English")
-            FillTextWithLanguagefile()
-        End If
+        CheckConfigFile(0)
         If Me.WindowState = FormWindowState.Minimized Then
             PositionMainForm()
             Me.Visible = True
             Me.WindowState = FormWindowState.Normal
-            If System.IO.File.Exists("config.xml") Then
-                If Read_Config("config.xml", "1") = 1 Then
-                    ShowForms("frm_initial")
-                Else
-                    ShowForms("frm_initial")
-                    frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc_login
-                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
-                    '   cfg_config.integrity_config_file = "config.xml"
-                    cfg_config.integrity_lang_de = "de.xml"
-                    cfg_config.integrity_lang_en = "en.xml"
-                End If
-            Else
-                ShowForms("frm_initial")
-            End If
+            CheckConfigFile(1)
         Else
             Me.Visible = False
             Me.WindowState = FormWindowState.Minimized
@@ -63,41 +41,15 @@
 
     Private Sub tray_notify_agent_MouseClick(sender As Object, e As MouseEventArgs) Handles tray_notify_agent.MouseClick
         frm_initial.txt_initial_enc_password.Text = ""
-        If System.IO.File.Exists("config.xml") Then
-            ThemeForm(Read_Config("config.xml", "3"))
-            SetLanguage(Read_Config("config.xml", "2"))
-            FillTextWithLanguagefile()
-            '   cfg_config.integrity_config_file = "config.xml"
-            cfg_config.integrity_lang_de = "de.xml"
-            cfg_config.integrity_lang_en = "en.xml"
-        Else
-            ThemeForm("Gray (default)")
-            SetLanguage("English")
-            FillTextWithLanguagefile()
-        End If
-
+        CheckConfigFile(0)
         If e.Button = MouseButtons.Left Then
             If Me.WindowState = FormWindowState.Minimized Then
                 PositionMainForm()
                 Me.Visible = True
                 Me.WindowState = FormWindowState.Normal
-                If System.IO.File.Exists("config.xml") Then
-                    If Read_Config("config.xml", "1") = 1 Then
-                        ShowForms("frm_initial")
-                    Else
-                        ShowForms("frm_initial")
-                        frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc_login
-                        btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
-                    End If
-                Else
-                    ShowForms("frm_initial")
-                    '  cfg_config.integrity_config_file = "config.xml"
-                    cfg_config.integrity_lang_de = "de.xml"
-                    cfg_config.integrity_lang_en = "en.xml"
-                End If
-
+                CheckConfigFile(1)
             Else
-                    Me.Visible = False
+                Me.Visible = False
                 Me.WindowState = FormWindowState.Minimized
             End If
         Else
@@ -135,10 +87,16 @@
         frm_initial.FormBorderStyle = FormBorderStyle.None
         frm_initial.Dock = DockStyle.Fill
 
+        frm_admin_personal.TopLevel = False
+        frm_admin_personal.WindowState = FormWindowState.Maximized
+        frm_admin_personal.FormBorderStyle = FormBorderStyle.None
+        frm_admin_personal.Dock = DockStyle.Fill
+
         panel_main_form.Controls.Add(frm_monitor)
         panel_main_form.Controls.Add(frm_admin)
         panel_main_form.Controls.Add(frm_admin_save)
         panel_main_form.Controls.Add(frm_initial)
+        panel_main_form.Controls.Add(frm_admin_personal)
     End Function
 
     Public Function FillTextWithLanguagefile()
@@ -179,6 +137,20 @@
         cms_notify_agent_about.Text = cfg_lang.cms_notify_agent_about
         cms_notify_agent_close.Text = cfg_lang.cms_notify_agent_close
         cms_notify_agent_open.Text = cfg_lang.cms_notify_agent_open
+
+        ' locatilization for frm_admin_personal
+
+        frm_admin_personal.lbl_admin_general_language.Text = cfg_lang.frm_admin_lbl_admin_general_language
+        frm_admin_personal.lbl_admin_general_mode.Text = cfg_lang.frm_admin_lbl_admin_general_mode
+        frm_admin_personal.lbl_admin_general_theme.Text = cfg_lang.frm_admin_lbl_admin_general_theme
+        frm_admin_personal.lbl_admin_personal_driver.Text = "Mini Driver"
+        frm_admin_personal.lbl_admin_personal_yubi_personalization.Text = "Personalization Tool"
+        frm_admin_personal.lbl_admin_personal_yubi_pivmanager.Text = "Piv Manager"
+        frm_admin_personal.lbl_admin_yubi_authenticator.Text = "Mini Driver"
+        frm_admin_personal.Button1.Text = "Download"
+        frm_admin_personal.Button2.Text = "Download"
+        frm_admin_personal.Button3.Text = "Download"
+        frm_admin_personal.Button4.Text = "Download"
     End Function
 
     ' Show child forms on button click event (monitor / admin)
@@ -186,90 +158,78 @@
     Private Sub btn_main_admin_login_Click(sender As Object, e As EventArgs) Handles btn_main_admin_login.Click
         Select Case btn_main_admin_login.Text
             Case cfg_lang.btn_main_admin_login_open
-                If frm_initial.Visible = True Then
-                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_integrity
-                    btn_main_admin_login.Update()
-                    btn_main_admin_login.BackColor = Color.Coral
-                    btn_main_admin_login.Update()
-                    Threading.Thread.Sleep(5000)
-                    Application.Exit()
-                Else
+                Dim Integrity As Integer = IntegrityCheckFor_btn_admin_login(1)
+                If Integrity = 0 Then
                     ShowForms("frm_admin")
+                Else
+                    Application.Exit()
                 End If
             Case cfg_lang.btn_main_admin_login_close
-                If frm_initial.Visible = True Then
-                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_integrity
-                    btn_main_admin_login.Update()
-                    btn_main_admin_login.BackColor = Color.Coral
-                    btn_main_admin_login.Update()
-                    Threading.Thread.Sleep(5000)
-                    Application.Exit()
-                Else
+                Dim Integrity As Integer = IntegrityCheckFor_btn_admin_login(1)
+                If Integrity = 0 Then
                     ShowForms("frm_monitor")
+                Else
+                    Application.Exit()
                 End If
             Case cfg_lang.btn_main_admin_login_save
-                If frm_initial.Visible = True Then
-                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_integrity
-                    btn_main_admin_login.Update()
-                    btn_main_admin_login.BackColor = Color.Coral
-                    btn_main_admin_login.Update()
-                    Threading.Thread.Sleep(5000)
-                    Application.Exit()
-                Else
+                Dim Integrity As Integer = IntegrityCheckFor_btn_admin_login(1)
+                If Integrity = 0 Then
                     ShowForms("frm_admin_save")
+                Else
+                    Application.Exit()
                 End If
-
             Case cfg_lang.btn_main_admin_login_initial
                 cfg_config.initial_enabled = 0
                 cfg_config.integrity_lang_de_file = "de.xml"
                 cfg_config.integrity_lang_en_file = "en.xml"
                 Config.Write_Config("config.xml", frm_initial.txt_initial_enc_password.Text)
-
                 ShowForms("frm_monitor")
-            Case cfg_lang.btn_main_admin_login_login
                 Config.GetConfig("config.xml", frm_initial.txt_initial_enc_password.Text)
-                cfg_config.integrity_lang_de_file = "de.xml"
-                cfg_config.integrity_lang_en_file = "en.xml"
+            Case cfg_lang.btn_main_admin_login_login
+
+                Config.GetConfig("config.xml", frm_initial.txt_initial_enc_password.Text)
+
+
                 If cfg_config.initial_verify = frm_initial.txt_initial_enc_password.Text Then
-                    '  Dim md5_config As String = MD5FileHash(cfg_config.integrity_config_file)
-                    Dim md5_lang_de As String = MD5FileHash(cfg_config.integrity_lang_de_file)
-                    Dim md5_lang_en As String = MD5FileHash(cfg_config.integrity_lang_en_file)
-                    Dim status As Integer = 0
 
-                    'If md5_config <> cfg_config.integrity_config Then
-                    '    status = status + 1
-                    'End If
-                    If md5_lang_de <> cfg_config.integrity_lang_de Then
-                        status = status + 1
-                    End If
-                    If md5_lang_en <> cfg_config.integrity_lang_en Then
-                        status = status + 1
-                    End If
-
-                    If status > 0 Then
-                        btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_integrity
-                        btn_main_admin_login.Update()
-                        btn_main_admin_login.BackColor = Color.Coral
-                        btn_main_admin_login.Update()
-                        Threading.Thread.Sleep(5000)
-                        Application.Exit()
-                    Else
+                    Dim integrity As Integer = IntegrityCheckFor_btn_admin_login(0)
+                    If integrity = 0 Then
                         btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login_success
                         btn_main_admin_login.Update()
                         FillControlsWithConfig()
                         Threading.Thread.Sleep(2000)
                         ShowForms("frm_monitor")
+                        login_count = 0
+                    Else
+                        Application.Exit()
                     End If
-
-
                 Else
-                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login_failed
-                    btn_main_admin_login.BackColor = Color.Coral
-                    btn_main_admin_login.Update()
-                    Threading.Thread.Sleep(5000)
-                    btn_main_admin_login.BackColor = Color.FromArgb(154, 202, 60)
-                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
-                    btn_main_admin_login.Update()
+                    If login_count > 3 Then
+                        btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login_failed_count_reached
+                        btn_main_admin_login.BackColor = Color.Coral
+                        btn_main_admin_login.Update()
+                        Threading.Thread.Sleep(5000)
+                        Application.Exit()
+                    Else
+                        Dim delay As Integer = 0
+                        If login_count = 0 Then
+                            delay = 5000
+                        Else
+                            delay = 5000 * (login_count + 1)
+                        End If
+                        btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login_failed & cfg_lang.btn_main_admin_login_login_failed_delay & delay / 1000
+                        btn_main_admin_login.BackColor = Color.Coral
+                        btn_main_admin_login.Update()
+                        If login_count = 0 Then
+                            Threading.Thread.Sleep(delay)
+                        Else
+                            Threading.Thread.Sleep(delay)
+                        End If
+                        btn_main_admin_login.BackColor = Color.FromArgb(154, 202, 60)
+                        btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
+                        btn_main_admin_login.Update()
+                        login_count = login_count + 1
+                    End If
                 End If
             Case Else
         End Select
@@ -330,6 +290,7 @@
                 frm_admin_save.Visible = False
                 frm_initial.Visible = False
                 frm_admin.Visible = False
+                frm_admin_personal.Visible = False
                 Me.btn_main_admin_login.Enabled = False
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_empty
             Case "frm_admin"
@@ -337,6 +298,15 @@
                 frm_admin_save.Visible = False
                 frm_initial.Visible = False
                 frm_admin.Visible = True
+                frm_admin_personal.Visible = False
+                Me.btn_main_admin_login.Enabled = True
+                Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_close
+            Case "frm_admin_personal"
+                frm_monitor.Visible = False
+                frm_admin_save.Visible = False
+                frm_initial.Visible = False
+                frm_admin.Visible = False
+                frm_admin_personal.Visible = True
                 Me.btn_main_admin_login.Enabled = True
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_close
             Case "frm_monitor"
@@ -344,6 +314,7 @@
                 frm_admin_save.Visible = False
                 frm_initial.Visible = False
                 frm_admin.Visible = False
+                frm_admin_personal.Visible = False
                 Me.btn_main_admin_login.Enabled = True
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_open
             Case "frm_admin_save"
@@ -351,6 +322,7 @@
                 frm_admin_save.Visible = True
                 frm_initial.Visible = False
                 frm_admin.Visible = False
+                frm_admin_personal.Visible = False
                 Me.btn_main_admin_login.Enabled = False
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_close
             Case "frm_initial"
@@ -358,6 +330,7 @@
                 frm_admin_save.Visible = False
                 frm_initial.Visible = True
                 frm_admin.Visible = False
+                frm_admin_personal.Visible = False
                 Me.btn_main_admin_login.Enabled = True
                 frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_initial
@@ -373,5 +346,75 @@
         frm_admin.cbx_admin_general_language.Text = cfg_config.admin_general_lang
         frm_admin.cbx_admin_general_mode.Text = cfg_config.admin_general_mode
         frm_admin.cbx_admin_general_theme.Text = cfg_config.admin_general_theme
+    End Function
+
+    Public Function IntegrityCheckFor_btn_admin_login(ByVal Mode As Integer) As Integer
+        Dim status As Integer = 0
+        cfg_config.integrity_lang_de_file = "de.xml"
+        cfg_config.integrity_lang_en_file = "en.xml"
+        Dim md5_lang_de As String = MD5FileHash(cfg_config.integrity_lang_de_file)
+        Dim md5_lang_en As String = MD5FileHash(cfg_config.integrity_lang_en_file)
+        Select Case Mode
+            Case 1
+                If frm_initial.Visible = True Then
+                    status = status + 1
+                    MessageBox.Show("match frm_initial")
+                End If
+                If md5_lang_de <> cfg_config.integrity_lang_de Then
+                    status = status + 1
+                    MessageBox.Show("match lang_de")
+                End If
+                If md5_lang_en <> cfg_config.integrity_lang_en Then
+                    status = status + 1
+                    MessageBox.Show("match lang_en")
+                End If
+            Case 0
+                If md5_lang_de <> cfg_config.integrity_lang_de Then
+                    status = status + 1
+                End If
+                If md5_lang_en <> cfg_config.integrity_lang_en Then
+                    status = status + 1
+                End If
+        End Select
+        If status > 0 Then
+            btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_integrity
+            btn_main_admin_login.Update()
+            btn_main_admin_login.BackColor = Color.Coral
+            btn_main_admin_login.Update()
+            Threading.Thread.Sleep(5000)
+        End If
+        Return status
+    End Function
+
+    Public Function CheckConfigFile(ByVal Mode As Integer)
+        Select Case Mode
+            Case 0
+                If System.IO.File.Exists("config.xml") Then
+                    ThemeForm(Read_Config("config.xml", "3"))
+                    SetLanguage(Read_Config("config.xml", "2"))
+                    FillTextWithLanguagefile()
+                    cfg_config.integrity_lang_de = "de.xml"
+                    cfg_config.integrity_lang_en = "en.xml"
+                Else
+                    ThemeForm("Gray (default)")
+                    SetLanguage("Deutsch")
+                    FillTextWithLanguagefile()
+                End If
+            Case 1
+                If System.IO.File.Exists("config.xml") Then
+                    If Read_Config("config.xml", "1") = 1 Then
+                        ShowForms("frm_initial")
+                    Else
+                        ShowForms("frm_initial")
+                        frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc_login
+                        btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
+                        '   cfg_config.integrity_config_file = "config.xml"
+                        cfg_config.integrity_lang_de = "de.xml"
+                        cfg_config.integrity_lang_en = "en.xml"
+                    End If
+                Else
+                    ShowForms("frm_initial")
+                End If
+        End Select
     End Function
 End Class

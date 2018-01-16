@@ -39,6 +39,9 @@
         Dim cms_notify_agent_open As String
         Dim frm_initial_lbl_initial_enc_login As String
         Dim btn_main_admin_login_integrity As String
+        Dim btn_main_admin_login_login_failed_delay As String
+        Dim btn_main_admin_login_login_failed_count_reached As String
+        Dim btn_main_admin_login_initial_password_complexity As String
     End Structure
 
     Public Function GetLanguage(ByVal lang As String)
@@ -118,6 +121,12 @@
         cfg_lang.frm_initial_lbl_initial_enc_login = Read_Config(lang, counter)
         counter = counter + 1
         cfg_lang.btn_main_admin_login_integrity = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_login_failed_delay = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_login_failed_count_reached = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_initial_password_complexity = Read_Config(lang, counter)
         counter = counter + 1
     End Function
 End Module

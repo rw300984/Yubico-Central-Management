@@ -5,7 +5,7 @@
   <btn_main_admin_login_close>Konfiguration schliessen</btn_main_admin_login_close>
   <btn_main_admin_login_initial>Abspeichern und Yubico Agent starten</btn_main_admin_login_initial>
   <btn_main_admin_login_login>Anmelden</btn_main_admin_login_login>
-  <btn_main_admin_login_login_failed>Anmeldung fehlgeschlagen... warte 5 Sek.</btn_main_admin_login_login_failed>
+  <btn_main_admin_login_login_failed>Anmeldung fehlgeschlagen</btn_main_admin_login_login_failed>
   <btn_main_admin_login_login_success>Anmeldung erfolgreich... start in 2 Sek.</btn_main_admin_login_login_success>
   <btn_main_admin_login_empty>Leer</btn_main_admin_login_empty>
   <frm_initial_lbl_initial_enc>Bitte einen neue Schlüssel eingeben:</frm_initial_lbl_initial_enc>
@@ -38,4 +38,7 @@
   <cms_notify_agent_open>Öffnen</cms_notify_agent_open>
   <frm_initial_lbl_initial_enc_login>Bitte geben Sie Ihr Password ein</frm_initial_lbl_initial_enc_login>
   <btn_main_admin_login_integrity>Integritätsüberprüfung fehlgeschlagen, beende in 5 Sek.</btn_main_admin_login_integrity>
+  <btn_main_admin_login_login_failed_delay>... Verzögerung in Sek.: </btn_main_admin_login_login_failed_delay>
+  <btn_main_admin_login_login_failed_count_reached>5 fehlerhafte Anmeldungen, beende in 5 sec.</btn_main_admin_login_login_failed_count_reached>
+  <btn_main_admin_login_initial_password_complexity>"Passwort Komplexitätsanforderungen nicht erfüllt"</btn_main_admin_login_initial_password_complexity>
 </language>
