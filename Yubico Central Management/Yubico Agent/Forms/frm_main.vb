@@ -24,25 +24,33 @@
     ' Context Menu Strip open frm_main on click
 
     Private Sub cms_notify_agent_open_Click(sender As Object, e As EventArgs) Handles cms_notify_agent_open.Click
-        ThemeForm()
+        frm_initial.txt_initial_enc_password.Text = ""
+        If System.IO.File.Exists("config.xml") Then
+            ThemeForm(Read_Config("config.xml", "3"))
+            SetLanguage(Read_Config("config.xml", "2"))
+            FillTextWithLanguagefile()
+        Else
+            ThemeForm("Gray (default)")
+            SetLanguage("English")
+            FillTextWithLanguagefile()
+        End If
         If Me.WindowState = FormWindowState.Minimized Then
             PositionMainForm()
-            Me.Show()
-
-            If System.IO.File.Exists("Config.xml") Then
-                frm_monitor.Visible = True
-                frm_monitor.Show()
-                Me.btn_main_admin_login.Visible = True
-                Me.btn_main_admin_login.Enabled = True
-            Else
-                frm_initial.Visible = True
-                frm_initial.Show()
-                Me.btn_main_admin_login.Visible = False
-                Me.btn_main_admin_login.Enabled = False
-            End If
+            Me.Visible = True
             Me.WindowState = FormWindowState.Normal
+            If System.IO.File.Exists("config.xml") Then
+                If Read_Config("config.xml", "1") = 1 Then
+                    ShowForms("frm_initial")
+                Else
+                    ShowForms("frm_initial")
+                    frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc_login
+                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
+                End If
+            Else
+                ShowForms("frm_initial")
+            End If
         Else
-            Me.Hide()
+            Me.Visible = False
             Me.WindowState = FormWindowState.Minimized
         End If
     End Sub
@@ -50,27 +58,36 @@
     ' On Left Mouse Click event show frm_main or close |  On Right Mouse Click event show cms_notify_agent
 
     Private Sub tray_notify_agent_MouseClick(sender As Object, e As MouseEventArgs) Handles tray_notify_agent.MouseClick
-        ThemeForm()
+        frm_initial.txt_initial_enc_password.Text = ""
+        If System.IO.File.Exists("config.xml") Then
+            ThemeForm(Read_Config("config.xml", "3"))
+            SetLanguage(Read_Config("config.xml", "2"))
+            FillTextWithLanguagefile()
+        Else
+            ThemeForm("Gray (default)")
+            SetLanguage("English")
+            FillTextWithLanguagefile()
+        End If
 
         If e.Button = MouseButtons.Left Then
             If Me.WindowState = FormWindowState.Minimized Then
                 PositionMainForm()
-                Me.Show()
+                Me.Visible = True
                 Me.WindowState = FormWindowState.Normal
-                If System.IO.File.Exists("Config.xml") Then
-                    frm_monitor.Visible = True
-                    frm_monitor.Show()
-                    Me.btn_main_admin_login.Visible = True
-                    Me.btn_main_admin_login.Enabled = True
+                If System.IO.File.Exists("config.xml") Then
+                    If Read_Config("config.xml", "1") = 1 Then
+                        ShowForms("frm_initial")
+                    Else
+                        ShowForms("frm_initial")
+                        frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc_login
+                        btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
+                    End If
                 Else
-                    frm_initial.Visible = True
-                    frm_initial.Show()
-                    Me.btn_main_admin_login.Visible = False
-                    Me.btn_main_admin_login.Enabled = False
+                    ShowForms("frm_initial")
                 End If
 
             Else
-                Me.Hide()
+                    Me.Visible = False
                 Me.WindowState = FormWindowState.Minimized
             End If
         Else
@@ -79,15 +96,12 @@
     End Sub
 
     Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
-
         LoadForms()
     End Sub
 
     Private Function LoadForms()
         PositionMainForm()
-        Me.Hide()
-        frm_monitor.Hide()
-        frm_admin.Hide()
+        Me.Visible = False
         frm_admin.Visible = False
         frm_monitor.Visible = False
 
@@ -115,90 +129,95 @@
         panel_main_form.Controls.Add(frm_admin)
         panel_main_form.Controls.Add(frm_admin_save)
         panel_main_form.Controls.Add(frm_initial)
+    End Function
 
-        ' localization for frm_main
-
-        btn_main_admin_login.Text = "Open configuration"
-
-        ' localization for frm_monitor
-
-        frm_initial.btn_initial_save.Text = "Save Key and start Yubico Agent"
-        frm_initial.lbl_initial_enc.Text = "Please enter a new encryption key:"
-
-
-        ' localization for frm_monitor
-
-        frm_monitor.grb_monitor_systeminfo.Text = "System information"
-        frm_monitor.grb_monitor_yubiinfo.Text = "Yubikey information"
-        frm_monitor.lbl_monitor_sys_devicemodel_text.Text = "Device model"
-        frm_monitor.lbl_monitor_sys_hostname_text.Text = "Hostname"
-        frm_monitor.lbl_monitor_sys_ip_text.Text = "IP address"
-        frm_monitor.lbl_monitor_sys_os_text.Text = "OS"
-        frm_monitor.lbl_monitor_sys_username_text.Text = "Username"
-        frm_monitor.lbl_monitor_yub_firmware_text.Text = "Firmware"
-        frm_monitor.lbl_monitor_yub_model_text.Text = "Model"
-        frm_monitor.lbl_monitor_yub_serial_text.Text = "Serial"
-        frm_monitor.lbl_monitor_yub_touch_text.Text = "Touch level"
-        frm_monitor.lbl_monitor_yub_vendor_text.Text = "Vendor"
+    Public Function FillTextWithLanguagefile()
+        frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc
+        frm_monitor.grb_monitor_systeminfo.Text = cfg_lang.frm_monitor_grb_monitor_systeminfo
+        frm_monitor.grb_monitor_yubiinfo.Text = cfg_lang.frm_monitor_grb_monitor_yubiinfo
+        frm_monitor.lbl_monitor_sys_devicemodel_text.Text = cfg_lang.frm_monitor_lbl_monitor_sys_devicemodel_text
+        frm_monitor.lbl_monitor_sys_hostname_text.Text = cfg_lang.frm_monitor_lbl_monitor_sys_hostname_text
+        frm_monitor.lbl_monitor_sys_ip_text.Text = cfg_lang.frm_monitor_lbl_monitor_sys_ip_text
+        frm_monitor.lbl_monitor_sys_os_text.Text = cfg_lang.frm_monitor_lbl_monitor_sys_os_text
+        frm_monitor.lbl_monitor_sys_username_text.Text = cfg_lang.frm_monitor_lbl_monitor_sys_username
+        frm_monitor.lbl_monitor_yub_firmware_text.Text = cfg_lang.frm_monitor_lbl_monitor_yub_firmware_text
+        frm_monitor.lbl_monitor_yub_model_text.Text = cfg_lang.frm_monitor_lbl_monitor_yub_model_text
+        frm_monitor.lbl_monitor_yub_serial_text.Text = cfg_lang.frm_monitor_lbl_monitor_yub_serial_text
+        frm_monitor.lbl_monitor_yub_touch_text.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_text
+        frm_monitor.lbl_monitor_yub_vendor_text.Text = cfg_lang.frm_monitor_lbl_monitor_yub_vendor_text
 
         ' localization for frm_admin
 
-        frm_admin.grb_admin_general.Text = "General settings"
-        frm_admin.grb_admin_management.Text = "Central management settings"
-        frm_admin.lbl_admin_central_auth.Text = "Authentication"
-        frm_admin.lbl_admin_central_password.Text = "Password"
-        frm_admin.lbl_admin_central_username.Text = "Username"
-        frm_admin.lbl_admin_central_server.Text = "Server"
-        frm_admin.lbl_admin_general_language.Text = "Language"
-        frm_admin.lbl_admin_general_mode.Text = "Mode"
-        frm_admin.lbl_admin_general_theme.Text = "Theme"
+        frm_admin.grb_admin_general.Text = cfg_lang.frm_admin_grb_admin_general
+        frm_admin.grb_admin_management.Text = cfg_lang.frm_admin_grb_admin_management
+        frm_admin.lbl_admin_central_auth.Text = cfg_lang.frm_admin_lbl_admin_central_auth
+        frm_admin.lbl_admin_central_password.Text = cfg_lang.frm_admin_lbl_admin_central_password
+        frm_admin.lbl_admin_central_username.Text = cfg_lang.frm_admin_lbl_admin_central_username
+        frm_admin.lbl_admin_central_server.Text = cfg_lang.frm_admin_lbl_admin_central_server
+        frm_admin.lbl_admin_general_language.Text = cfg_lang.frm_admin_lbl_admin_general_language
+        frm_admin.lbl_admin_general_mode.Text = cfg_lang.frm_admin_lbl_admin_general_mode
+        frm_admin.lbl_admin_general_theme.Text = cfg_lang.frm_admin_lbl_admin_general_theme
 
         ' localization for frm_admin_save
 
-        frm_admin_save.lbl_admin_save.Text = "Are you sure?"
-        frm_admin_save.btn_admin_save_no.Text = "No"
-        frm_admin_save.btn_admin_save_yes.Text = "Yes"
+        frm_admin_save.lbl_admin_save.Text = cfg_lang.frm_admin_save_lbl_admin_save
+        frm_admin_save.btn_admin_save_no.Text = cfg_lang.frm_admin_save_btn_admin_save_no
+        frm_admin_save.btn_admin_save_yes.Text = cfg_lang.frm_admin_save_btn_admin_save_yes
 
         ' localization for contextmenu (notifyicon)
 
-        cms_notify_agent_about.Text = "About"
-        cms_notify_agent_close.Text = "Exit"
-        cms_notify_agent_open.Text = "Open"
-
+        cms_notify_agent_about.Text = cfg_lang.cms_notify_agent_about
+        cms_notify_agent_close.Text = cfg_lang.cms_notify_agent_close
+        cms_notify_agent_open.Text = cfg_lang.cms_notify_agent_open
     End Function
 
     ' Show child forms on button click event (monitor / admin)
 
     Private Sub btn_main_admin_login_Click(sender As Object, e As EventArgs) Handles btn_main_admin_login.Click
         Select Case btn_main_admin_login.Text
-            Case "Open configuration"
-                frm_monitor.Visible = False
-                frm_monitor.Hide()
-                frm_admin_save.Visible = False
-                frm_admin_save.Hide()
-                frm_admin.Visible = True
-                frm_admin.Show()
-                btn_main_admin_login.Text = "Close configuration"
-            Case "Close configuration"
-                frm_monitor.Visible = True
-                frm_monitor.Show()
-                frm_admin_save.Visible = False
-                frm_admin_save.Hide()
-                frm_admin.Visible = False
-                frm_admin.Hide()
-                btn_main_admin_login.Text = "Open configuration"
-            Case "Save configuration"
-                frm_monitor.Visible = False
-                frm_monitor.Hide()
-                frm_admin.Visible = False
-                frm_admin.Hide()
-                frm_admin_save.Visible = True
-                frm_admin_save.Show()
-                btn_main_admin_login.Text = "Close configuration"
+            Case cfg_lang.btn_main_admin_login_open
+                ShowForms("frm_admin")
+            Case cfg_lang.btn_main_admin_login_close
+                ShowForms("frm_monitor")
+            Case cfg_lang.btn_main_admin_login_save
+                ShowForms("frm_admin_save")
+            Case cfg_lang.btn_main_admin_login_initial
+                cfg_config.initial_enabled = 0
+                Config.Write_Config("config.xml", frm_initial.txt_initial_enc_password.Text)
+                ShowForms("frm_monitor")
+            Case cfg_lang.btn_main_admin_login_login
+                Config.GetConfig("config.xml", frm_initial.txt_initial_enc_password.Text)
+                If cfg_config.initial_verify = frm_initial.txt_initial_enc_password.Text Then
+                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login_success
+                    btn_main_admin_login.Update()
+                    FillControlsWithConfig()
+                    Threading.Thread.Sleep(2000)
+                    ShowForms("frm_monitor")
+                Else
+                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login_failed
+                    btn_main_admin_login.BackColor = Color.Coral
+                    btn_main_admin_login.Update()
+                    Threading.Thread.Sleep(5000)
+                    btn_main_admin_login.BackColor = Color.FromArgb(154, 202, 60)
+                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
+                    btn_main_admin_login.Update()
+                End If
             Case Else
-
         End Select
     End Sub
+
+    Public Function SetLanguage(ByVal lang As String)
+        Dim languagefile As String
+        Select Case lang
+            Case "English"
+                languagefile = "en.xml"
+            Case "Deutsch"
+                languagefile = "de.xml"
+            Case Else
+                languagefile = "en.xml"
+        End Select
+        GetLanguage(languagefile)
+    End Function
 
     Public Function PositionMainForm()
         Dim Size As Rectangle = FindDockedTaskBars(Screen.FromControl(Me).Bounds, Screen.FromControl(Me).WorkingArea)
@@ -222,7 +241,7 @@
         End Select
     End Function
 
-    Public Function ThemeForm()
+    Public Function ThemeForm(ByVal theme As String)
         Dim Agent_frms As New List(Of Form)
         Agent_frms.Add(Me)
         Agent_frms.Add(frm_admin)
@@ -231,7 +250,59 @@
         Agent_frms.Add(frm_initial)
 
         For Each frm As Form In Agent_frms
-            Change_theme(frm, "Gray (default)")
+            Change_theme(frm, theme)
         Next
+    End Function
+
+    Public Function ShowForms(ByVal form As String)
+        Select Case form
+            Case "frm_main"
+                frm_monitor.Visible = False
+                frm_admin_save.Visible = False
+                frm_initial.Visible = False
+                frm_admin.Visible = False
+                Me.btn_main_admin_login.Enabled = False
+                Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_empty
+            Case "frm_admin"
+                frm_monitor.Visible = False
+                frm_admin_save.Visible = False
+                frm_initial.Visible = False
+                frm_admin.Visible = True
+                Me.btn_main_admin_login.Enabled = True
+                Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_close
+            Case "frm_monitor"
+                frm_monitor.Visible = True
+                frm_admin_save.Visible = False
+                frm_initial.Visible = False
+                frm_admin.Visible = False
+                Me.btn_main_admin_login.Enabled = True
+                Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_open
+            Case "frm_admin_save"
+                frm_monitor.Visible = False
+                frm_admin_save.Visible = True
+                frm_initial.Visible = False
+                frm_admin.Visible = False
+                Me.btn_main_admin_login.Enabled = False
+                Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_close
+            Case "frm_initial"
+                frm_monitor.Visible = False
+                frm_admin_save.Visible = False
+                frm_initial.Visible = True
+                frm_admin.Visible = False
+                Me.btn_main_admin_login.Enabled = True
+                frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc
+                Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_initial
+
+        End Select
+    End Function
+
+    Public Function FillControlsWithConfig()
+        frm_admin.txt_admin_central_password.Text = cfg_config.admin_central_password
+        frm_admin.txt_admin_central_username.Text = cfg_config.admin_central_username
+        frm_admin.txt_admin_central_server.Text = cfg_config.admin_central_server
+        frm_admin.cbx_admin_central_auth.Text = cfg_config.admin_central_auth
+        frm_admin.cbx_admin_general_language.Text = cfg_config.admin_general_lang
+        frm_admin.cbx_admin_general_mode.Text = cfg_config.admin_general_mode
+        frm_admin.cbx_admin_general_theme.Text = cfg_config.admin_general_theme
     End Function
 End Class

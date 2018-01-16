@@ -113,6 +113,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\Config.vb" />
+    <Compile Include="Modules\Crypto.vb" />
     <Compile Include="Modules\Localization.vb" />
     <Compile Include="Modules\monitor.vb" />
     <Compile Include="Modules\Others.vb" />
@@ -177,6 +178,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="language\de.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="language\en.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Libraries\libjson-c-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

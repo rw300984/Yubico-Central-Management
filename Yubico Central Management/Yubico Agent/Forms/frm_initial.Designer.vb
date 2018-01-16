@@ -24,7 +24,6 @@ Partial Class frm_initial
     Private Sub InitializeComponent()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.btn_initial_save = New System.Windows.Forms.Button()
         Me.txt_initial_enc_password = New System.Windows.Forms.TextBox()
         Me.lbl_initial_enc = New System.Windows.Forms.Label()
         Me.TableLayoutPanel3.SuspendLayout()
@@ -54,7 +53,6 @@ Partial Class frm_initial
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.btn_initial_save, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_initial_enc_password, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.lbl_initial_enc, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -66,18 +64,6 @@ Partial Class frm_initial
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(204, 205)
         Me.TableLayoutPanel1.TabIndex = 1
-        '
-        'btn_initial_save
-        '
-        Me.btn_initial_save.BackColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.btn_initial_save.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btn_initial_save.FlatAppearance.BorderSize = 0
-        Me.btn_initial_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_initial_save.Location = New System.Drawing.Point(3, 119)
-        Me.btn_initial_save.Name = "btn_initial_save"
-        Me.btn_initial_save.Size = New System.Drawing.Size(198, 23)
-        Me.btn_initial_save.TabIndex = 0
-        Me.btn_initial_save.UseVisualStyleBackColor = False
         '
         'txt_initial_enc_password
         '
@@ -121,7 +107,6 @@ Partial Class frm_initial
 
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents btn_initial_save As Button
     Friend WithEvents txt_initial_enc_password As TextBox
     Friend WithEvents lbl_initial_enc As Label
 End Class

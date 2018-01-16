@@ -5,10 +5,8 @@
     End Sub
 
     Private Sub frm_monitor_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-
         YK_Agent_FillSystemInfo()
         YK_Agent_FillYKinfo()
-
     End Sub
 
     Public Function YK_Agent_FillSystemInfo()

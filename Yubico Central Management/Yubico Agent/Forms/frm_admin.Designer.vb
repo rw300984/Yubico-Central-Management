@@ -248,6 +248,7 @@ Partial Class frm_admin
         Me.txt_admin_central_password.Name = "txt_admin_central_password"
         Me.txt_admin_central_password.Size = New System.Drawing.Size(121, 13)
         Me.txt_admin_central_password.TabIndex = 9
+        Me.txt_admin_central_password.UseSystemPasswordChar = True
         '
         'frm_admin
         '

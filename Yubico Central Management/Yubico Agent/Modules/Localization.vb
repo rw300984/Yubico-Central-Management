@@ -1,94 +1,120 @@
 ﻿Module Localization
-    Public Function ChangeLanguage(ByVal Lang As String)
-        Select Case Lang
-            Case "DE"
-                ' Localization for frm_main
+    Public cfg_lang As configuration
+    Public Structure configuration
+        Dim btn_main_admin_login_open As String
+        Dim btn_main_admin_login_save As String
+        Dim btn_main_admin_login_close As String
+        Dim btn_main_admin_login_initial As String
+        Dim btn_main_admin_login_login As String
+        Dim btn_main_admin_login_login_failed As String
+        Dim btn_main_admin_login_login_success As String
+        Dim btn_main_admin_login_empty As String
+        Dim frm_initial_lbl_initial_enc As String
+        Dim frm_monitor_grb_monitor_systeminfo As String
+        Dim frm_monitor_grb_monitor_yubiinfo As String
+        Dim frm_monitor_lbl_monitor_sys_devicemodel_text As String
+        Dim frm_monitor_lbl_monitor_sys_hostname_text As String
+        Dim frm_monitor_lbl_monitor_sys_ip_text As String
+        Dim frm_monitor_lbl_monitor_sys_os_text As String
+        Dim frm_monitor_lbl_monitor_sys_username As String
+        Dim frm_monitor_lbl_monitor_yub_firmware_text As String
+        Dim frm_monitor_lbl_monitor_yub_model_text As String
+        Dim frm_monitor_lbl_monitor_yub_serial_text As String
+        Dim frm_monitor_lbl_monitor_yub_touch_text As String
+        Dim frm_monitor_lbl_monitor_yub_vendor_text As String
+        Dim frm_admin_grb_admin_general As String
+        Dim frm_admin_grb_admin_management As String
+        Dim frm_admin_lbl_admin_central_auth As String
+        Dim frm_admin_lbl_admin_central_password As String
+        Dim frm_admin_lbl_admin_central_username As String
+        Dim frm_admin_lbl_admin_central_server As String
+        Dim frm_admin_lbl_admin_general_language As String
+        Dim frm_admin_lbl_admin_general_mode As String
+        Dim frm_admin_lbl_admin_general_theme As String
+        Dim frm_admin_save_lbl_admin_save As String
+        Dim frm_admin_save_btn_admin_save_no As String
+        Dim frm_admin_save_btn_admin_save_yes As String
+        Dim cms_notify_agent_about As String
+        Dim cms_notify_agent_close As String
+        Dim cms_notify_agent_open As String
+        Dim frm_initial_lbl_initial_enc_login As String
+    End Structure
 
-                frm_main.btn_main_admin_login.Text = "Konfiguration öffnen"
-
-                ' Localization for frm_monitor
-
-                frm_monitor.grb_monitor_systeminfo.Text = "System Informationen"
-                frm_monitor.grb_monitor_yubiinfo.Text = "Yubikey Informationen"
-                frm_monitor.lbl_monitor_sys_devicemodel_text.Text = "Geräte / Modell"
-                frm_monitor.lbl_monitor_sys_hostname_text.Text = "Rechnername"
-                frm_monitor.lbl_monitor_sys_ip_text.Text = "IP address"
-                frm_monitor.lbl_monitor_sys_os_text.Text = "OS"
-                frm_monitor.lbl_monitor_sys_username_text.Text = "Benutzername"
-                frm_monitor.lbl_monitor_yub_firmware_text.Text = "Firmware"
-                frm_monitor.lbl_monitor_yub_model_text.Text = "Modell"
-                frm_monitor.lbl_monitor_yub_serial_text.Text = "Seriennummer"
-                frm_monitor.lbl_monitor_yub_touch_text.Text = "Touch Level"
-                frm_monitor.lbl_monitor_yub_vendor_text.Text = "Hersteller"
-
-                ' Localization for frm_admin
-
-                frm_admin.grb_admin_general.Text = "Generelle Einstellungen"
-                frm_admin.grb_admin_management.Text = "CMS Einstellungen"
-                frm_admin.lbl_admin_central_auth.Text = "Authentifizierung"
-                frm_admin.lbl_admin_central_password.Text = "Password"
-                frm_admin.lbl_admin_central_username.Text = "Benutzername"
-                frm_admin.lbl_admin_central_server.Text = "Server"
-                frm_admin.lbl_admin_general_language.Text = "Sprache"
-                frm_admin.lbl_admin_general_mode.Text = "Modus"
-                frm_admin.lbl_admin_general_theme.Text = "Theme"
-
-                ' Localization for frm_admin_save
-
-                frm_admin_save.lbl_admin_save.Text = "Sind Sie sicher?"
-                frm_admin_save.btn_admin_save_no.Text = "Nein"
-                frm_admin_save.btn_admin_save_yes.Text = "Ja"
-
-                ' Localization for ContextMenu (NotifyIcon)
-
-                frm_main.cms_notify_agent_about.Text = "Über"
-                frm_main.cms_notify_agent_close.Text = "Beenden"
-                frm_main.cms_notify_agent_open.Text = "Öffnen"
-
-            Case "EN"
-                ' Localization for frm_main
-
-                frm_main.btn_main_admin_login.Text = "Open configuration"
-
-                ' Localization for frm_monitor
-
-                frm_monitor.grb_monitor_systeminfo.Text = "System information"
-                frm_monitor.grb_monitor_yubiinfo.Text = "Yubikey information"
-                frm_monitor.lbl_monitor_sys_devicemodel_text.Text = "Device model"
-                frm_monitor.lbl_monitor_sys_hostname_text.Text = "Hostname"
-                frm_monitor.lbl_monitor_sys_ip_text.Text = "IP address"
-                frm_monitor.lbl_monitor_sys_os_text.Text = "OS"
-                frm_monitor.lbl_monitor_sys_username_text.Text = "Username"
-                frm_monitor.lbl_monitor_yub_firmware_text.Text = "Firmware"
-                frm_monitor.lbl_monitor_yub_model_text.Text = "Model"
-                frm_monitor.lbl_monitor_yub_serial_text.Text = "Serial"
-                frm_monitor.lbl_monitor_yub_touch_text.Text = "Touch Level"
-                frm_monitor.lbl_monitor_yub_vendor_text.Text = "Vendor"
-
-                ' Localization for frm_admin
-
-                frm_admin.grb_admin_general.Text = "General settings"
-                frm_admin.grb_admin_management.Text = "Central management settings"
-                frm_admin.lbl_admin_central_auth.Text = "Authentication"
-                frm_admin.lbl_admin_central_password.Text = "Password"
-                frm_admin.lbl_admin_central_username.Text = "Username"
-                frm_admin.lbl_admin_central_server.Text = "Server"
-                frm_admin.lbl_admin_general_language.Text = "Language"
-                frm_admin.lbl_admin_general_mode.Text = "Mode"
-                frm_admin.lbl_admin_general_theme.Text = "Theme"
-
-                ' Localization for frm_admin_save
-
-                frm_admin_save.lbl_admin_save.Text = "Are you sure?"
-                frm_admin_save.btn_admin_save_no.Text = "No"
-                frm_admin_save.btn_admin_save_yes.Text = "Yes"
-
-                ' Localization for ContextMenu (NotifyIcon)
-
-                frm_main.cms_notify_agent_about.Text = "About"
-                frm_main.cms_notify_agent_close.Text = "Exit"
-                frm_main.cms_notify_agent_open.Text = "Open"
-        End Select
-
+    Public Function GetLanguage(ByVal lang As String)
+        Dim counter As Integer = 0
+        cfg_lang.btn_main_admin_login_open = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_save = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_close = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_initial = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_login = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_login_failed = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_login_success = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_empty = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_initial_lbl_initial_enc = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_grb_monitor_systeminfo = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_grb_monitor_yubiinfo = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_sys_devicemodel_text = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_sys_hostname_text = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_sys_ip_text = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_sys_os_text = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_sys_username = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_yub_firmware_text = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_yub_model_text = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_yub_serial_text = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_yub_touch_text = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_yub_vendor_text = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_grb_admin_general = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_grb_admin_management = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_lbl_admin_central_auth = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_lbl_admin_central_password = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_lbl_admin_central_username = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_lbl_admin_central_server = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_lbl_admin_general_language = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_lbl_admin_general_mode = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_lbl_admin_general_theme = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_save_lbl_admin_save = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_save_btn_admin_save_no = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_save_btn_admin_save_yes = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.cms_notify_agent_about = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.cms_notify_agent_close = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.cms_notify_agent_open = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_initial_lbl_initial_enc_login = Read_Config(lang, counter)
+        counter = counter + 1
     End Function
 End Module
