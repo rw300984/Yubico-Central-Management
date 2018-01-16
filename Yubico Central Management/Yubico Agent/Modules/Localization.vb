@@ -38,6 +38,7 @@
         Dim cms_notify_agent_close As String
         Dim cms_notify_agent_open As String
         Dim frm_initial_lbl_initial_enc_login As String
+        Dim btn_main_admin_login_integrity As String
     End Structure
 
     Public Function GetLanguage(ByVal lang As String)
@@ -115,6 +116,8 @@
         cfg_lang.cms_notify_agent_open = Read_Config(lang, counter)
         counter = counter + 1
         cfg_lang.frm_initial_lbl_initial_enc_login = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.btn_main_admin_login_integrity = Read_Config(lang, counter)
         counter = counter + 1
     End Function
 End Module

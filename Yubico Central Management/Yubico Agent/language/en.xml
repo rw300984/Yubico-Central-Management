@@ -37,5 +37,5 @@
   <cms_notify_agent_close>Exit</cms_notify_agent_close>
   <cms_notify_agent_open>Open</cms_notify_agent_open>
   <frm_initial_lbl_initial_enc_login>Please enter your password</frm_initial_lbl_initial_enc_login>
-
+  <btn_main_admin_login_integrity>Integrity check failed, exit in 5 sec.</btn_main_admin_login_integrity>
 </language>

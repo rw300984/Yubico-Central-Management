@@ -44,4 +44,22 @@
         Catch ex As Exception
         End Try
     End Function
+    Public Function MD5FileHash(ByVal File As String) As String
+        Dim MD5 As New System.Security.Cryptography.MD5CryptoServiceProvider
+        Dim Hash As Byte()
+        Dim Result As String = ""
+        Dim Tmp As String = ""
+
+        Dim FN As New System.IO.FileStream(File, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read, 8192)
+        MD5.ComputeHash(FN)
+        FN.Close()
+
+        Hash = MD5.Hash
+        For i As Integer = 0 To Hash.Length - 1
+            Tmp = Hex(Hash(i))
+            If Len(Tmp) = 1 Then Tmp = "0" & Tmp
+            Result += Tmp
+        Next
+        Return Result
+    End Function
 End Module

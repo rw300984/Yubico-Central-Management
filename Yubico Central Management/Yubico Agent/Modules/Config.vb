@@ -12,6 +12,12 @@ Module Config
         Dim admin_central_auth As String
         Dim admin_central_username As String
         Dim admin_central_password As String
+        Dim integrity_lang_de As String
+        Dim integrity_lang_en As String
+        '     Dim integrity_config As String
+        Dim integrity_lang_de_file As String
+        Dim integrity_lang_en_file As String
+        '    Dim integrity_config_file As String
     End Structure
     Public Function Write_Config(ByVal config_file As String, ByVal key As String) As Integer
         Dim ConfigWriter As New XmlTextWriter(config_file, System.Text.Encoding.UTF8)
@@ -28,6 +34,9 @@ Module Config
         CreateNodes("admin_central_auth", Crypto.AES_Encrypt(cfg_config.admin_central_auth, key), ConfigWriter)
         CreateNodes("admin_central_username", Crypto.AES_Encrypt(cfg_config.admin_central_username, key), ConfigWriter)
         CreateNodes("admin_central_password", Crypto.AES_Encrypt(cfg_config.admin_central_password, key), ConfigWriter)
+        CreateNodes("integrity_lang_de", Crypto.AES_Encrypt(MD5FileHash(cfg_config.integrity_lang_de_file), key), ConfigWriter)
+        CreateNodes("integrity_lang_en", Crypto.AES_Encrypt(MD5FileHash(cfg_config.integrity_lang_en_file), key), ConfigWriter)
+        '   CreateNodes("integrity_config", Crypto.AES_Encrypt(MD5FileHash(cfg_config.integrity_config_file), key), ConfigWriter)
         ConfigWriter.WriteEndElement()
         ConfigWriter.WriteEndDocument()
         ConfigWriter.Close()
@@ -54,5 +63,8 @@ Module Config
         cfg_config.admin_central_auth = Crypto.AES_Decrypt(Read_Config(config, "6"), key)
         cfg_config.admin_central_username = Crypto.AES_Decrypt(Read_Config(config, "7"), key)
         cfg_config.admin_central_password = Crypto.AES_Decrypt(Read_Config(config, "8"), key)
+        cfg_config.integrity_lang_de = Crypto.AES_Decrypt(Read_Config(config, "9"), key)
+        cfg_config.integrity_lang_en = Crypto.AES_Decrypt(Read_Config(config, "10"), key)
+        '   cfg_config.integrity_config = Crypto.AES_Decrypt(Read_Config(config, "11"), key)
     End Function
 End Module

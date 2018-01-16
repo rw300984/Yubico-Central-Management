@@ -37,4 +37,5 @@
   <cms_notify_agent_close>Beenden</cms_notify_agent_close>
   <cms_notify_agent_open>Öffnen</cms_notify_agent_open>
   <frm_initial_lbl_initial_enc_login>Bitte geben Sie Ihr Password ein</frm_initial_lbl_initial_enc_login>
+  <btn_main_admin_login_integrity>Integritätsüberprüfung fehlgeschlagen, beende in 5 Sek.</btn_main_admin_login_integrity>
 </language>
