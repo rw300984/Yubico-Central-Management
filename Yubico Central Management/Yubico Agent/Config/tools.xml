@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<language>
+  <yubi_minidriver>https://www.yubico.com/wp-content/uploads/2017/10/yubikey-smart-card-minidriver-3.3.1.5.zip</yubi_minidriver>
+  <yubi_personalization>https://developers.yubico.com/yubikey-personalization-gui/Releases/yubikey-personalization-gui-3.1.24.exe</yubi_personalization>
+  <yubi_pivmanager>https://developers.yubico.com/yubikey-piv-manager/Releases/yubikey-piv-manager-1.4.2d-win.exe</yubi_pivmanager>
+  <yubi_minidriver_checksum>AC0905237CCA3DB1DBE963F4B4B10CC93BD36155</yubi_minidriver_checksum>
+  <yubi_personalization_checksum>23C235FE8D6091AB4948AD603FB669FF43A87DEF</yubi_personalization_checksum>
+  <yubi_pivmanager_checksum>2C6103A23EC24A71078BB332651BF672F279AEB8</yubi_pivmanager_checksum>
+</language>

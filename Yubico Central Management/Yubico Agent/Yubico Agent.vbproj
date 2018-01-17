@@ -46,6 +46,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Yubico_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -120,6 +123,10 @@
     </Compile>
     <Compile Include="Modules\Config.vb" />
     <Compile Include="Modules\Crypto.vb" />
+    <Compile Include="Modules\CustomizableProgressBar.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modules\Downloader.vb" />
     <Compile Include="Modules\Localization.vb" />
     <Compile Include="Modules\monitor.vb" />
     <Compile Include="Modules\Others.vb" />
@@ -170,6 +177,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\tools.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="export.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -42,8 +42,16 @@
         Dim btn_main_admin_login_login_failed_delay As String
         Dim btn_main_admin_login_login_failed_count_reached As String
         Dim btn_main_admin_login_initial_password_complexity As String
-    End Structure
 
+        Dim frm_admin_personal_lbl_admin_personal_yubi_driver As String
+        Dim frm_admin_personal_lbl_admin_personal_yubi_personalization As String
+        Dim frm_admin_personal_lbl_admin_personal_yubi_pivmanager As String
+        Dim frm_admin_personal_btn_admin_personal_download As String
+        Dim frm_admin_personal_btn_admin_personal_install As String
+        Dim frm_admin_personal_btn_admin_personal_run As String
+        Dim frm_admin_personal_grb_admin_personal_tools As String
+        Dim frm_admin_personal_btn_admin_personal_wait As String
+    End Structure
     Public Function GetLanguage(ByVal lang As String)
         Dim counter As Integer = 0
         cfg_lang.btn_main_admin_login_open = Read_Config(lang, counter)
@@ -127,6 +135,22 @@
         cfg_lang.btn_main_admin_login_login_failed_count_reached = Read_Config(lang, counter)
         counter = counter + 1
         cfg_lang.btn_main_admin_login_initial_password_complexity = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_lbl_admin_personal_yubi_driver = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_lbl_admin_personal_yubi_personalization = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_lbl_admin_personal_yubi_pivmanager = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_btn_admin_personal_download = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_btn_admin_personal_install = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_btn_admin_personal_run = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_grb_admin_personal_tools = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_btn_admin_personal_wait = Read_Config(lang, counter)
         counter = counter + 1
     End Function
 End Module

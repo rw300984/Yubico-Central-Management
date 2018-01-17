@@ -44,15 +44,15 @@
         Catch ex As Exception
         End Try
     End Function
-    Public Function MD5FileHash(ByVal File As String) As String
-        Dim MD5 As New System.Security.Cryptography.MD5CryptoServiceProvider
+    Public Function SHA1FileHash(ByVal File As String) As String
+        Dim SHA1 As New System.Security.Cryptography.SHA1CryptoServiceProvider
         Dim Hash As Byte()
         Dim Result As String = ""
         Dim Tmp As String = ""
         Dim FN As New System.IO.FileStream(File, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read, 8192)
-        MD5.ComputeHash(FN)
+        SHA1.ComputeHash(FN)
         FN.Close()
-        Hash = MD5.Hash
+        Hash = SHA1.Hash
         For i As Integer = 0 To Hash.Length - 1
             Tmp = Hex(Hash(i))
             If Len(Tmp) = 1 Then Tmp = "0" & Tmp

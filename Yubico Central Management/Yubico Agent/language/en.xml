@@ -41,4 +41,12 @@
   <btn_main_admin_login_login_failed_delay>... delay in sec: </btn_main_admin_login_login_failed_delay>
   <btn_main_admin_login_login_failed_count_reached>5 failed logons, exit in 5 sec.</btn_main_admin_login_login_failed_count_reached>
   <btn_main_admin_login_initial_password_complexity>"Doesn't match password complexity"</btn_main_admin_login_initial_password_complexity>
+  <frm_admin_personal_lbl_admin_personal_yubi_driver>Mini Driver</frm_admin_personal_lbl_admin_personal_yubi_driver>
+  <frm_admin_personal_lbl_admin_personal_yubi_personalization>Personalization Tool</frm_admin_personal_lbl_admin_personal_yubi_personalization>
+  <frm_admin_personal_lbl_admin_personal_yubi_pivmanager>PIV Manager</frm_admin_personal_lbl_admin_personal_yubi_pivmanager>
+  <frm_admin_personal_btn_admin_personal_download>Download</frm_admin_personal_btn_admin_personal_download>
+  <frm_admin_personal_btn_admin_personal_install>Install</frm_admin_personal_btn_admin_personal_install>
+  <frm_admin_personal_btn_admin_personal_run>Open</frm_admin_personal_btn_admin_personal_run>
+  <frm_admin_personal_grb_admin_personal_tools>Yubikey Tools</frm_admin_personal_grb_admin_personal_tools>
+  <frm_admin_personal_btn_admin_personal_wait>Please wait...</frm_admin_personal_btn_admin_personal_wait>
 </language>

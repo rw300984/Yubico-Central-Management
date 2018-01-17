@@ -58,6 +58,7 @@
     End Sub
 
     Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
+        FillGlobalFixedVariables()
         LoadForms()
     End Sub
 
@@ -66,6 +67,9 @@
         Me.Visible = False
         frm_admin.Visible = False
         frm_monitor.Visible = False
+        frm_admin_save.Visible = False
+        frm_admin_personal.Visible = False
+        frm_initial.Visible = False
 
         frm_admin.TopLevel = False
         frm_admin.WindowState = FormWindowState.Maximized
@@ -143,14 +147,14 @@
         frm_admin_personal.lbl_admin_general_language.Text = cfg_lang.frm_admin_lbl_admin_general_language
         frm_admin_personal.lbl_admin_general_mode.Text = cfg_lang.frm_admin_lbl_admin_general_mode
         frm_admin_personal.lbl_admin_general_theme.Text = cfg_lang.frm_admin_lbl_admin_general_theme
-        frm_admin_personal.lbl_admin_personal_driver.Text = "Mini Driver"
-        frm_admin_personal.lbl_admin_personal_yubi_personalization.Text = "Personalization Tool"
-        frm_admin_personal.lbl_admin_personal_yubi_pivmanager.Text = "Piv Manager"
-        frm_admin_personal.lbl_admin_yubi_authenticator.Text = "Mini Driver"
-        frm_admin_personal.Button1.Text = "Download"
-        frm_admin_personal.Button2.Text = "Download"
-        frm_admin_personal.Button3.Text = "Download"
-        frm_admin_personal.Button4.Text = "Download"
+        frm_admin_personal.lbl_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_lbl_admin_personal_yubi_driver
+        frm_admin_personal.lbl_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_lbl_admin_personal_yubi_personalization
+        frm_admin_personal.lbl_admin_personal_yubi_pivmanager.Text = cfg_lang.frm_admin_personal_lbl_admin_personal_yubi_pivmanager
+        frm_admin_personal.btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_download
+        frm_admin_personal.btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_download
+        frm_admin_personal.btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_download
+        frm_admin_personal.grb_admin_general.Text = cfg_lang.frm_admin_grb_admin_general
+        frm_admin_personal.grb_admin_personal_tools.Text = cfg_lang.frm_admin_personal_grb_admin_personal_tools
     End Function
 
     ' Show child forms on button click event (monitor / admin)
@@ -160,7 +164,12 @@
             Case cfg_lang.btn_main_admin_login_open
                 Dim Integrity As Integer = IntegrityCheckFor_btn_admin_login(1)
                 If Integrity = 0 Then
-                    ShowForms("frm_admin")
+                    Select Case cfg_config.admin_general_mode
+                        Case "Personal"
+                            ShowForms("frm_admin_personal")
+                        Case "Business"
+                            ShowForms("frm_admin")
+                    End Select
                 Else
                     Application.Exit()
                 End If
@@ -180,16 +189,15 @@
                 End If
             Case cfg_lang.btn_main_admin_login_initial
                 cfg_config.initial_enabled = 0
-                cfg_config.integrity_lang_de_file = "de.xml"
-                cfg_config.integrity_lang_en_file = "en.xml"
+                cfg_config.admin_general_mode = "Personal"
+                cfg_config.admin_general_theme = "Gray (default)"
+                cfg_config.admin_general_lang = "English"
                 Config.Write_Config("config.xml", frm_initial.txt_initial_enc_password.Text)
+                Config.GetConfig("config.xml", frm_initial.txt_initial_enc_password.Text)
+                FillControlsWithConfig()
                 ShowForms("frm_monitor")
-                Config.GetConfig("config.xml", frm_initial.txt_initial_enc_password.Text)
             Case cfg_lang.btn_main_admin_login_login
-
                 Config.GetConfig("config.xml", frm_initial.txt_initial_enc_password.Text)
-
-
                 If cfg_config.initial_verify = frm_initial.txt_initial_enc_password.Text Then
 
                     Dim integrity As Integer = IntegrityCheckFor_btn_admin_login(0)
@@ -239,11 +247,11 @@
         Dim languagefile As String
         Select Case lang
             Case "English"
-                languagefile = "en.xml"
+                languagefile = cfg_config.integrity_lang_en_file
             Case "Deutsch"
-                languagefile = "de.xml"
+                languagefile = cfg_config.integrity_lang_de_file
             Case Else
-                languagefile = "en.xml"
+                languagefile = cfg_config.integrity_lang_en_file
         End Select
         GetLanguage(languagefile)
     End Function
@@ -277,6 +285,7 @@
         Agent_frms.Add(frm_monitor)
         Agent_frms.Add(frm_admin_save)
         Agent_frms.Add(frm_initial)
+        Agent_frms.Add(frm_admin_personal)
 
         For Each frm As Form In Agent_frms
             Change_theme(frm, theme)
@@ -346,35 +355,48 @@
         frm_admin.cbx_admin_general_language.Text = cfg_config.admin_general_lang
         frm_admin.cbx_admin_general_mode.Text = cfg_config.admin_general_mode
         frm_admin.cbx_admin_general_theme.Text = cfg_config.admin_general_theme
+        frm_admin_personal.cbx_admin_general_language.Text = cfg_config.admin_general_lang
+        frm_admin_personal.cbx_admin_general_mode.Text = cfg_config.admin_general_mode
+        frm_admin_personal.cbx_admin_general_theme.Text = cfg_config.admin_general_theme
     End Function
 
     Public Function IntegrityCheckFor_btn_admin_login(ByVal Mode As Integer) As Integer
         Dim status As Integer = 0
-        cfg_config.integrity_lang_de_file = "de.xml"
-        cfg_config.integrity_lang_en_file = "en.xml"
-        Dim md5_lang_de As String = MD5FileHash(cfg_config.integrity_lang_de_file)
-        Dim md5_lang_en As String = MD5FileHash(cfg_config.integrity_lang_en_file)
+
+        Dim new_integrity_files As New List(Of String)
+        new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_de_file))
+        new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_en_file))
+        new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_tools_file))
+
+        Dim org_integrity_files As New List(Of String)
+        org_integrity_files.Add(cfg_config.integrity_lang_de)
+        org_integrity_files.Add(cfg_config.integrity_lang_en)
+        org_integrity_files.Add(cfg_config.integrity_tools)
+
         Select Case Mode
             Case 1
                 If frm_initial.Visible = True Then
                     status = status + 1
-                    MessageBox.Show("match frm_initial")
                 End If
-                If md5_lang_de <> cfg_config.integrity_lang_de Then
-                    status = status + 1
-                    MessageBox.Show("match lang_de")
-                End If
-                If md5_lang_en <> cfg_config.integrity_lang_en Then
-                    status = status + 1
-                    MessageBox.Show("match lang_en")
-                End If
+                Dim count As Integer = 0
+                For Each sha1_file As String In new_integrity_files
+                    If sha1_file <> org_integrity_files(count) Then
+                        status = status + 1
+                        count = count + 1
+                    Else
+                        count = count + 1
+                    End If
+                Next
             Case 0
-                If md5_lang_de <> cfg_config.integrity_lang_de Then
-                    status = status + 1
-                End If
-                If md5_lang_en <> cfg_config.integrity_lang_en Then
-                    status = status + 1
-                End If
+                Dim count As Integer = 0
+                For Each sha1_file As String In new_integrity_files
+                    If sha1_file <> org_integrity_files(count) Then
+                        status = status + 1
+                        count = count + 1
+                    Else
+                        count = count + 1
+                    End If
+                Next
         End Select
         If status > 0 Then
             btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_integrity
@@ -393,11 +415,9 @@
                     ThemeForm(Read_Config("config.xml", "3"))
                     SetLanguage(Read_Config("config.xml", "2"))
                     FillTextWithLanguagefile()
-                    cfg_config.integrity_lang_de = "de.xml"
-                    cfg_config.integrity_lang_en = "en.xml"
                 Else
                     ThemeForm("Gray (default)")
-                    SetLanguage("Deutsch")
+                    SetLanguage("English")
                     FillTextWithLanguagefile()
                 End If
             Case 1
@@ -408,13 +428,16 @@
                         ShowForms("frm_initial")
                         frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc_login
                         btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
-                        '   cfg_config.integrity_config_file = "config.xml"
-                        cfg_config.integrity_lang_de = "de.xml"
-                        cfg_config.integrity_lang_en = "en.xml"
                     End If
                 Else
                     ShowForms("frm_initial")
                 End If
         End Select
+    End Function
+
+    Public Function FillGlobalFixedVariables()
+        cfg_config.integrity_lang_de_file = "de.xml"
+        cfg_config.integrity_lang_en_file = "en.xml"
+        cfg_config.integrity_tools_file = "tools.xml"
     End Function
 End Class
