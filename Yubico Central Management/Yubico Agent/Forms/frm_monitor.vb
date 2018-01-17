@@ -9,6 +9,11 @@
         YK_Agent_FillYKinfo()
     End Sub
 
+    Private Sub frm_monitor_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        YK_Agent_FillSystemInfo()
+        YK_Agent_FillYKinfo()
+    End Sub
+
     Public Function YK_Agent_FillSystemInfo()
         Dim Systeminfo As String() = YK_Agent_GetSystemInfo()
         lbl_monitor_sys_username_output.Text = Systeminfo(0)

@@ -42,7 +42,6 @@
         Dim btn_main_admin_login_login_failed_delay As String
         Dim btn_main_admin_login_login_failed_count_reached As String
         Dim btn_main_admin_login_initial_password_complexity As String
-
         Dim frm_admin_personal_lbl_admin_personal_yubi_driver As String
         Dim frm_admin_personal_lbl_admin_personal_yubi_personalization As String
         Dim frm_admin_personal_lbl_admin_personal_yubi_pivmanager As String
@@ -51,6 +50,7 @@
         Dim frm_admin_personal_btn_admin_personal_run As String
         Dim frm_admin_personal_grb_admin_personal_tools As String
         Dim frm_admin_personal_btn_admin_personal_wait As String
+        Dim frm_admin_personal_btn_admin_personal_installed As String
     End Structure
     Public Function GetLanguage(ByVal lang As String)
         Dim counter As Integer = 0
@@ -151,6 +151,8 @@
         cfg_lang.frm_admin_personal_grb_admin_personal_tools = Read_Config(lang, counter)
         counter = counter + 1
         cfg_lang.frm_admin_personal_btn_admin_personal_wait = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_btn_admin_personal_installed = Read_Config(lang, counter)
         counter = counter + 1
     End Function
 End Module

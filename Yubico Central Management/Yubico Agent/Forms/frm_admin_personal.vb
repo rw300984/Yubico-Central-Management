@@ -16,12 +16,11 @@
 
     Private Sub btn_admin_personal_yubi_driver_Click(sender As Object, e As EventArgs) Handles btn_admin_personal_yubi_driver.Click
         Select Case btn_admin_personal_yubi_driver.Text
-            Case cfg_lang.frm_admin_personal_btn_admin_personal_install
+            Case btn_admin_personal_yubi_driver.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
                 MessageBox.Show("let's install")
                 btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
-            Case cfg_lang.frm_admin_personal_btn_admin_personal_run
-                MessageBox.Show("start application")
-            Case cfg_lang.frm_admin_personal_btn_admin_personal_download
+            Case btn_admin_personal_yubi_driver.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
+                ProgressBar1.Visible = True
                 btn_admin_personal_yubi_driver.Enabled = False
                 btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
                 DownLoadFileInBackground2("https://www.yubico.com/wp-content/uploads/2017/10/yubikey-smart-card-minidriver-3.3.1.5.zip", "yubikey-smart-card-minidriver-3.3.1.5.zip")
@@ -29,13 +28,14 @@
     End Sub
 
     Private Sub btn_admin_personal_pivmanager_Click(sender As Object, e As EventArgs) Handles btn_admin_personal_pivmanager.Click
-        Select Case btn_admin_personal_pivmanager.Text
-            Case cfg_lang.frm_admin_personal_btn_admin_personal_install
+        Select Case True
+            Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
                 MessageBox.Show("let's install")
                 btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
-            Case cfg_lang.frm_admin_personal_btn_admin_personal_run
+            Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_run)
                 MessageBox.Show("start application")
-            Case cfg_lang.frm_admin_personal_btn_admin_personal_download
+            Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
+                ProgressBar3.Visible = True
                 btn_admin_personal_pivmanager.Enabled = False
                 btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
                 DownLoadFileInBackground4("https://developers.yubico.com/yubikey-piv-manager/Releases/yubikey-piv-manager-1.4.2d-win.exe", "yubikey-piv-manager-1.4.2d-win.exe")
@@ -43,17 +43,17 @@
     End Sub
 
     Private Sub btn_admin_personal_yubi_personalization_Click(sender As Object, e As EventArgs) Handles btn_admin_personal_yubi_personalization.Click
-        Select Case btn_admin_personal_yubi_personalization.Text
-            Case cfg_lang.frm_admin_personal_btn_admin_personal_install
+        Select Case True
+            Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
                 MessageBox.Show("let's install")
                 btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
-            Case cfg_lang.frm_admin_personal_btn_admin_personal_run
+            Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_run)
                 MessageBox.Show("start application")
-            Case cfg_lang.frm_admin_personal_btn_admin_personal_download
+            Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
+                ProgressBar2.Visible = True
                 btn_admin_personal_yubi_personalization.Enabled = False
                 btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
                 DownLoadFileInBackground3("https://developers.yubico.com/yubikey-personalization-gui/Releases/yubikey-personalization-gui-3.1.24.exe", "yubikey-personalization-gui-3.1.24.exe")
-
         End Select
 
     End Sub

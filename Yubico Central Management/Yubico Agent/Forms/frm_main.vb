@@ -150,11 +150,32 @@
         frm_admin_personal.lbl_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_lbl_admin_personal_yubi_driver
         frm_admin_personal.lbl_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_lbl_admin_personal_yubi_personalization
         frm_admin_personal.lbl_admin_personal_yubi_pivmanager.Text = cfg_lang.frm_admin_personal_lbl_admin_personal_yubi_pivmanager
-        frm_admin_personal.btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_download
-        frm_admin_personal.btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_download
-        frm_admin_personal.btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_download
         frm_admin_personal.grb_admin_general.Text = cfg_lang.frm_admin_grb_admin_general
         frm_admin_personal.grb_admin_personal_tools.Text = cfg_lang.frm_admin_personal_grb_admin_personal_tools
+
+        Dim tools_installed As String() = CheckVersionOfTools()
+
+        If tools_installed(0) = "0" Then
+
+            frm_admin_personal.btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_download
+        Else
+            frm_admin_personal.btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_installed & " (" & tools_installed(0) & ")"
+            frm_admin_personal.btn_admin_personal_yubi_driver.Enabled = False
+        End If
+        If tools_installed(1) = "0" Then
+            frm_admin_personal.btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_download
+        Else
+
+            frm_admin_personal.btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run & " (" & tools_installed(1) & ")"
+
+        End If
+        If tools_installed(2) = "0" Then
+
+            frm_admin_personal.btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_download
+        Else
+
+            frm_admin_personal.btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run & " (" & tools_installed(2) & ")"
+        End If
     End Function
 
     ' Show child forms on button click event (monitor / admin)
@@ -287,8 +308,15 @@
         Agent_frms.Add(frm_initial)
         Agent_frms.Add(frm_admin_personal)
 
+        Dim Agent_ctrls As New List(Of Control)
+
+        Agent_ctrls.Add(cms_notify_agent)
+
         For Each frm As Form In Agent_frms
-            Change_theme(frm, theme)
+            Change_theme_frm(frm, theme)
+        Next
+        For Each ctr As Control In Agent_ctrls
+            Change_theme_controls(ctr, theme)
         Next
     End Function
 

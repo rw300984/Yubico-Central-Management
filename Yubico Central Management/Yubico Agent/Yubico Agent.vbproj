@@ -131,6 +131,7 @@
     <Compile Include="Modules\monitor.vb" />
     <Compile Include="Modules\Others.vb" />
     <Compile Include="Modules\themes.vb" />
+    <Compile Include="Modules\tools.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

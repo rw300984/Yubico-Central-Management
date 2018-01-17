@@ -38,9 +38,9 @@ Partial Class frm_admin_personal
         Me.lbl_admin_personal_yubi_personalization = New System.Windows.Forms.Label()
         Me.lbl_admin_personal_yubi_pivmanager = New System.Windows.Forms.Label()
         Me.btn_admin_personal_yubi_driver = New System.Windows.Forms.Button()
-        Me.ProgressBar3 = New Yubico_Agent.CustomizableProgressBar()
         Me.ProgressBar1 = New Yubico_Agent.CustomizableProgressBar()
         Me.ProgressBar2 = New Yubico_Agent.CustomizableProgressBar()
+        Me.ProgressBar3 = New Yubico_Agent.CustomizableProgressBar()
         Me.grb_admin_general.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.grb_admin_personal_tools.SuspendLayout()
@@ -164,18 +164,18 @@ Partial Class frm_admin_personal
         'TableLayoutPanel2
         '
         Me.TableLayoutPanel2.ColumnCount = 3
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.61672!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.97909!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.40418!))
-        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar3, 1, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.btn_admin_personal_pivmanager, 2, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.btn_admin_personal_yubi_personalization, 2, 1)
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.lbl_admin_personal_yubi_driver, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.lbl_admin_personal_yubi_personalization, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.lbl_admin_personal_yubi_pivmanager, 0, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.btn_admin_personal_yubi_driver, 2, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar1, 1, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar2, 1, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar1, 2, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.btn_admin_personal_yubi_driver, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar2, 2, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.btn_admin_personal_yubi_personalization, 1, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar3, 2, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.btn_admin_personal_pivmanager, 1, 2)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(2, 15)
         Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
@@ -184,7 +184,6 @@ Partial Class frm_admin_personal
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(288, 111)
         Me.TableLayoutPanel2.TabIndex = 1
         '
@@ -195,12 +194,11 @@ Partial Class frm_admin_personal
         Me.btn_admin_personal_pivmanager.FlatAppearance.BorderSize = 0
         Me.btn_admin_personal_pivmanager.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_admin_personal_pivmanager.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btn_admin_personal_pivmanager.Location = New System.Drawing.Point(196, 77)
+        Me.btn_admin_personal_pivmanager.Location = New System.Drawing.Point(117, 75)
         Me.btn_admin_personal_pivmanager.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.btn_admin_personal_pivmanager.Name = "btn_admin_personal_pivmanager"
-        Me.btn_admin_personal_pivmanager.Size = New System.Drawing.Size(90, 27)
+        Me.btn_admin_personal_pivmanager.Size = New System.Drawing.Size(82, 27)
         Me.btn_admin_personal_pivmanager.TabIndex = 10
-        Me.btn_admin_personal_pivmanager.Text = "Button3"
         Me.btn_admin_personal_pivmanager.UseVisualStyleBackColor = False
         '
         'btn_admin_personal_yubi_personalization
@@ -210,12 +208,11 @@ Partial Class frm_admin_personal
         Me.btn_admin_personal_yubi_personalization.FlatAppearance.BorderSize = 0
         Me.btn_admin_personal_yubi_personalization.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_admin_personal_yubi_personalization.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btn_admin_personal_yubi_personalization.Location = New System.Drawing.Point(196, 40)
+        Me.btn_admin_personal_yubi_personalization.Location = New System.Drawing.Point(117, 39)
         Me.btn_admin_personal_yubi_personalization.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.btn_admin_personal_yubi_personalization.Name = "btn_admin_personal_yubi_personalization"
-        Me.btn_admin_personal_yubi_personalization.Size = New System.Drawing.Size(90, 27)
+        Me.btn_admin_personal_yubi_personalization.Size = New System.Drawing.Size(82, 27)
         Me.btn_admin_personal_yubi_personalization.TabIndex = 9
-        Me.btn_admin_personal_yubi_personalization.Text = "Button2"
         Me.btn_admin_personal_yubi_personalization.UseVisualStyleBackColor = False
         '
         'lbl_admin_personal_yubi_driver
@@ -230,7 +227,7 @@ Partial Class frm_admin_personal
         'lbl_admin_personal_yubi_personalization
         '
         Me.lbl_admin_personal_yubi_personalization.AutoSize = True
-        Me.lbl_admin_personal_yubi_personalization.Location = New System.Drawing.Point(2, 37)
+        Me.lbl_admin_personal_yubi_personalization.Location = New System.Drawing.Point(2, 36)
         Me.lbl_admin_personal_yubi_personalization.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbl_admin_personal_yubi_personalization.Name = "lbl_admin_personal_yubi_personalization"
         Me.lbl_admin_personal_yubi_personalization.Size = New System.Drawing.Size(0, 15)
@@ -239,7 +236,7 @@ Partial Class frm_admin_personal
         'lbl_admin_personal_yubi_pivmanager
         '
         Me.lbl_admin_personal_yubi_pivmanager.AutoSize = True
-        Me.lbl_admin_personal_yubi_pivmanager.Location = New System.Drawing.Point(2, 74)
+        Me.lbl_admin_personal_yubi_pivmanager.Location = New System.Drawing.Point(2, 72)
         Me.lbl_admin_personal_yubi_pivmanager.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbl_admin_personal_yubi_pivmanager.Name = "lbl_admin_personal_yubi_pivmanager"
         Me.lbl_admin_personal_yubi_pivmanager.Size = New System.Drawing.Size(0, 15)
@@ -252,43 +249,45 @@ Partial Class frm_admin_personal
         Me.btn_admin_personal_yubi_driver.FlatAppearance.BorderSize = 0
         Me.btn_admin_personal_yubi_driver.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_admin_personal_yubi_driver.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btn_admin_personal_yubi_driver.Location = New System.Drawing.Point(196, 3)
+        Me.btn_admin_personal_yubi_driver.Location = New System.Drawing.Point(117, 3)
         Me.btn_admin_personal_yubi_driver.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.btn_admin_personal_yubi_driver.Name = "btn_admin_personal_yubi_driver"
-        Me.btn_admin_personal_yubi_driver.Size = New System.Drawing.Size(90, 27)
+        Me.btn_admin_personal_yubi_driver.Size = New System.Drawing.Size(82, 27)
         Me.btn_admin_personal_yubi_driver.TabIndex = 8
-        Me.btn_admin_personal_yubi_driver.Text = "Button1"
         Me.btn_admin_personal_yubi_driver.UseVisualStyleBackColor = False
-        '
-        'ProgressBar3
-        '
-        Me.ProgressBar3.BackColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ProgressBar3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.ProgressBar3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ProgressBar3.Location = New System.Drawing.Point(88, 77)
-        Me.ProgressBar3.Name = "ProgressBar3"
-        Me.ProgressBar3.Size = New System.Drawing.Size(103, 23)
-        Me.ProgressBar3.TabIndex = 13
         '
         'ProgressBar1
         '
         Me.ProgressBar1.BackColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Top
         Me.ProgressBar1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ProgressBar1.Location = New System.Drawing.Point(88, 3)
+        Me.ProgressBar1.Location = New System.Drawing.Point(204, 3)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(103, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(81, 23)
         Me.ProgressBar1.TabIndex = 11
+        Me.ProgressBar1.Visible = False
         '
         'ProgressBar2
         '
         Me.ProgressBar2.BackColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ProgressBar2.Dock = System.Windows.Forms.DockStyle.Top
         Me.ProgressBar2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ProgressBar2.Location = New System.Drawing.Point(88, 40)
+        Me.ProgressBar2.Location = New System.Drawing.Point(204, 39)
         Me.ProgressBar2.Name = "ProgressBar2"
-        Me.ProgressBar2.Size = New System.Drawing.Size(103, 23)
+        Me.ProgressBar2.Size = New System.Drawing.Size(81, 23)
         Me.ProgressBar2.TabIndex = 12
+        Me.ProgressBar2.Visible = False
+        '
+        'ProgressBar3
+        '
+        Me.ProgressBar3.BackColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.ProgressBar3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ProgressBar3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.ProgressBar3.Location = New System.Drawing.Point(204, 75)
+        Me.ProgressBar3.Name = "ProgressBar3"
+        Me.ProgressBar3.Size = New System.Drawing.Size(81, 23)
+        Me.ProgressBar3.TabIndex = 13
+        Me.ProgressBar3.Visible = False
         '
         'frm_admin_personal
         '

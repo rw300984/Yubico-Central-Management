@@ -49,4 +49,5 @@
   <frm_admin_personal_btn_admin_personal_run>Starten</frm_admin_personal_btn_admin_personal_run>
   <frm_admin_personal_grb_admin_personal_tools>Yubikey Tools</frm_admin_personal_grb_admin_personal_tools>
   <frm_admin_personal_grb_admin_personal_wait>Bitte warten...</frm_admin_personal_grb_admin_personal_wait>
+  <frm_admin_personal_btn_admin_personal_installed>Installiert</frm_admin_personal_btn_admin_personal_installed>
 </language>

@@ -77,4 +77,21 @@
         End If
         Return Result
     End Function
+    Public Function GetFileVersion(ByVal file As String) As String
+        Dim result As String
+        If System.IO.File.Exists(file) Then
+            Dim driver_info As FileVersionInfo = FileVersionInfo.GetVersionInfo(file)
+            result = driver_info.FileVersion
+        Else
+            result = "0"
+        End If
+        Return result
+    End Function
+    Public Function GetRegistryEntry(ByVal key As String, ByVal attribute As String)
+        Dim result As String = My.Computer.Registry.GetValue(key, attribute, Nothing)
+        If result = Nothing Then
+            result = "0"
+        End If
+        Return result
+    End Function
 End Module
