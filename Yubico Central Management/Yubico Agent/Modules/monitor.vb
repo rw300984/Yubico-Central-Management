@@ -10,7 +10,7 @@ Module monitor
         Dim ykinfo_frm(4) As String
         Dim ykinfo() As String = YK_Agent_GetFromykinfo()
         If ykinfo(0) = "" Or ykinfo(0) Is Nothing Then
-            Dim noYubikey As String = "Yubikey not connected"
+            Dim noYubikey As String = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present
             ykinfo_frm(0) = noYubikey
             ykinfo_frm(1) = noYubikey
             ykinfo_frm(2) = noYubikey

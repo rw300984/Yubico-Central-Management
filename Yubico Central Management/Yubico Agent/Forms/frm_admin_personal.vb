@@ -17,43 +17,74 @@
     Private Sub btn_admin_personal_yubi_driver_Click(sender As Object, e As EventArgs) Handles btn_admin_personal_yubi_driver.Click
         Select Case btn_admin_personal_yubi_driver.Text
             Case btn_admin_personal_yubi_driver.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
-                MessageBox.Show("let's install")
                 btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
             Case btn_admin_personal_yubi_driver.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
                 ProgressBar1.Visible = True
                 btn_admin_personal_yubi_driver.Enabled = False
                 btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
-                DownLoadFileInBackground2("https://www.yubico.com/wp-content/uploads/2017/10/yubikey-smart-card-minidriver-3.3.1.5.zip", "yubikey-smart-card-minidriver-3.3.1.5.zip")
+                DownLoadFileInBackground2(cfg_tools.yk_minidriver_download, cfg_tools.yk_minidriver_pkg)
         End Select
     End Sub
 
     Private Sub btn_admin_personal_pivmanager_Click(sender As Object, e As EventArgs) Handles btn_admin_personal_pivmanager.Click
         Select Case True
             Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
-                MessageBox.Show("let's install")
-                btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
+                btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
+                btn_admin_personal_pivmanager.Enabled = False
+                Dim inst_result As Integer = tools.InstallTool(cfg_tools.yk_piv_pkg)
+                If inst_result = "1" Then
+                    Dim count As Integer = 0
+                    Dim status As Integer = 0
+                    Dim version_array() As String = tools.CheckVersionOfTools()
+                    Do While count < 60
+                        Threading.Thread.Sleep(1000)
+                        Dim i As Integer
+                        version_array = tools.CheckVersionOfTools()
+                        If version_array(2) = "0" Then
+                            count = count + 1
+                        Else
+                            count = 60
+                            status = 1
+                            btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run & " (" & version_array(2) & ")"
+                            System.IO.File.Delete(cfg_tools.yk_piv_pkg)
+                            btn_admin_personal_pivmanager.Enabled = True
+                        End If
+                    Loop
+                    If status = 0 Then
+                        btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+                    Else
+                        btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run & " (" & version_array(2) & ")"
+                        System.IO.File.Delete(cfg_tools.yk_piv_pkg)
+                        btn_admin_personal_pivmanager.Enabled = True
+                    End If
+                ElseIf inst_result = "0" Then
+
+                    btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+                Else
+
+                End If
             Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_run)
-                MessageBox.Show("start application")
+
             Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
                 ProgressBar3.Visible = True
                 btn_admin_personal_pivmanager.Enabled = False
                 btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
-                DownLoadFileInBackground4("https://developers.yubico.com/yubikey-piv-manager/Releases/yubikey-piv-manager-1.4.2d-win.exe", "yubikey-piv-manager-1.4.2d-win.exe")
+                DownLoadFileInBackground4(cfg_tools.yk_piv_download, cfg_tools.yk_piv_pkg)
         End Select
     End Sub
 
     Private Sub btn_admin_personal_yubi_personalization_Click(sender As Object, e As EventArgs) Handles btn_admin_personal_yubi_personalization.Click
         Select Case True
             Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
-                MessageBox.Show("let's install")
+
                 btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
             Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_run)
-                MessageBox.Show("start application")
+
             Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
                 ProgressBar2.Visible = True
                 btn_admin_personal_yubi_personalization.Enabled = False
                 btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
-                DownLoadFileInBackground3("https://developers.yubico.com/yubikey-personalization-gui/Releases/yubikey-personalization-gui-3.1.24.exe", "yubikey-personalization-gui-3.1.24.exe")
+                DownLoadFileInBackground3(cfg_tools.yk_personal_download, cfg_tools.yk_personal_pkg)
         End Select
 
     End Sub
@@ -74,8 +105,19 @@
         ProgressBar1.Value = e.ProgressPercentage
     End Sub
     Private Sub WC1_DownloadProgressComplete(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles WC1.DownloadFileCompleted
-        btn_admin_personal_yubi_driver.Enabled = True
-        btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_install
+        Dim integrity As String = Downloader.SHA1_CheckDownload("yk_minidriver", cfg_tools.yk_minidriver_pkg)
+        btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_check
+        btn_admin_personal_yubi_driver.Update()
+        Threading.Thread.Sleep(2000)
+        If integrity = 0 Then
+            btn_admin_personal_yubi_driver.Enabled = False
+            btn_admin_personal_yubi_driver.BackColor = Color.Coral
+            btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+            System.IO.File.Delete(cfg_tools.yk_minidriver_pkg)
+        Else
+            btn_admin_personal_yubi_driver.Enabled = True
+            btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_install
+        End If
     End Sub
 
     ' Download 2
@@ -94,8 +136,19 @@
         ProgressBar2.Value = e.ProgressPercentage
     End Sub
     Private Sub WC2_DownloadProgressComplete(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles WC2.DownloadFileCompleted
-        btn_admin_personal_yubi_personalization.Enabled = True
-        btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_install
+        Dim integrity As String = Downloader.SHA1_CheckDownload("yk_personal", cfg_tools.yk_personal_pkg)
+        btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_check
+        btn_admin_personal_yubi_personalization.Update()
+        Threading.Thread.Sleep(2000)
+        If integrity = 0 Then
+            btn_admin_personal_yubi_personalization.Enabled = False
+            btn_admin_personal_yubi_personalization.BackColor = Color.Coral
+            btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+            System.IO.File.Delete(cfg_tools.yk_personal_pkg)
+        Else
+            btn_admin_personal_yubi_personalization.Enabled = True
+            btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_install
+        End If
     End Sub
 
     ' Download 3
@@ -114,7 +167,20 @@
         ProgressBar3.Value = e.ProgressPercentage
     End Sub
     Private Sub WC3_DownloadProgressComplete(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles WC3.DownloadFileCompleted
-        btn_admin_personal_pivmanager.Enabled = True
-        btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_install
+        Dim Integrity As Integer = Downloader.SHA1_CheckDownload("yk_piv", cfg_tools.yk_piv_pkg)
+        btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_check
+        btn_admin_personal_pivmanager.Update()
+        Threading.Thread.Sleep(2000)
+        If Integrity = 0 Then
+            btn_admin_personal_pivmanager.Enabled = False
+            btn_admin_personal_pivmanager.BackColor = Color.Coral
+            btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+            System.IO.File.Delete(cfg_tools.yk_piv_pkg)
+        Else
+            btn_admin_personal_pivmanager.Enabled = True
+            btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_install
+            ProgressBar3.Visible = False
+        End If
+
     End Sub
 End Class

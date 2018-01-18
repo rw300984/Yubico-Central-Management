@@ -56,6 +56,7 @@ Partial Class frm_monitor
         Me.lbl_monitor_sys_os_text = New System.Windows.Forms.Label()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.lbl_monitor_sys_ip_text = New System.Windows.Forms.Label()
+        Me.bgw_ykinfo = New System.ComponentModel.BackgroundWorker()
         Me.grb_monitor_yubiinfo.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.Panel7.SuspendLayout()
@@ -430,6 +431,11 @@ Partial Class frm_monitor
         Me.lbl_monitor_sys_ip_text.Size = New System.Drawing.Size(0, 15)
         Me.lbl_monitor_sys_ip_text.TabIndex = 0
         '
+        'bgw_ykinfo
+        '
+        Me.bgw_ykinfo.WorkerReportsProgress = True
+        Me.bgw_ykinfo.WorkerSupportsCancellation = True
+        '
         'frm_monitor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(5.0!, 15.0!)
@@ -505,4 +511,5 @@ Partial Class frm_monitor
     Friend WithEvents lbl_monitor_yub_firmware_output As Label
     Friend WithEvents lbl_monitor_yub_serial_output As Label
     Friend WithEvents lbl_monitor_yub_touch_output As Label
+    Friend WithEvents bgw_ykinfo As System.ComponentModel.BackgroundWorker
 End Class

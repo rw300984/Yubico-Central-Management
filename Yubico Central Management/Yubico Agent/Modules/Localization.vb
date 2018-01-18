@@ -51,6 +51,12 @@
         Dim frm_admin_personal_grb_admin_personal_tools As String
         Dim frm_admin_personal_btn_admin_personal_wait As String
         Dim frm_admin_personal_btn_admin_personal_installed As String
+        Dim frm_monitor_lbl_monitor_yub_touch_output_touched As String
+        Dim frm_monitor_lbl_monitor_yub_touch_output_not_touched As String
+        Dim frm_monitor_lbl_monitor_yub_touch_output_not_present As String
+        Dim frm_admin_personal_btn_admin_personal_integrity_check As String
+        Dim frm_admin_personal_btn_admin_personal_integrity_failed As String
+
     End Structure
     Public Function GetLanguage(ByVal lang As String)
         Dim counter As Integer = 0
@@ -153,6 +159,16 @@
         cfg_lang.frm_admin_personal_btn_admin_personal_wait = Read_Config(lang, counter)
         counter = counter + 1
         cfg_lang.frm_admin_personal_btn_admin_personal_installed = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_touched = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_touched = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_btn_admin_personal_integrity_check = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed = Read_Config(lang, counter)
         counter = counter + 1
     End Function
 End Module

@@ -1,7 +1,6 @@
 ﻿Public Class frm_admin
     Private Sub cbx_admin_central_auth_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbx_admin_central_auth.SelectedIndexChanged
         cfg_config.admin_central_auth = cbx_admin_central_auth.Text
-        ' My.Forms.frm_main.btn_main_admin_login.Text = "Save configuration"
         My.Forms.frm_main.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_save
     End Sub
 

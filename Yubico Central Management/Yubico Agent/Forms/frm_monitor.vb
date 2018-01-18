@@ -1,17 +1,46 @@
-﻿Public Class frm_monitor
-    Private Sub frm_monitor_Load(sender As Object, e As EventArgs) Handles Me.Load
-        YK_Agent_FillSystemInfo()
-        YK_Agent_FillYKinfo()
+﻿Imports System.ComponentModel
+
+Public Class frm_monitor
+    Dim bgw_status As Integer = 0
+    Private Sub bgw_ykinfo_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_ykinfo.DoWork
+        Do
+            Select Case bgw_status
+                Case 0
+                    Dim ykinfo As String() = YK_Agent_GetKeyInfo()
+                    bgw_ykinfo.ReportProgress(0, ykinfo)
+                    Threading.Thread.Sleep(1000)
+                Case 1
+
+            End Select
+        Loop
     End Sub
 
-    Private Sub frm_monitor_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        YK_Agent_FillSystemInfo()
-        YK_Agent_FillYKinfo()
+    Private Sub bgw_ykinfo_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles bgw_ykinfo.ProgressChanged
+        Dim ykinfo As String() = TryCast(e.UserState, String())
+        lbl_monitor_yub_vendor_output.Text = ykinfo(0)
+        lbl_monitor_yub_model_output.Text = ykinfo(1)
+        lbl_monitor_yub_firmware_output.Text = ykinfo(3)
+        lbl_monitor_yub_serial_output.Text = ykinfo(2)
+        If ykinfo(4) = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present Then
+            lbl_monitor_yub_touch_output.Text = ykinfo(4)
+        ElseIf CType(ykinfo(4), Double) > 520 And CType(ykinfo(4), Double) < 65000 Then
+            lbl_monitor_yub_touch_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_touched
+        ElseIf CType(ykinfo(4), Double) <= 520 Then
+            lbl_monitor_yub_touch_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_touched
+        End If
+    End Sub
+
+    Private Sub frm_monitor_Load(sender As Object, e As EventArgs) Handles Me.Load
+        bgw_ykinfo.RunWorkerAsync()
     End Sub
 
     Private Sub frm_monitor_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
-        YK_Agent_FillSystemInfo()
-        YK_Agent_FillYKinfo()
+        If Visible = True Then
+            YK_Agent_FillSystemInfo()
+            bgw_status = 0
+        Else
+            bgw_status = 1
+        End If
     End Sub
 
     Public Function YK_Agent_FillSystemInfo()
@@ -23,12 +52,4 @@
         lbl_monitor_sys_devicemodel_output.Text = Systeminfo(4)
     End Function
 
-    Public Function YK_Agent_FillYKinfo()
-        Dim YKinfo As String() = YK_Agent_GetKeyInfo()
-        lbl_monitor_yub_vendor_output.Text = YKinfo(0)
-        lbl_monitor_yub_model_output.Text = YKinfo(1)
-        lbl_monitor_yub_firmware_output.Text = YKinfo(3)
-        lbl_monitor_yub_serial_output.Text = YKinfo(2)
-        lbl_monitor_yub_touch_output.Text = YKinfo(4)
-    End Function
 End Class
