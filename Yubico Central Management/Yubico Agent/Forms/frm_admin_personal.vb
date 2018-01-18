@@ -15,9 +15,12 @@
     End Sub
 
     Private Sub btn_admin_personal_yubi_driver_Click(sender As Object, e As EventArgs) Handles btn_admin_personal_yubi_driver.Click
-        Select Case btn_admin_personal_yubi_driver.Text
+        '   MessageBox.Show(cfg_lang.frm_admin_personal_btn_admin_personal_download)
+        '  MessageBox.Show(btn_admin_personal_yubi_driver.Text)
+        Select Case True
             Case btn_admin_personal_yubi_driver.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
-                btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
+                InstallDriver(cfg_tools.yk_minidriver_pkg)
+              '  btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
             Case btn_admin_personal_yubi_driver.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
                 ProgressBar1.Visible = True
                 btn_admin_personal_yubi_driver.Enabled = False

@@ -52,15 +52,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +68,8 @@
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
+    <Import Include="System.IO" />
+    <Import Include="System.IO.Compression" />
     <Import Include="System.Management" />
     <Import Include="System.Windows.Forms" />
     <Import Include="System.Linq" />

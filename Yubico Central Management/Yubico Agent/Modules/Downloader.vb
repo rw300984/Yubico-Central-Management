@@ -11,7 +11,6 @@
                         result = 1
                     End If
                 Case "yk_personal"
-
                     If sha1_downloaded = cfg_tools.yk_personal_download_sha1 Then
                         result = 1
                     End If
@@ -20,9 +19,7 @@
                         result = 1
                     End If
             End Select
-
         End If
-
         Return result
     End Function
 End Module

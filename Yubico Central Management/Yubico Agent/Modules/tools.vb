@@ -1,4 +1,6 @@
-﻿Module tools
+﻿
+
+Module tools
     Public cfg_tools As tools
     Public Structure tools
         Dim yk_minidriver_exec As String
@@ -32,6 +34,8 @@
         For Each tool As String In tools_array
             Select Case tool
                 Case cfg_tools.yk_minidriver_exec
+                    ' MessageBox.Show(Environment.SystemDirectory & "\" & tool)
+                    'MessageBox.Show(System.IO.File.Exists(Environment.SystemDirectory & "\" & tool))
                     version_array(0) = GetFileVersion(Environment.SystemDirectory & "\" & tool)
                 Case cfg_tools.yk_personal_exec
                     Dim install_dir As String
@@ -91,7 +95,36 @@
         End Try
     End Function
 
-    Public Function InstallDriver() As Integer
+    Public Function InstallDriver(ByVal driverpack As String) As Integer
+        ' Extract Driver
+        ZipFile.ExtractToDirectory(driverpack, Application.StartupPath & "\temp\")
+        Dim ps_inst_driver As New Process
+        Dim path_to_inf As String = ""
+        Select Case True
+            Case My.Computer.Info.OSFullName.Contains("Windows 10")
+                path_to_inf = Application.StartupPath & "\temp\YKmd-Windows10\ykmd.inf"
+            Case Else
+                path_to_inf = Application.StartupPath & "c:\temp\YKmd-Windows7-8.1\ykmd.inf"
+        End Select
+        With ps_inst_driver.StartInfo
+            .FileName = "cmd.exe"
+            .Arguments = "/C rundll32.exe advpack.dll,LaunchINFSectionEx " & Chr(34) & path_to_inf & Chr(34)
+            '.UseShellExecute = True
+            .Verb = "runas"
+        End With
+
+        ps_inst_driver.Start()
+        ps_inst_driver.WaitForExit()
+
+        Directory.Delete(Application.StartupPath & "\temp\", True)
+        File.Delete(driverpack)
+
+        Dim version As String() = CheckVersionOfTools()
+        If version(0) <> "0" Then
+            MessageBox.Show("installed")
+        Else
+            MessageBox.Show("not installed")
+        End If
 
     End Function
     Public Function StartTool(ByVal tool As String) As Integer
