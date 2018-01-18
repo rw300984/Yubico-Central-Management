@@ -10,7 +10,9 @@ Public Class frm_monitor
                     bgw_ykinfo.ReportProgress(0, ykinfo)
                     Threading.Thread.Sleep(1000)
                 Case 1
-
+                    If bgw_ykinfo.CancellationPending = True Then
+                        Exit Sub
+                    End If
             End Select
         Loop
     End Sub
@@ -38,8 +40,13 @@ Public Class frm_monitor
         If Visible = True Then
             YK_Agent_FillSystemInfo()
             bgw_status = 0
+            If bgw_ykinfo.IsBusy Then
+            Else
+                bgw_ykinfo.RunWorkerAsync()
+            End If
         Else
             bgw_status = 1
+            bgw_ykinfo.CancelAsync()
         End If
     End Sub
 
