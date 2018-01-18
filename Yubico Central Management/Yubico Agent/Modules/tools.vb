@@ -94,8 +94,37 @@
     Public Function InstallDriver() As Integer
 
     End Function
-    Public Function StartTool()
-
+    Public Function StartTool(ByVal tool As String) As Integer
+        Dim ps_exec As String
+        Dim hklm_reg_path_64 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\"
+        Dim hklm_reg_path_32 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\"
+        Dim status As Integer = 0
+        Select Case tool
+            Case "yk_personal"
+                If Environment.Is64BitOperatingSystem Then
+                    ps_exec = GetRegistryEntry(hklm_reg_path_64 & cfg_tools.yk_personal_regkey, cfg_tools.yk_tools_install_dir) & "\" & cfg_tools.yk_personal_exec
+                Else
+                    ps_exec = GetRegistryEntry(hklm_reg_path_32 & cfg_tools.yk_personal_regkey, cfg_tools.yk_tools_install_dir) & "\" & cfg_tools.yk_personal_exec
+                End If
+                If SHA1FileHash(ps_exec) = cfg_tools.yk_personal_exec_sha1 Then
+                    status = 1
+                End If
+            Case "yk_piv"
+                If Environment.Is64BitOperatingSystem Then
+                    ps_exec = GetRegistryEntry(hklm_reg_path_64 & cfg_tools.yk_piv_regkey, cfg_tools.yk_tools_install_dir) & "\" & cfg_tools.yk_piv_exec
+                Else
+                    ps_exec = GetRegistryEntry(hklm_reg_path_32 & cfg_tools.yk_piv_regkey, cfg_tools.yk_tools_install_dir) & "\" & cfg_tools.yk_piv_exec
+                End If
+                If SHA1FileHash(ps_exec) = cfg_tools.yk_piv_exec_sha1 Then
+                    status = 1
+                End If
+        End Select
+        If status = 1 Then
+            Process.Start(ps_exec)
+            Return status
+        Else
+            Return status
+        End If
     End Function
     Public Function GetToolsXML(ByVal config As String)
         Dim counter As Integer = 0

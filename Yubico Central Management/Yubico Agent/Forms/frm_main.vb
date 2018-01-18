@@ -47,6 +47,7 @@
                 ShowForms("nothing")
             End If
         Else
+            ShowForms("nothing")
             cms_notify_agent.Show()
         End If
     End Sub

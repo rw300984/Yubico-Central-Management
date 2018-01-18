@@ -38,7 +38,6 @@
                     Dim version_array() As String = tools.CheckVersionOfTools()
                     Do While count < 60
                         Threading.Thread.Sleep(1000)
-                        Dim i As Integer
                         version_array = tools.CheckVersionOfTools()
                         If version_array(2) = "0" Then
                             count = count + 1
@@ -58,13 +57,17 @@
                         btn_admin_personal_pivmanager.Enabled = True
                     End If
                 ElseIf inst_result = "0" Then
-
                     btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+                Else
+                End If
+            Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_run)
+                If StartTool("yk_piv") = 0 Then
+                    btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+                    btn_admin_personal_pivmanager.Enabled = False
+                    btn_admin_personal_pivmanager.BackColor = Color.Coral
                 Else
 
                 End If
-            Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_run)
-
             Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
                 ProgressBar3.Visible = True
                 btn_admin_personal_pivmanager.Enabled = False
@@ -76,10 +79,45 @@
     Private Sub btn_admin_personal_yubi_personalization_Click(sender As Object, e As EventArgs) Handles btn_admin_personal_yubi_personalization.Click
         Select Case True
             Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
-
-                btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
+                btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
+                btn_admin_personal_yubi_personalization.Enabled = False
+                Dim inst_result As Integer = tools.InstallTool(cfg_tools.yk_personal_pkg)
+                If inst_result = "1" Then
+                    Dim count As Integer = 0
+                    Dim status As Integer = 0
+                    Dim version_array() As String = tools.CheckVersionOfTools()
+                    Do While count < 60
+                        Threading.Thread.Sleep(1000)
+                        version_array = tools.CheckVersionOfTools()
+                        If version_array(1) = "0" Then
+                            count = count + 1
+                        Else
+                            count = 60
+                            status = 1
+                            btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run & " (" & version_array(1) & ")"
+                            System.IO.File.Delete(cfg_tools.yk_personal_pkg)
+                            btn_admin_personal_yubi_personalization.Enabled = True
+                        End If
+                    Loop
+                    If status = 0 Then
+                        btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+                    Else
+                        btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run & " (" & version_array(1) & ")"
+                        System.IO.File.Delete(cfg_tools.yk_piv_pkg)
+                        btn_admin_personal_yubi_personalization.Enabled = True
+                    End If
+                ElseIf inst_result = "0" Then
+                    btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+                Else
+                End If
             Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_run)
+                If StartTool("yk_personal") = 0 Then
+                    btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+                    btn_admin_personal_yubi_personalization.Enabled = False
+                    btn_admin_personal_yubi_personalization.BackColor = Color.Coral
+                Else
 
+                End If
             Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
                 ProgressBar2.Visible = True
                 btn_admin_personal_yubi_personalization.Enabled = False
@@ -148,6 +186,7 @@
         Else
             btn_admin_personal_yubi_personalization.Enabled = True
             btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_install
+            ProgressBar2.Visible = False
         End If
     End Sub
 
