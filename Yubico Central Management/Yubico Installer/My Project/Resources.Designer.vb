@@ -63,167 +63,19 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property _11949945031486920082checkmark_svg_med_() As System.Drawing.Bitmap
+        Friend ReadOnly Property ico_close_window() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("_11949945031486920082checkmark_svg_med_", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("ico_close_window", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        '''&lt;Configuration&gt;
-        '''  &lt;intial_verify&gt;9nXMqcdpPVYoaoNPzmTUsg==&lt;/intial_verify&gt;
-        '''  &lt;intial_enabled&gt;0&lt;/intial_enabled&gt;
-        '''  &lt;admin_general_lang&gt;English&lt;/admin_general_lang&gt;
-        '''  &lt;admin_general_theme&gt;Light&lt;/admin_general_theme&gt;
-        '''  &lt;admin_general_mode&gt;LV6+NSz6/y+WToLLdXi7pQ==&lt;/admin_general_mode&gt;
-        '''  &lt;admin_central_server /&gt;
-        '''  &lt;admin_central_auth /&gt;
-        '''  &lt;admin_central_username /&gt;
-        '''  &lt;admin_central_password /&gt;
-        '''  &lt;integrity_lang_de&gt;q2LBMvGGNWUWv+jcW+4MAgO7iwUM+zS8z [rest of string was truncated]&quot;;.
-        '''</summary>
-        Friend ReadOnly Property config() As String
-            Get
-                Return ResourceManager.GetString("config", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        '''&lt;language&gt;
-        '''  &lt;btn_main_admin_login_open&gt;Konfiguration öffnen&lt;/btn_main_admin_login_open&gt;
-        '''  &lt;btn_main_admin_login_save&gt;Konfiguration speichern&lt;/btn_main_admin_login_save&gt;
-        '''  &lt;btn_main_admin_login_close&gt;Konfiguration schliessen&lt;/btn_main_admin_login_close&gt;
-        '''  &lt;btn_main_admin_login_initial&gt;Abspeichern und Yubico Agent starten&lt;/btn_main_admin_login_initial&gt;
-        '''  &lt;btn_main_admin_login_login&gt;Anmelden&lt;/btn_main_admin_login_login&gt;
-        '''  &lt;btn_main_admin_login_login_failed&gt;Anmeld [rest of string was truncated]&quot;;.
-        '''</summary>
-        Friend ReadOnly Property de() As String
-            Get
-                Return ResourceManager.GetString("de", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        '''&lt;language&gt;
-        '''  &lt;btn_main_admin_login_open&gt;Open configuration&lt;/btn_main_admin_login_open&gt;
-        '''  &lt;btn_main_admin_login_save&gt;Save configuration&lt;/btn_main_admin_login_save&gt;
-        '''  &lt;btn_main_admin_login_close&gt;Close configuration&lt;/btn_main_admin_login_close&gt;
-        '''  &lt;btn_main_admin_login_initial&gt;Save key and start Yubico agent&lt;/btn_main_admin_login_initial&gt;
-        '''  &lt;btn_main_admin_login_login&gt;Login&lt;/btn_main_admin_login_login&gt;
-        '''  &lt;btn_main_admin_login_login_failed&gt;Login failed&lt;/btn_main_adm [rest of string was truncated]&quot;;.
-        '''</summary>
-        Friend ReadOnly Property en() As String
-            Get
-                Return ResourceManager.GetString("en", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to libraries\ykinfo.exe -a -q 1&gt; ykinfo.txt.
-        '''</summary>
-        Friend ReadOnly Property export() As String
-            Get
-                Return ResourceManager.GetString("export", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property icons8_close_window_50() As System.Drawing.Bitmap
+        Friend ReadOnly Property img_yubico_logo_small() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("icons8_close_window_50", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property libjson_c_2() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("libjson_c_2", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property libykpers_1_1() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("libykpers_1_1", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property libyubikey_0() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("libyubikey_0", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        '''&lt;tools&gt;
-        '''  &lt;yk_minidriver_exec&gt;ykmd.dll&lt;/yk_minidriver_exec&gt;
-        '''  &lt;yk_personal_exec&gt;yubikey-personalization-gui.exe&lt;/yk_personal_exec&gt;
-        '''  &lt;yk_piv_exec&gt;pivman.exe&lt;/yk_piv_exec&gt;
-        '''  &lt;yk_minidriver_exec_sha1&gt;&lt;/yk_minidriver_exec_sha1&gt;
-        '''  &lt;yk_personal_exec_sha1&gt;4293166B64279942CB2B3D7FEF6B8F7108EE4276&lt;/yk_personal_exec_sha1&gt;
-        '''  &lt;yk_piv_exec_sha1&gt;F0F5489CCE68BE50E18736B053CFDCB05B3F00BB&lt;/yk_piv_exec_sha1&gt;
-        '''  &lt;yk_minidriver_download&gt;https://www.yubico.com/wp-content/uploads/2 [rest of string was truncated]&quot;;.
-        '''</summary>
-        Friend ReadOnly Property tools() As String
-            Get
-                Return ResourceManager.GetString("tools", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property ykinfo() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("ykinfo", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property YubiClientAPI() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("YubiClientAPI", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property Yubico_Agent() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Yubico_Agent", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property Yubico_Logo_Small_1() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Yubico_Logo_Small_1", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("img_yubico_logo_small", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

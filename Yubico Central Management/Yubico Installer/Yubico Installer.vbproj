@@ -49,14 +49,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -73,6 +69,30 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\frm_install_options.Designer.vb">
+      <DependentUpon>frm_install_options.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_install_options.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_install_password.Designer.vb">
+      <DependentUpon>frm_install_password.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_install_password.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_install_start.Designer.vb">
+      <DependentUpon>frm_install_start.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_install_start.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_install_update.Designer.vb">
+      <DependentUpon>frm_install_update.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_install_update.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frm_read_eula.Designer.vb">
       <DependentUpon>frm_read_eula.vb</DependentUpon>
     </Compile>
@@ -92,6 +112,18 @@
     <Compile Include="Forms\frm_install_path.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frm_start_agent.Designer.vb">
+      <DependentUpon>frm_start_agent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_start_agent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_install_finish.Designer.vb">
+      <DependentUpon>frm_install_finish.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_install_finish.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -109,8 +141,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frm_install_password.resx">
+      <DependentUpon>frm_install_password.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_install_path.resx">
       <DependentUpon>frm_install_path.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_install_update.resx">
+      <DependentUpon>frm_install_update.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_read_eula.resx">
       <DependentUpon>frm_read_eula.vb</DependentUpon>
