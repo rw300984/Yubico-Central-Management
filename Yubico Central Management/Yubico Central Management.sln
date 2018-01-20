@@ -7,9 +7,11 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Yubico Server", "Yubico Ser
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Yubico Web Services", "Yubico Web Services\Yubico Web Services.vbproj", "{D78B1C27-A437-47EF-9A0D-6B8E3BE5330D}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Yubic CM Installer", "Yubic CM Installer\Yubic CM Installer.vbproj", "{7A9AD735-DBEA-415B-A1A6-7B2F82A10327}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Yubico Agent", "Yubico Agent\Yubico Agent.vbproj", "{90A8325B-CE8B-44E7-9096-867E7C284EEA}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Yubico Agent Service", "Yubico Agent Service\Yubico Agent Service.vbproj", "{49185417-0EFA-4C5A-9F14-FE9C6468C070}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Yubico Installer", "Yubico Installer\Yubico Installer.vbproj", "{0A9C685A-54F0-4272-9C19-09F4A8139A1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +27,18 @@ Global
 		{D78B1C27-A437-47EF-9A0D-6B8E3BE5330D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D78B1C27-A437-47EF-9A0D-6B8E3BE5330D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D78B1C27-A437-47EF-9A0D-6B8E3BE5330D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A9AD735-DBEA-415B-A1A6-7B2F82A10327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A9AD735-DBEA-415B-A1A6-7B2F82A10327}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A9AD735-DBEA-415B-A1A6-7B2F82A10327}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A9AD735-DBEA-415B-A1A6-7B2F82A10327}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90A8325B-CE8B-44E7-9096-867E7C284EEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90A8325B-CE8B-44E7-9096-867E7C284EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90A8325B-CE8B-44E7-9096-867E7C284EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90A8325B-CE8B-44E7-9096-867E7C284EEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49185417-0EFA-4C5A-9F14-FE9C6468C070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49185417-0EFA-4C5A-9F14-FE9C6468C070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49185417-0EFA-4C5A-9F14-FE9C6468C070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49185417-0EFA-4C5A-9F14-FE9C6468C070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9C685A-54F0-4272-9C19-09F4A8139A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9C685A-54F0-4272-9C19-09F4A8139A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9C685A-54F0-4272-9C19-09F4A8139A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9C685A-54F0-4272-9C19-09F4A8139A1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,12 +15,17 @@
     End Sub
 
     Private Sub btn_admin_personal_yubi_driver_Click(sender As Object, e As EventArgs) Handles btn_admin_personal_yubi_driver.Click
-        '   MessageBox.Show(cfg_lang.frm_admin_personal_btn_admin_personal_download)
-        '  MessageBox.Show(btn_admin_personal_yubi_driver.Text)
+
         Select Case True
             Case btn_admin_personal_yubi_driver.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
-                InstallDriver(cfg_tools.yk_minidriver_pkg)
-              '  btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run
+                btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
+                Dim install_result As String = InstallDriver(cfg_tools.yk_minidriver_pkg)
+                If install_result <> "0" Then
+                    btn_admin_personal_yubi_driver.Enabled = False
+                    btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_installed & " (" & install_result & ")"
+                Else
+                    btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed
+                End If
             Case btn_admin_personal_yubi_driver.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_download)
                 ProgressBar1.Visible = True
                 btn_admin_personal_yubi_driver.Enabled = False
@@ -158,6 +163,7 @@
         Else
             btn_admin_personal_yubi_driver.Enabled = True
             btn_admin_personal_yubi_driver.Text = cfg_lang.frm_admin_personal_btn_admin_personal_install
+            ProgressBar1.Visible = False
         End If
     End Sub
 

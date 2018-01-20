@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 
 Public Class frm_monitor
-    Dim bgw_status As Integer = 0
+    Public bgw_status As Integer = 0
     Private Sub bgw_ykinfo_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_ykinfo.DoWork
         Do
             Select Case bgw_status

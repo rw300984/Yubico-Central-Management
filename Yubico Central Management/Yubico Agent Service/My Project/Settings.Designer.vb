@@ -64,9 +64,9 @@ Namespace My
     Friend Module MySettingsProperty
 
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")> _
-        Friend ReadOnly Property Settings() As Global.Yubic_CM_Installer.My.MySettings
+        Friend ReadOnly Property Settings() As Global.Yubico_Agent_Service.My.MySettings
             Get
-                Return Global.Yubic_CM_Installer.My.MySettings.Default
+                Return Global.Yubico_Agent_Service.My.MySettings.Default
             End Get
         End Property
     End Module

@@ -22,7 +22,6 @@ Module tools
         Dim yk_personal_pkg As String
         Dim yk_piv_pkg As String
     End Structure
-
     Public Function CheckVersionOfTools() As String()
         Dim version_array(2) As String
         Dim tools_array(2) As String
@@ -89,13 +88,11 @@ Module tools
             result = "1"
             Return result
         Catch ex As Exception
-
             result = "0"
             Return result
         End Try
     End Function
-
-    Public Function InstallDriver(ByVal driverpack As String) As Integer
+    Public Function InstallDriver(ByVal driverpack As String) As String
         ' Extract Driver
         ZipFile.ExtractToDirectory(driverpack, Application.StartupPath & "\temp\")
         Dim ps_inst_driver As New Process
@@ -104,12 +101,13 @@ Module tools
             Case My.Computer.Info.OSFullName.Contains("Windows 10")
                 path_to_inf = Application.StartupPath & "\temp\YKmd-Windows10\ykmd.inf"
             Case Else
-                path_to_inf = Application.StartupPath & "c:\temp\YKmd-Windows7-8.1\ykmd.inf"
+                path_to_inf = Application.StartupPath & "\temp\YKmd-Windows7-8.1\ykmd.inf"
         End Select
         With ps_inst_driver.StartInfo
-            .FileName = "cmd.exe"
-            .Arguments = "/C rundll32.exe advpack.dll,LaunchINFSectionEx " & Chr(34) & path_to_inf & Chr(34)
-            '.UseShellExecute = True
+            .FileName = "rundll32.exe"
+            .Arguments = "advpack.dll,LaunchINFSectionEx " & Chr(34) & path_to_inf & Chr(34)
+            .WindowStyle = ProcessWindowStyle.Hidden
+            .UseShellExecute = True
             .Verb = "runas"
         End With
 
@@ -118,14 +116,8 @@ Module tools
 
         Directory.Delete(Application.StartupPath & "\temp\", True)
         File.Delete(driverpack)
-
         Dim version As String() = CheckVersionOfTools()
-        If version(0) <> "0" Then
-            MessageBox.Show("installed")
-        Else
-            MessageBox.Show("not installed")
-        End If
-
+        Return version(0)
     End Function
     Public Function StartTool(ByVal tool As String) As Integer
         Dim ps_exec As String

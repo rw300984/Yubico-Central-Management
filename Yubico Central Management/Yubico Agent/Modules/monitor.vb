@@ -7,6 +7,7 @@ Module monitor
     ' YK_Agent specific functions
 
     Public Function YK_Agent_GetKeyInfo() As String()
+
         Dim ykinfo_frm(4) As String
         Dim ykinfo() As String = YK_Agent_GetFromykinfo()
         If ykinfo(0) = "" Or ykinfo(0) Is Nothing Then
@@ -106,7 +107,7 @@ Module monitor
             Next
             Return ipaddress
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            ' MessageBox.Show(ex.Message)
         End Try
     End Function
     Public Function Generic_GetWMI_SingleEntry(ByVal From_source As String, ByVal SearchString As String)
@@ -122,4 +123,5 @@ Module monitor
 
         End Try
     End Function
+
 End Module

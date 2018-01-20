@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<language>
+  <btn_main_admin_login_open>Konfiguration öffnen</btn_main_admin_login_open>
+  <btn_main_admin_login_save>Konfiguration speichern</btn_main_admin_login_save>
+  <btn_main_admin_login_close>Konfiguration schliessen</btn_main_admin_login_close>
+  <btn_main_admin_login_initial>Abspeichern und Yubico Agent starten</btn_main_admin_login_initial>
+  <btn_main_admin_login_login>Anmelden</btn_main_admin_login_login>
+  <btn_main_admin_login_login_failed>Anmeldung fehlgeschlagen</btn_main_admin_login_login_failed>
+  <btn_main_admin_login_login_success>Anmeldung erfolgreich... start in 2 Sek.</btn_main_admin_login_login_success>
+  <btn_main_admin_login_empty>Leer</btn_main_admin_login_empty>
+  <frm_initial_lbl_initial_enc>Bitte einen neue Schlüssel eingeben:</frm_initial_lbl_initial_enc>
+  <frm_monitor_grb_monitor_systeminfo>System Informationen</frm_monitor_grb_monitor_systeminfo>
+  <frm_monitor_grb_monitor_yubiinfo>Yubikey Informationen</frm_monitor_grb_monitor_yubiinfo>
+  <frm_monitor_lbl_monitor_sys_devicemodel_text>Geräte/Modell</frm_monitor_lbl_monitor_sys_devicemodel_text>
+  <frm_monitor_lbl_monitor_sys_hostname_text>Computername</frm_monitor_lbl_monitor_sys_hostname_text>
+  <frm_monitor_lbl_monitor_sys_ip_text>IP address</frm_monitor_lbl_monitor_sys_ip_text>
+  <frm_monitor_lbl_monitor_sys_os_text>OS</frm_monitor_lbl_monitor_sys_os_text>
+  <frm_monitor_lbl_monitor_sys_username>Benutzername</frm_monitor_lbl_monitor_sys_username>
+  <frm_monitor_lbl_monitor_yub_firmware_text>Firmware</frm_monitor_lbl_monitor_yub_firmware_text>
+  <frm_monitor_lbl_monitor_yub_model_text>Modell</frm_monitor_lbl_monitor_yub_model_text>
+  <frm_monitor_lbl_monitor_yub_serial_text>Seriennummer</frm_monitor_lbl_monitor_yub_serial_text>
+  <frm_monitor_lbl_monitor_yub_touch_text>Touch level</frm_monitor_lbl_monitor_yub_touch_text>
+  <frm_monitor_lbl_monitor_yub_vendor_text>Hersteller</frm_monitor_lbl_monitor_yub_vendor_text>
+  <frm_admin_grb_admin_general>Allgemeine Einstellungen</frm_admin_grb_admin_general>
+  <frm_admin_grb_admin_management>Central Management Einstellungen</frm_admin_grb_admin_management>
+  <frm_admin_lbl_admin_central_auth>Authentifizierung</frm_admin_lbl_admin_central_auth>
+  <frm_admin_lbl_admin_central_password>Passwort</frm_admin_lbl_admin_central_password>
+  <frm_admin_lbl_admin_central_username>Benutername</frm_admin_lbl_admin_central_username>
+  <frm_admin_lbl_admin_central_server>Server</frm_admin_lbl_admin_central_server>
+  <frm_admin_lbl_admin_general_language>Sprache</frm_admin_lbl_admin_general_language>
+  <frm_admin_lbl_admin_general_mode>Modus</frm_admin_lbl_admin_general_mode>
+  <frm_admin_lbl_admin_general_theme>Theme</frm_admin_lbl_admin_general_theme>
+  <frm_admin_save_lbl_admin_save>Sind sie sicher?</frm_admin_save_lbl_admin_save>
+  <frm_admin_save_btn_admin_save_no>Nein</frm_admin_save_btn_admin_save_no>
+  <frm_admin_save_btn_admin_save_yes>Ja</frm_admin_save_btn_admin_save_yes>
+  <cms_notify_agent_about>Über</cms_notify_agent_about>
+  <cms_notify_agent_close>Beenden</cms_notify_agent_close>
+  <cms_notify_agent_open>Öffnen</cms_notify_agent_open>
+  <frm_initial_lbl_initial_enc_login>Bitte geben Sie Ihr Password ein</frm_initial_lbl_initial_enc_login>
+  <btn_main_admin_login_integrity>Integritätsüberprüfung fehlgeschlagen, beende in 5 Sek.</btn_main_admin_login_integrity>
+  <btn_main_admin_login_login_failed_delay>... Verzögerung in Sek.: </btn_main_admin_login_login_failed_delay>
+  <btn_main_admin_login_login_failed_count_reached>5 fehlerhafte Anmeldungen, beende in 5 sec.</btn_main_admin_login_login_failed_count_reached>
+  <btn_main_admin_login_initial_password_complexity>"Passwort Komplexitätsanforderungen nicht erfüllt"</btn_main_admin_login_initial_password_complexity>
+  <frm_admin_personal_lbl_admin_personal_yubi_driver>Mini Treiber</frm_admin_personal_lbl_admin_personal_yubi_driver>
+  <frm_admin_personal_lbl_admin_personal_yubi_personalization>Personalization Tool</frm_admin_personal_lbl_admin_personal_yubi_personalization>
+  <frm_admin_personal_lbl_admin_personal_yubi_pivmanager>PIV Manager</frm_admin_personal_lbl_admin_personal_yubi_pivmanager>
+  <frm_admin_personal_btn_admin_personal_download>Herunterladen</frm_admin_personal_btn_admin_personal_download>
+  <frm_admin_personal_btn_admin_personal_install>Installieren</frm_admin_personal_btn_admin_personal_install>
+  <frm_admin_personal_btn_admin_personal_run>Starten</frm_admin_personal_btn_admin_personal_run>
+  <frm_admin_personal_grb_admin_personal_tools>Yubikey Tools</frm_admin_personal_grb_admin_personal_tools>
+  <frm_admin_personal_grb_admin_personal_wait>Bitte warten...</frm_admin_personal_grb_admin_personal_wait>
+  <frm_admin_personal_btn_admin_personal_installed>Installiert</frm_admin_personal_btn_admin_personal_installed>
+  <frm_monitor_lbl_monitor_yub_touch_output_touched>Berührt</frm_monitor_lbl_monitor_yub_touch_output_touched>
+  <frm_monitor_lbl_monitor_yub_touch_output_not_touched>Nicht berührt</frm_monitor_lbl_monitor_yub_touch_output_not_touched>
+  <frm_monitor_lbl_monitor_yub_touch_output_not_present>Yubikey nicht verbunden</frm_monitor_lbl_monitor_yub_touch_output_not_present>
+  <frm_admin_personal_btn_admin_personal_integrity_check>Integritätscheck</frm_admin_personal_btn_admin_personal_integrity_check>
+  <frm_admin_personal_btn_admin_personal_integrity_failed>Fehlgeschlagen!</frm_admin_personal_btn_admin_personal_integrity_failed>
+</language>

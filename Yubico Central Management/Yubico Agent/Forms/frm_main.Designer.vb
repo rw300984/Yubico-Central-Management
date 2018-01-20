@@ -34,6 +34,7 @@ Partial Class frm_main
         Me.cms_notify_agent_open = New System.Windows.Forms.ToolStripMenuItem()
         Me.cms_notify_agent_about = New System.Windows.Forms.ToolStripMenuItem()
         Me.cms_notify_agent_close = New System.Windows.Forms.ToolStripMenuItem()
+        Me.bgw_close = New System.ComponentModel.BackgroundWorker()
         Me.panel_table_main.SuspendLayout()
         CType(Me.picture_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_table_main_work.SuspendLayout()
@@ -120,22 +121,26 @@ Partial Class frm_main
         Me.cms_notify_agent.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cms_notify_agent_open, Me.cms_notify_agent_about, Me.cms_notify_agent_close})
         Me.cms_notify_agent.Name = "cms_notify_agent"
         Me.cms_notify_agent.ShowImageMargin = False
-        Me.cms_notify_agent.Size = New System.Drawing.Size(128, 92)
+        Me.cms_notify_agent.Size = New System.Drawing.Size(43, 70)
         '
         'cms_notify_agent_open
         '
         Me.cms_notify_agent_open.Name = "cms_notify_agent_open"
-        Me.cms_notify_agent_open.Size = New System.Drawing.Size(127, 22)
+        Me.cms_notify_agent_open.Size = New System.Drawing.Size(42, 22)
         '
         'cms_notify_agent_about
         '
         Me.cms_notify_agent_about.Name = "cms_notify_agent_about"
-        Me.cms_notify_agent_about.Size = New System.Drawing.Size(127, 22)
+        Me.cms_notify_agent_about.Size = New System.Drawing.Size(42, 22)
         '
         'cms_notify_agent_close
         '
         Me.cms_notify_agent_close.Name = "cms_notify_agent_close"
-        Me.cms_notify_agent_close.Size = New System.Drawing.Size(127, 22)
+        Me.cms_notify_agent_close.Size = New System.Drawing.Size(42, 22)
+        '
+        'bgw_close
+        '
+        Me.bgw_close.WorkerSupportsCancellation = True
         '
         'frm_main
         '
@@ -172,4 +177,5 @@ Partial Class frm_main
     Friend WithEvents panel_table_main_work As TableLayoutPanel
     Friend WithEvents btn_main_admin_login As Button
     Friend WithEvents panel_main_form As Panel
+    Friend WithEvents bgw_close As System.ComponentModel.BackgroundWorker
 End Class

@@ -1,4 +1,6 @@
-﻿Public Class frm_main
+﻿Imports System.ComponentModel
+
+Public Class frm_main
 
     ' Load forms on start
 
@@ -8,6 +10,7 @@
     Dim frm_initial As New frm_initial
     Dim frm_admin_personal As New frm_admin_personal
     Dim login_count As Integer = 0
+    Dim bgw_close_status As Integer = 0
 
     ' Context Menu strip item on click event to show version and copyright
 
@@ -53,6 +56,8 @@
     End Sub
 
     Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
+        File.Delete("close.bin")
+        bgw_close.RunWorkerAsync()
         FillGlobalFixedVariables()
         LoadForms()
     End Sub
@@ -379,6 +384,7 @@
                 frm_admin.Visible = False
                 frm_admin_personal.Visible = False
             Case "nothing"
+                frm_monitor.bgw_status = 1
                 Me.Visible = False
                 Me.WindowState = FormWindowState.Minimized
                 frm_monitor.Visible = False
@@ -484,4 +490,13 @@
         cfg_config.integrity_tools_file = "tools.xml"
     End Function
 
+    Private Sub bgw_close_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_close.DoWork
+        Do While bgw_close_status = 0
+            If File.Exists("close.bin") Then
+                File.Delete("close.bin")
+                Application.Exit()
+            End If
+            Threading.Thread.Sleep(2000)
+        Loop
+    End Sub
 End Class
