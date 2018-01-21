@@ -2,8 +2,12 @@
 Public Class frm_main
 
 
-    Private isMouseDown As Boolean = False
-    Private mouseOffset As Point
+    '  Private isMouseDown As Boolean = False
+    ' Private mouseOffset As Point
+
+    Dim drag As Boolean
+    Dim mousex As Integer
+    Dim mousey As Integer
 
     Dim frm_read_eula As New frm_read_eula
     Dim frm_install_update As New frm_install_update
@@ -13,32 +17,6 @@ Public Class frm_main
     Dim frm_install_start As New frm_install_start
     Dim frm_install_finish As New frm_install_finish
     Dim frm_start_Agent As New frm_start_agent
-
-
-    Private Sub Panel1_MouseDown(sender As Object, e As MouseEventArgs) Handles Panel1.MouseDown
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            ' Get the new position
-            mouseOffset = New Point(Control.MousePosition)
-
-            ' Set that left button is pressed
-            isMouseDown = True
-        End If
-    End Sub
-
-    Private Sub Panel1_MouseUp(sender As Object, e As MouseEventArgs) Handles Panel1.MouseUp
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            isMouseDown = False
-        End If
-    End Sub
-
-    Private Sub Panel1_MouseMove(sender As Object, e As MouseEventArgs) Handles Panel1.MouseMove
-        If isMouseDown Then
-            Dim mousePos As Point = Control.MousePosition
-            ' Get the new form position
-
-            Me.Location = mousePos
-        End If
-    End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btn_main_next.Click
         Select Case True
@@ -512,5 +490,113 @@ Public Class frm_main
         '    SetFontUnderline(lbl_main_start_agent, 0)
     End Sub
 
+    Private Sub TableLayoutPanel2_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel2.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            ' Get the new position
+            drag = True
+            mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
+            mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
+        End If
+    End Sub
 
+    Private Sub TableLayoutPanel2_MouseUp(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel2.MouseUp
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            drag = False
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel2_MouseMove(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel2.MouseMove
+        If drag Then
+            Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
+            Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel5_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel5.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            ' Get the new position
+            drag = True
+            mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
+            mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel5_MouseMove(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel5.MouseMove
+        If drag Then
+            Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
+            Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel5_MouseUp(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel5.MouseUp
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            drag = False
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel3_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel3.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            ' Get the new position
+            drag = True
+            mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
+            mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel3_MouseMove(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel3.MouseMove
+        If drag Then
+            Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
+            Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel3_MouseUp(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel3.MouseUp
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            drag = False
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel4_MouseUp(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel4.MouseUp
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            drag = False
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel4_MouseMove(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel4.MouseMove
+        If drag Then
+            Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
+            Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
+        End If
+    End Sub
+
+    Private Sub TableLayoutPanel4_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel4.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            ' Get the new position
+            drag = True
+            mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
+            mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
+        End If
+    End Sub
+
+    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            ' Get the new position
+            drag = True
+            mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
+            mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
+        End If
+    End Sub
+
+    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            drag = False
+        End If
+    End Sub
+
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        If drag Then
+            Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
+            Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
+        End If
+    End Sub
 End Class

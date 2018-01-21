@@ -42,6 +42,8 @@ Partial Class frm_main
         Me.lbl_main_path = New System.Windows.Forms.Label()
         Me.lbl_main_updates = New System.Windows.Forms.Label()
         Me.lbl_main_eula = New System.Windows.Forms.Label()
+        Me.RoundedPanel1 = New Yubico_Installer.RoundedPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +52,7 @@ Partial Class frm_main
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel5.SuspendLayout()
         Me.TableLayoutPanel6.SuspendLayout()
+        Me.RoundedPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -154,6 +157,7 @@ Partial Class frm_main
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.0!))
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.TableLayoutPanel4.Controls.Add(Me.RoundedPanel1, 1, 2)
         Me.TableLayoutPanel4.Controls.Add(Me.Panel2, 1, 1)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 68)
@@ -161,8 +165,8 @@ Partial Class frm_main
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 3
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.0!))
         Me.TableLayoutPanel4.Size = New System.Drawing.Size(500, 354)
         Me.TableLayoutPanel4.TabIndex = 2
         '
@@ -172,7 +176,7 @@ Partial Class frm_main
         Me.Panel2.Location = New System.Drawing.Point(50, 35)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(425, 300)
+        Me.Panel2.Size = New System.Drawing.Size(425, 293)
         Me.Panel2.TabIndex = 0
         '
         'Panel1
@@ -198,8 +202,8 @@ Partial Class frm_main
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 3
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.0!))
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72.0!))
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.0!))
         Me.TableLayoutPanel5.Size = New System.Drawing.Size(215, 454)
         Me.TableLayoutPanel5.TabIndex = 0
         '
@@ -239,7 +243,7 @@ Partial Class frm_main
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
-        Me.TableLayoutPanel6.Size = New System.Drawing.Size(187, 348)
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(187, 320)
         Me.TableLayoutPanel6.TabIndex = 1
         '
         'lbl_main_start_agent
@@ -248,9 +252,9 @@ Partial Class frm_main
         Me.lbl_main_start_agent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbl_main_start_agent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lbl_main_start_agent.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lbl_main_start_agent.Location = New System.Drawing.Point(3, 301)
+        Me.lbl_main_start_agent.Location = New System.Drawing.Point(3, 280)
         Me.lbl_main_start_agent.Name = "lbl_main_start_agent"
-        Me.lbl_main_start_agent.Size = New System.Drawing.Size(181, 47)
+        Me.lbl_main_start_agent.Size = New System.Drawing.Size(181, 40)
         Me.lbl_main_start_agent.TabIndex = 7
         Me.lbl_main_start_agent.Text = "Start Yubico Agent"
         Me.lbl_main_start_agent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -261,9 +265,9 @@ Partial Class frm_main
         Me.lbl_main_finish.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbl_main_finish.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lbl_main_finish.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lbl_main_finish.Location = New System.Drawing.Point(3, 258)
+        Me.lbl_main_finish.Location = New System.Drawing.Point(3, 240)
         Me.lbl_main_finish.Name = "lbl_main_finish"
-        Me.lbl_main_finish.Size = New System.Drawing.Size(181, 43)
+        Me.lbl_main_finish.Size = New System.Drawing.Size(181, 40)
         Me.lbl_main_finish.TabIndex = 6
         Me.lbl_main_finish.Text = "Finish Installation"
         Me.lbl_main_finish.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -274,9 +278,9 @@ Partial Class frm_main
         Me.lbl_main_start_install.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbl_main_start_install.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lbl_main_start_install.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lbl_main_start_install.Location = New System.Drawing.Point(3, 215)
+        Me.lbl_main_start_install.Location = New System.Drawing.Point(3, 200)
         Me.lbl_main_start_install.Name = "lbl_main_start_install"
-        Me.lbl_main_start_install.Size = New System.Drawing.Size(181, 43)
+        Me.lbl_main_start_install.Size = New System.Drawing.Size(181, 40)
         Me.lbl_main_start_install.TabIndex = 5
         Me.lbl_main_start_install.Text = "Start Installation"
         Me.lbl_main_start_install.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -287,9 +291,9 @@ Partial Class frm_main
         Me.lbl_main_options.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbl_main_options.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lbl_main_options.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lbl_main_options.Location = New System.Drawing.Point(3, 172)
+        Me.lbl_main_options.Location = New System.Drawing.Point(3, 160)
         Me.lbl_main_options.Name = "lbl_main_options"
-        Me.lbl_main_options.Size = New System.Drawing.Size(181, 43)
+        Me.lbl_main_options.Size = New System.Drawing.Size(181, 40)
         Me.lbl_main_options.TabIndex = 4
         Me.lbl_main_options.Text = "Choose Options"
         Me.lbl_main_options.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -300,9 +304,9 @@ Partial Class frm_main
         Me.lbl_main_password.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbl_main_password.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lbl_main_password.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lbl_main_password.Location = New System.Drawing.Point(3, 129)
+        Me.lbl_main_password.Location = New System.Drawing.Point(3, 120)
         Me.lbl_main_password.Name = "lbl_main_password"
-        Me.lbl_main_password.Size = New System.Drawing.Size(181, 43)
+        Me.lbl_main_password.Size = New System.Drawing.Size(181, 40)
         Me.lbl_main_password.TabIndex = 3
         Me.lbl_main_password.Text = "Choose Master Password"
         Me.lbl_main_password.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -313,9 +317,9 @@ Partial Class frm_main
         Me.lbl_main_path.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbl_main_path.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lbl_main_path.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lbl_main_path.Location = New System.Drawing.Point(3, 86)
+        Me.lbl_main_path.Location = New System.Drawing.Point(3, 80)
         Me.lbl_main_path.Name = "lbl_main_path"
-        Me.lbl_main_path.Size = New System.Drawing.Size(181, 43)
+        Me.lbl_main_path.Size = New System.Drawing.Size(181, 40)
         Me.lbl_main_path.TabIndex = 2
         Me.lbl_main_path.Text = "Choose Install Path"
         Me.lbl_main_path.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -326,9 +330,9 @@ Partial Class frm_main
         Me.lbl_main_updates.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbl_main_updates.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lbl_main_updates.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lbl_main_updates.Location = New System.Drawing.Point(3, 43)
+        Me.lbl_main_updates.Location = New System.Drawing.Point(3, 40)
         Me.lbl_main_updates.Name = "lbl_main_updates"
-        Me.lbl_main_updates.Size = New System.Drawing.Size(181, 43)
+        Me.lbl_main_updates.Size = New System.Drawing.Size(181, 40)
         Me.lbl_main_updates.TabIndex = 1
         Me.lbl_main_updates.Text = "Check for Updates"
         Me.lbl_main_updates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -341,10 +345,34 @@ Partial Class frm_main
         Me.lbl_main_eula.ForeColor = System.Drawing.SystemColors.ControlLightLight
         Me.lbl_main_eula.Location = New System.Drawing.Point(3, 0)
         Me.lbl_main_eula.Name = "lbl_main_eula"
-        Me.lbl_main_eula.Size = New System.Drawing.Size(181, 43)
+        Me.lbl_main_eula.Size = New System.Drawing.Size(181, 40)
         Me.lbl_main_eula.TabIndex = 0
         Me.lbl_main_eula.Text = "End User License Agreement"
         Me.lbl_main_eula.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'RoundedPanel1
+        '
+        Me.RoundedPanel1.BackColor = System.Drawing.Color.LightCoral
+        Me.RoundedPanel1.BorderColor = System.Drawing.Color.LightCoral
+        Me.RoundedPanel1.Controls.Add(Me.Label1)
+        Me.RoundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RoundedPanel1.Edge = 10
+        Me.RoundedPanel1.Location = New System.Drawing.Point(53, 331)
+        Me.RoundedPanel1.Name = "RoundedPanel1"
+        Me.RoundedPanel1.Size = New System.Drawing.Size(419, 20)
+        Me.RoundedPanel1.TabIndex = 0
+        Me.RoundedPanel1.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 4)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(130, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Error: Please check logfile"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'frm_main
         '
@@ -364,6 +392,8 @@ Partial Class frm_main
         Me.TableLayoutPanel5.ResumeLayout(False)
         Me.TableLayoutPanel6.ResumeLayout(False)
         Me.TableLayoutPanel6.PerformLayout()
+        Me.RoundedPanel1.ResumeLayout(False)
+        Me.RoundedPanel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -388,4 +418,6 @@ Partial Class frm_main
     Friend WithEvents lbl_main_path As Label
     Friend WithEvents lbl_main_updates As Label
     Friend WithEvents lbl_main_eula As Label
+    Friend WithEvents RoundedPanel1 As RoundedPanel
+    Friend WithEvents Label1 As Label
 End Class
