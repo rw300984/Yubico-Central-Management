@@ -27,11 +27,16 @@ Partial Class frm_install_update
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TextBox2)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 32)
         Me.GroupBox1.Name = "GroupBox1"
@@ -41,6 +46,7 @@ Partial Class frm_install_update
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.TextBox1)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Location = New System.Drawing.Point(3, 149)
         Me.GroupBox2.Name = "GroupBox2"
@@ -89,6 +95,38 @@ Partial Class frm_install_update
         Me.RadioButton1.Text = "Online Installation (Internet required)"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Location = New System.Drawing.Point(3, 16)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(0)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(383, 124)
+        Me.TextBox1.TabIndex = 0
+        Me.TextBox1.TabStop = False
+        Me.TextBox1.Text = "The installer will use the embedded Yubico Agent installation." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "No internet con" &
+    "nection is required."
+        '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox2.Location = New System.Drawing.Point(3, 16)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(0)
+        Me.TextBox2.Multiline = True
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(383, 63)
+        Me.TextBox2.TabIndex = 0
+        Me.TextBox2.TabStop = False
+        Me.TextBox2.Text = "During the installation process, the installer will check online for a newer vers" &
+    "ion of the Yubico Agent. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If available it will download the latest version an" &
+    "d install it."
+        '
         'frm_install_update
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -98,6 +136,10 @@ Partial Class frm_install_update
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frm_install_update"
         Me.Text = "frm_install_update"
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel3.PerformLayout()
         Me.ResumeLayout(False)
@@ -109,4 +151,6 @@ Partial Class frm_install_update
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TextBox1 As TextBox
 End Class

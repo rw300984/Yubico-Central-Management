@@ -127,6 +127,9 @@
     <Compile Include="frm_install_finish.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Library\CustomizableProgressBar.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Library\RoundedPanel.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -155,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_install_path.resx">
       <DependentUpon>frm_install_path.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_install_start.resx">
+      <DependentUpon>frm_install_start.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_install_update.resx">
       <DependentUpon>frm_install_update.vb</DependentUpon>

@@ -117,4 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TextBox2.Text" xml:space="preserve">
+    <value>The Yubico Agent and Agent service will be installed into the choosen path. 
+
+If installed in a custom path a registry key with the install path is written to HKEY_LOCAL_MACHINE\SOFTWARE\YUBICO AGENT\Install_dir</value>
+  </data>
+  <data name="TextBox3.Text" xml:space="preserve">
+    <value>The Yubico Agent  and Agent service will be installed into the default path: 
+
+x64: c:\program files(x86)\Yubico Agent\
+x86: c:\program files\Yubico Agent\
+
+No registry key will be written, which makes it possible to easily copy the Agent 
+directory to another computer and run it from there</value>
+  </data>
 </root>
