@@ -131,4 +131,10 @@ x86: c:\program files\Yubico Agent\
 No registry key will be written, which makes it possible to easily copy the Agent 
 directory to another computer and run it from there</value>
   </data>
+  <metadata name="fbd_install_path_custom_path.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>60</value>
+  </metadata>
 </root>

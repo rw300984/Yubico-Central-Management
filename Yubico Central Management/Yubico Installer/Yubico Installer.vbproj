@@ -72,6 +72,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="config.vb" />
     <Compile Include="Forms\frm_install_options.Designer.vb">
       <DependentUpon>frm_install_options.vb</DependentUpon>
     </Compile>

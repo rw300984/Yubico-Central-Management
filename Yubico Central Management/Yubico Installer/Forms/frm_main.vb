@@ -1,14 +1,8 @@
 ﻿
 Public Class frm_main
-
-
-    '  Private isMouseDown As Boolean = False
-    ' Private mouseOffset As Point
-
     Dim drag As Boolean
     Dim mousex As Integer
     Dim mousey As Integer
-
     Dim frm_read_eula As New frm_read_eula
     Dim frm_install_update As New frm_install_update
     Dim frm_install_path As New frm_install_path
@@ -25,11 +19,35 @@ Public Class frm_main
             Case frm_install_update.Visible
                 ShowForms("frm_install_path")
             Case frm_install_path.Visible
-                ShowForms("frm_install_password")
+                If cfg.install_path_success = 1 Then
+                    ShowForms("frm_install_password")
+                Else
+                    RoundedPanel1.Visible = True
+                    Label1.Text = "Error: Configuration missing, please check your entries."
+                    Label1.Update()
+                    Threading.Thread.Sleep(1000)
+                    RoundedPanel1.Visible = False
+                End If
             Case frm_install_password.Visible
-                ShowForms("frm_install_options")
+                If cfg.install_password_success = 1 Then
+                    ShowForms("frm_install_options")
+                Else
+                    RoundedPanel1.Visible = True
+                    Label1.Text = "Error: Configuration missing, please check your entries."
+                    Label1.Update()
+                    Threading.Thread.Sleep(1000)
+                    RoundedPanel1.Visible = False
+                End If
             Case frm_install_options.Visible
-                ShowForms("frm_install_start")
+                If cfg.install_options_success = 1 Then
+                    ShowForms("frm_install_start")
+                Else
+                    RoundedPanel1.Visible = True
+                    Label1.Text = "Error: Configuration missing, please check your entries."
+                    Label1.Update()
+                    Threading.Thread.Sleep(1000)
+                    RoundedPanel1.Visible = False
+                End If
             Case frm_install_start.Visible
                 ShowForms("frm_install_finish")
             Case frm_install_finish.Visible
@@ -48,11 +66,35 @@ Public Class frm_main
             Case frm_install_update.Visible
                 ShowForms("frm_read_eula")
             Case frm_install_path.Visible
-                ShowForms("frm_install_update")
+                If cfg.install_path_success = 1 Then
+                    ShowForms("frm_install_update")
+                Else
+                    RoundedPanel1.Visible = True
+                    Label1.Text = "Error: Configuration missing, please check your entries."
+                    Label1.Update()
+                    Threading.Thread.Sleep(1000)
+                    RoundedPanel1.Visible = False
+                End If
             Case frm_install_password.Visible
-                ShowForms("frm_install_path")
+                If cfg.install_password_success = 1 Then
+                    ShowForms("frm_install_path")
+                Else
+                    RoundedPanel1.Visible = True
+                    Label1.Text = "Error: Configuration missing, please check your entries."
+                    Label1.Update()
+                    Threading.Thread.Sleep(1000)
+                    RoundedPanel1.Visible = False
+                End If
             Case frm_install_options.Visible
-                ShowForms("frm_install_password")
+                If cfg.install_options_success = 1 Then
+                    ShowForms("frm_install_password")
+                Else
+                    RoundedPanel1.Visible = True
+                    Label1.Text = "Error: Configuration missing, please check your entries."
+                    Label1.Update()
+                    Threading.Thread.Sleep(1000)
+                    RoundedPanel1.Visible = False
+                End If
             Case frm_install_start.Visible
                 ShowForms("frm_install_options")
             Case frm_install_finish.Visible
@@ -313,7 +355,7 @@ Public Class frm_main
 
                 btn_main_back.Visible = True
                 btn_main_back.Text = "Back"
-                btn_main_next.Text = "Next"
+                btn_main_next.Text = "Install"
 
                 ' Label Menue Config
 
@@ -388,7 +430,24 @@ Public Class frm_main
         End Select
     End Function
 
+    Public Function FillDefaultValue()
+        cfg.install_options_mode = 0
+        cfg.install_options_success = 0
+        cfg.install_password_mode = 0
+        cfg.install_password_success = 0
+        cfg.install_path_mode = 0
+        cfg.install_path_success = 0
+        cfg.install_update_mode = 0
+        cfg.install_update_success = 0
+        If Environment.Is64BitOperatingSystem Then
+            cfg.install_path_default = "C:\Program Files(x86)\Yubico Agent\"
+        Else
+            cfg.install_path_default = "C:\Program Files\Yubico Agent\"
+        End If
+    End Function
+
     Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
+        FillDefaultValue()
         LoadForms()
         ShowForms("frm_read_eula")
     End Sub
