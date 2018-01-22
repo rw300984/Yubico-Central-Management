@@ -490,6 +490,7 @@ Public Class frm_main
         cfg_config.integrity_tools_file = Application.StartupPath & "\Config\tools.xml"
         cfg_config.config_path_file = Application.StartupPath & "\Config\config.xml"
         cfg_config.temp_path = Application.StartupPath & "\temp\"
+
         If Directory.Exists(cfg_config.temp_path) Then
         Else
             Directory.CreateDirectory(cfg_config.temp_path)
@@ -498,8 +499,8 @@ Public Class frm_main
 
     Private Sub bgw_close_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_close.DoWork
         Do While bgw_close_status = 0
-            If File.Exists("close.bin") Then
-                File.Delete("close.bin")
+            If File.Exists(cfg_config.temp_path & "close.bin") Then
+                File.Delete(cfg_config.temp_path & "close.bin")
                 Application.Exit()
             End If
             Threading.Thread.Sleep(2000)
