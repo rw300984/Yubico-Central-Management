@@ -169,6 +169,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_monitor.resx">
       <DependentUpon>frm_monitor.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -181,10 +182,7 @@
     <Content Include="Config\tools.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="export.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Libraries\YubiClientAPI.dll">
+    <Content Include="Plugins\ykclient\YubiClientAPI.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ClassDiagram1.cd" />
@@ -211,26 +209,32 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="language\de.xml">
+    <Content Include="Lang\de.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="language\en.xml">
+    <Content Include="Lang\en.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Libraries\libjson-c-2.dll">
+    <Content Include="Plugins\ykinfo\libjson-c-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Libraries\libykpers-1-1.dll">
+    <Content Include="Plugins\ykinfo\libykpers-1-1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Libraries\libyubikey-0.dll">
+    <Content Include="Plugins\ykinfo\libyubikey-0.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Libraries\ykinfo.exe">
+    <Content Include="Plugins\ykinfo\ykinfo.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\ykinfo\export.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Yubico_icon.ico" />
     <None Include="Resources\Yubico-Logo-Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Plugins\geoip\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

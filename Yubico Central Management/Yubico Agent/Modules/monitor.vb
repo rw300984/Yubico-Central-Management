@@ -41,14 +41,18 @@ Module monitor
         End Try
     End Function
     Public Function YK_Agent_GetFromykinfo() As String()
+
         Dim ykinfo_result(9) As String
-        Dim ykinfo_export As String = Application.StartupPath & "\ykinfo.txt"
+        Dim plugin_ykinfo_path As String = Application.StartupPath & "\Plugins\ykinfo"
+        ' MessageBox.Show(plugin_ykinfo_path)
+        Dim ykinfo_export As String = plugin_ykinfo_path & "\ykinfo.txt"
         Dim ps_ykinfo As New System.Diagnostics.Process()
-        With ps_ykinfo.StartInfo
-            .FileName = "export.bat"
+            With ps_ykinfo.StartInfo
+            .FileName = plugin_ykinfo_path & "\export.bat"
             '  .Arguments = "-s > c:\users\ronny.wolf\desktop\test.txt"
             '" -q 1> c:\users\ronny.wolf\desktop\output2.txt"
-            .WorkingDirectory = Application.StartupPath
+            ' MessageBox.Show(plugin_ykinfo_path)
+            .WorkingDirectory = plugin_ykinfo_path ' "C:\Users\ronny.wolf\Source\Repos\Yubico-Central-Management\Yubico Central Management\Yubico Agent\bin\Debug\Plugins\ykinfo"
             .RedirectStandardOutput = False
             .RedirectStandardError = False
             .RedirectStandardInput = False
@@ -57,24 +61,24 @@ Module monitor
             .CreateNoWindow = True
         End With
 
-        ps_ykinfo.Start()
-        ps_ykinfo.WaitForExit()
+            ps_ykinfo.Start()
+            ps_ykinfo.WaitForExit()
 
-        Dim ykinfo_export_count As Integer = 0
-        If System.IO.File.Exists(ykinfo_export) Then
-            Const ykinfo_export_file As String = "ykinfo.txt"
-            Dim ykinfo_fs As System.IO.FileStream = New System.IO.FileStream(ykinfo_export_file, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite)
+            Dim ykinfo_export_count As Integer = 0
+            If System.IO.File.Exists(ykinfo_export) Then
+            'Dim ykinfo_export_file As String = Application.StartupPath & "\Plugins\ykinfo\ykinfo.txt"
+            Dim ykinfo_fs As System.IO.FileStream = New System.IO.FileStream(ykinfo_export, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite)
             Dim ykinfo_sr As System.IO.StreamReader = New System.IO.StreamReader(ykinfo_fs)
-            ykinfo_sr.BaseStream.Seek(0, System.IO.SeekOrigin.Begin)
-            While ykinfo_sr.Peek() > -1
-                ykinfo_result(ykinfo_export_count) = ykinfo_sr.ReadLine
-                ykinfo_export_count = ykinfo_export_count + 1
-            End While
-            ykinfo_sr.Close()
-            ykinfo_fs.Close()
-            System.IO.File.Delete(ykinfo_export_file)
+                ykinfo_sr.BaseStream.Seek(0, System.IO.SeekOrigin.Begin)
+                While ykinfo_sr.Peek() > -1
+                    ykinfo_result(ykinfo_export_count) = ykinfo_sr.ReadLine
+                    ykinfo_export_count = ykinfo_export_count + 1
+                End While
+                ykinfo_sr.Close()
+                ykinfo_fs.Close()
+            System.IO.File.Delete(ykinfo_export)
         End If
-        Return ykinfo_result
+            Return ykinfo_result
     End Function
     Public Function YK_Agent_ConvertInfo_to_Names(ByVal output As String()) As String()
         Select Case output(8)

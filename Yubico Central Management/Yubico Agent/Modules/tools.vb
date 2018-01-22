@@ -75,7 +75,7 @@ Module tools
             With ps_yktool_install.StartInfo
                 .FileName = file
                 .Arguments = "/S"
-                .WorkingDirectory = Application.StartupPath
+                .WorkingDirectory = cfg_config.temp_path
                 .RedirectStandardOutput = False
                 .RedirectStandardError = False
                 .RedirectStandardInput = False
@@ -94,14 +94,14 @@ Module tools
     End Function
     Public Function InstallDriver(ByVal driverpack As String) As String
         ' Extract Driver
-        ZipFile.ExtractToDirectory(driverpack, Application.StartupPath & "\temp\")
+        ZipFile.ExtractToDirectory(driverpack, cfg_config.temp_path)
         Dim ps_inst_driver As New Process
         Dim path_to_inf As String = ""
         Select Case True
             Case My.Computer.Info.OSFullName.Contains("Windows 10")
-                path_to_inf = Application.StartupPath & "\temp\YKmd-Windows10\ykmd.inf"
+                path_to_inf = cfg_config.temp_path & "YKmd-Windows10\ykmd.inf"
             Case Else
-                path_to_inf = Application.StartupPath & "\temp\YKmd-Windows7-8.1\ykmd.inf"
+                path_to_inf = cfg_config.temp_path & "YKmd-Windows7-8.1\ykmd.inf"
         End Select
         With ps_inst_driver.StartInfo
             .FileName = "rundll32.exe"
@@ -114,8 +114,10 @@ Module tools
         ps_inst_driver.Start()
         ps_inst_driver.WaitForExit()
 
-        Directory.Delete(Application.StartupPath & "\temp\", True)
+        Directory.Delete(cfg_config.temp_path & "YKmd-Windows10", True)
+        Directory.Delete(cfg_config.temp_path & "YKmd-Windows7-8.1", True)
         File.Delete(driverpack)
+        File.Delete(cfg_config.temp_path & "README.txt")
         Dim version As String() = CheckVersionOfTools()
         Return version(0)
     End Function

@@ -3,8 +3,9 @@
         If My.Forms.frm_main.IntegrityCheck(1) > 0 Then
             My.Forms.frm_main.IntegrityFailedFor_btn_admin_login()
         Else
-            Config.Write_Config("config.xml", cfg_config.initial_verify)
-            Config.GetConfig("config.xml", cfg_config.initial_verify)
+
+            Config.Write_Config(Application.StartupPath & "\Config\config.xml", cfg_config.initial_verify)
+            Config.GetConfig(Application.StartupPath & "\Config\config.xml", cfg_config.initial_verify)
             My.Forms.frm_main.FillControlsWithConfig()
             My.Forms.frm_main.ShowForms("frm_monitor")
         End If

@@ -18,6 +18,8 @@ Module Config
         Dim integrity_lang_en_file As String
         Dim integrity_tools As String
         Dim integrity_tools_file As String
+        Dim config_path_file As String
+        Dim temp_path As String
     End Structure
     Public Function Write_Config(ByVal config_file As String, ByVal key As String) As Integer
         Dim ConfigWriter As New XmlTextWriter(config_file, System.Text.Encoding.UTF8)

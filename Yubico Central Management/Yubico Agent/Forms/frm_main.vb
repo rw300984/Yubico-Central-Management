@@ -213,12 +213,12 @@ Public Class frm_main
                 cfg_config.admin_general_mode = "Personal"
                 cfg_config.admin_general_theme = "Gray (default)"
                 cfg_config.admin_general_lang = "English"
-                Config.Write_Config("config.xml", frm_initial.txt_initial_enc_password.Text)
-                Config.GetConfig("config.xml", frm_initial.txt_initial_enc_password.Text)
+                Config.Write_Config(cfg_config.config_path_file, frm_initial.txt_initial_enc_password.Text)
+                Config.GetConfig(cfg_config.config_path_file, frm_initial.txt_initial_enc_password.Text)
                 FillControlsWithConfig()
                 ShowForms("frm_monitor")
             Case cfg_lang.btn_main_admin_login_login
-                Config.GetConfig("config.xml", frm_initial.txt_initial_enc_password.Text)
+                Config.GetConfig(cfg_config.config_path_file, frm_initial.txt_initial_enc_password.Text)
                 If cfg_config.initial_verify = frm_initial.txt_initial_enc_password.Text Then
                     Dim integrity As Integer = IntegrityCheck(0)
                     If integrity = 0 Then
@@ -460,20 +460,20 @@ Public Class frm_main
     Public Function CheckConfigFileAndLoadInitFrm(ByVal Mode As Integer)
         Select Case Mode
             Case 0
-                If System.IO.File.Exists("config.xml") Then
-                    ThemeForm(Read_Config("config.xml", "3"))
-                    SetLanguage(Read_Config("config.xml", "2"))
-                    GetToolsXML("tools.xml")
+                If System.IO.File.Exists(cfg_config.config_path_file) Then
+                    ThemeForm(Read_Config(cfg_config.config_path_file, "3"))
+                    SetLanguage(Read_Config(cfg_config.config_path_file, "2"))
+                    GetToolsXML(cfg_config.integrity_tools_file)
                     FillTextWithLanguagefile()
                 Else
                     ThemeForm("Gray (default)")
                     SetLanguage("English")
-                    GetToolsXML("tools.xml")
+                    GetToolsXML(cfg_config.integrity_tools_file)
                     FillTextWithLanguagefile()
                 End If
             Case 1
-                If System.IO.File.Exists("config.xml") Then
-                    If Read_Config("config.xml", "1") = 1 Then
+                If System.IO.File.Exists(cfg_config.config_path_file) Then
+                    If Read_Config(cfg_config.config_path_file, "1") = 1 Then
                         ShowForms("frm_initial")
                     Else
                         ShowForms("frm_initial_login")
@@ -485,9 +485,15 @@ Public Class frm_main
     End Function
 
     Public Function FillGlobalFixedVariables()
-        cfg_config.integrity_lang_de_file = "de.xml"
-        cfg_config.integrity_lang_en_file = "en.xml"
-        cfg_config.integrity_tools_file = "tools.xml"
+        cfg_config.integrity_lang_de_file = Application.StartupPath & "\Lang\de.xml"
+        cfg_config.integrity_lang_en_file = Application.StartupPath & "\Lang\en.xml"
+        cfg_config.integrity_tools_file = Application.StartupPath & "\Config\tools.xml"
+        cfg_config.config_path_file = Application.StartupPath & "\Config\config.xml"
+        cfg_config.temp_path = Application.StartupPath & "\temp\"
+        If Directory.Exists(cfg_config.temp_path) Then
+        Else
+            Directory.CreateDirectory(cfg_config.temp_path)
+        End If
     End Function
 
     Private Sub bgw_close_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_close.DoWork

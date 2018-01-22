@@ -3,15 +3,15 @@ Public Class frm_main
     Dim drag As Boolean
     Dim mousex As Integer
     Dim mousey As Integer
-    Public frm_read_eula As New frm_read_eula
-    Public frm_install_update As New frm_install_update
-    Public frm_install_path As New frm_install_path
-    Public frm_install_password As New frm_install_password
-    Public frm_install_options As New frm_install_options
-    Public frm_install_start As New frm_install_start
-    Public frm_install_install As New frm_install_install
-    Public frm_install_finish As New frm_install_finish
-    Public frm_start_Agent As New frm_start_agent
+    Dim frm_read_eula As New frm_read_eula
+    Dim frm_install_update As New frm_install_update
+    Dim frm_install_path As New frm_install_path
+    Dim frm_install_password As New frm_install_password
+    Dim frm_install_options As New frm_install_options
+    Dim frm_install_start As New frm_install_start
+    Dim frm_install_install As New frm_install_install
+    Dim frm_install_finish As New frm_install_finish
+    Dim frm_start_Agent As New frm_start_agent
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btn_main_next.Click
         Select Case True
