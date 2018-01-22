@@ -81,6 +81,46 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property install_pic1() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("install_pic1", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property install_pic2() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("install_pic2", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property install_pic3() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("install_pic3", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property install_pic4() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("install_pic4", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         '''</summary>
         Friend ReadOnly Property Yubico_icon() As System.Drawing.Icon

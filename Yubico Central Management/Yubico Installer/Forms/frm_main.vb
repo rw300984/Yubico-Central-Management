@@ -3,14 +3,15 @@ Public Class frm_main
     Dim drag As Boolean
     Dim mousex As Integer
     Dim mousey As Integer
-    Dim frm_read_eula As New frm_read_eula
-    Dim frm_install_update As New frm_install_update
-    Dim frm_install_path As New frm_install_path
-    Dim frm_install_password As New frm_install_password
-    Dim frm_install_options As New frm_install_options
-    Dim frm_install_start As New frm_install_start
-    Dim frm_install_finish As New frm_install_finish
-    Dim frm_start_Agent As New frm_start_agent
+    Public frm_read_eula As New frm_read_eula
+    Public frm_install_update As New frm_install_update
+    Public frm_install_path As New frm_install_path
+    Public frm_install_password As New frm_install_password
+    Public frm_install_options As New frm_install_options
+    Public frm_install_start As New frm_install_start
+    Public frm_install_install As New frm_install_install
+    Public frm_install_finish As New frm_install_finish
+    Public frm_start_Agent As New frm_start_agent
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btn_main_next.Click
         Select Case True
@@ -49,6 +50,8 @@ Public Class frm_main
                     RoundedPanel1.Visible = False
                 End If
             Case frm_install_start.Visible
+                ShowForms("frm_install_install")
+            Case frm_install_install.Visible
                 ShowForms("frm_install_finish")
             Case frm_install_finish.Visible
                 ShowForms("frm_start_agent")
@@ -110,6 +113,7 @@ Public Class frm_main
     End Sub
 
     Public Function LoadForms()
+
         Me.Visible = True
         frm_read_eula.Visible = False
         frm_install_update.Visible = False
@@ -117,6 +121,7 @@ Public Class frm_main
         frm_install_password.Visible = False
         frm_install_options.Visible = False
         frm_install_start.Visible = False
+        frm_install_install.Visible = False
         frm_install_finish.Visible = False
         frm_start_Agent.Visible = False
 
@@ -150,6 +155,11 @@ Public Class frm_main
         frm_install_start.TopLevel = False
         frm_install_start.FormBorderStyle = FormBorderStyle.None
 
+        frm_install_install.WindowState = FormWindowState.Maximized
+        frm_install_install.Dock = DockStyle.Fill
+        frm_install_install.TopLevel = False
+        frm_install_install.FormBorderStyle = FormBorderStyle.None
+
         frm_install_finish.WindowState = FormWindowState.Maximized
         frm_install_finish.Dock = DockStyle.Fill
         frm_install_finish.TopLevel = False
@@ -166,6 +176,7 @@ Public Class frm_main
         Me.Panel2.Controls.Add(frm_install_password)
         Me.Panel2.Controls.Add(frm_install_options)
         Me.Panel2.Controls.Add(frm_install_start)
+        Me.Panel2.Controls.Add(frm_install_install)
         Me.Panel2.Controls.Add(frm_install_finish)
         Me.Panel2.Controls.Add(frm_start_Agent)
 
@@ -192,6 +203,9 @@ Public Class frm_main
                 SetFontUnderline(lbl_main_finish, 0)
                 SetFontUnderline(lbl_main_start_agent, 0)
 
+                btn_main_next.Visible = False
+                btn_main_back.Visible = False
+
             Case "frm_read_eula"
 
                 ' Frm visibility
@@ -202,6 +216,7 @@ Public Class frm_main
                 frm_install_password.Visible = False
                 frm_install_options.Visible = False
                 frm_install_start.Visible = False
+                frm_install_install.Visible = False
                 frm_install_finish.Visible = False
                 frm_start_Agent.Visible = False
 
@@ -230,11 +245,13 @@ Public Class frm_main
                 frm_install_password.Visible = False
                 frm_install_options.Visible = False
                 frm_install_start.Visible = False
+                frm_install_install.Visible = False
                 frm_install_finish.Visible = False
                 frm_start_Agent.Visible = False
 
                 ' button config
 
+                btn_main_next.Visible = True
                 btn_main_back.Visible = True
                 btn_main_back.Text = "Back"
                 btn_main_next.Text = "Next"
@@ -261,11 +278,13 @@ Public Class frm_main
                 frm_install_password.Visible = False
                 frm_install_options.Visible = False
                 frm_install_start.Visible = False
+                frm_install_install.Visible = False
                 frm_install_finish.Visible = False
                 frm_start_Agent.Visible = False
 
                 ' button config
 
+                btn_main_next.Visible = True
                 btn_main_back.Visible = True
                 btn_main_back.Text = "Back"
                 btn_main_next.Text = "Next"
@@ -289,11 +308,13 @@ Public Class frm_main
                 frm_install_password.Visible = True
                 frm_install_options.Visible = False
                 frm_install_start.Visible = False
+                frm_install_install.Visible = False
                 frm_install_finish.Visible = False
                 frm_start_Agent.Visible = False
 
                 ' button config
 
+                btn_main_next.Visible = True
                 btn_main_back.Visible = True
                 btn_main_back.Text = "Back"
                 btn_main_next.Text = "Next"
@@ -319,11 +340,13 @@ Public Class frm_main
                 frm_install_password.Visible = False
                 frm_install_options.Visible = True
                 frm_install_start.Visible = False
+                frm_install_install.Visible = False
                 frm_install_finish.Visible = False
                 frm_start_Agent.Visible = False
 
                 ' button config
 
+                btn_main_next.Visible = True
                 btn_main_back.Visible = True
                 btn_main_back.Text = "Back"
                 btn_main_next.Text = "Next"
@@ -348,11 +371,13 @@ Public Class frm_main
                 frm_install_password.Visible = False
                 frm_install_options.Visible = False
                 frm_install_start.Visible = True
+                frm_install_install.Visible = False
                 frm_install_finish.Visible = False
                 frm_start_Agent.Visible = False
 
                 ' button config
 
+                btn_main_next.Visible = True
                 btn_main_back.Visible = True
                 btn_main_back.Text = "Back"
                 btn_main_next.Text = "Install"
@@ -368,6 +393,39 @@ Public Class frm_main
                 SetFontUnderline(lbl_main_finish, 0)
                 SetFontUnderline(lbl_main_start_agent, 0)
 
+            Case "frm_install_install"
+
+                ' Frm visibility
+
+                frm_read_eula.Visible = False
+                frm_install_update.Visible = False
+                frm_install_path.Visible = False
+                frm_install_password.Visible = False
+                frm_install_options.Visible = False
+                frm_install_start.Visible = False
+                frm_install_install.Visible = True
+                frm_install_finish.Visible = False
+                frm_start_Agent.Visible = False
+
+                ' button config
+
+                btn_main_back.Visible = False
+                'btn_main_next.Visible = False
+
+                btn_main_back.Text = "Back"
+                btn_main_next.Text = "Next"
+
+                ' Label Menue Config
+
+                SetFontUnderline(lbl_main_eula, 0)
+                SetFontUnderline(lbl_main_updates, 0)
+                SetFontUnderline(lbl_main_path, 0)
+                SetFontUnderline(lbl_main_password, 0)
+                SetFontUnderline(lbl_main_options, 0)
+                SetFontUnderline(lbl_main_start_install, 0)
+                SetFontUnderline(lbl_main_finish, 0)
+                SetFontUnderline(lbl_main_start_agent, 0)
+
             Case "frm_install_finish"
                 ' Frm visibility
 
@@ -377,16 +435,22 @@ Public Class frm_main
                 frm_install_password.Visible = False
                 frm_install_options.Visible = False
                 frm_install_start.Visible = False
-                frm_install_finish.Visible = True
+                frm_install_install.Visible = False
                 frm_start_Agent.Visible = False
+                frm_install_finish.Visible = True
 
-                ' button config
+                ' Button config
 
-                btn_main_back.Visible = False
+                btn_main_next.Visible = True
+                '   btn_main_next.Update()
+
+                '  btn_main_back.Visible = True
+                '  btn_main_back.Update()
+
                 btn_main_back.Text = "Back"
                 btn_main_next.Text = "Next"
 
-                ' Label Menue Config
+                'Label Menue Config
 
                 SetFontUnderline(lbl_main_eula, 0)
                 SetFontUnderline(lbl_main_updates, 0)
@@ -407,11 +471,13 @@ Public Class frm_main
                 frm_install_password.Visible = False
                 frm_install_options.Visible = False
                 frm_install_start.Visible = False
+                frm_install_install.Visible = False
                 frm_install_finish.Visible = False
                 frm_start_Agent.Visible = True
 
                 ' button config
 
+                btn_main_next.Visible = True
                 btn_main_back.Visible = False
                 btn_main_back.Text = "Back"
                 btn_main_next.Text = "Exit"
@@ -426,7 +492,6 @@ Public Class frm_main
                 SetFontUnderline(lbl_main_start_install, 0)
                 SetFontUnderline(lbl_main_finish, 0)
                 SetFontUnderline(lbl_main_start_agent, 1)
-
         End Select
     End Function
 

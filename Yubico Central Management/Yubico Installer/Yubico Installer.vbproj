@@ -73,6 +73,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="config.vb" />
+    <Compile Include="Forms\frm_install_install.Designer.vb">
+      <DependentUpon>frm_install_install.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_install_install.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frm_install_options.Designer.vb">
       <DependentUpon>frm_install_options.vb</DependentUpon>
     </Compile>
@@ -122,16 +128,16 @@
     <Compile Include="Forms\frm_start_agent.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_install_finish.Designer.vb">
+    <Compile Include="Forms\frm_install_finish.Designer.vb">
       <DependentUpon>frm_install_finish.vb</DependentUpon>
     </Compile>
-    <Compile Include="frm_install_finish.vb">
+    <Compile Include="Forms\frm_install_finish.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Library\CustomizableProgressBar.vb">
+    <Compile Include="Forms\Library\CustomizableProgressBar.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Library\RoundedPanel.vb">
+    <Compile Include="Forms\Library\RoundedPanel.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -151,6 +157,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frm_install_finish.resx">
+      <DependentUpon>frm_install_finish.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_install_install.resx">
+      <DependentUpon>frm_install_install.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_install_options.resx">
       <DependentUpon>frm_install_options.vb</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_main.resx">
       <DependentUpon>frm_main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_start_agent.resx">
+      <DependentUpon>frm_start_agent.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -199,6 +214,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Yubico_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\install_pic1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\install_pic2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\install_pic3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\install_pic4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
