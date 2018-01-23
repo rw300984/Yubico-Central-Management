@@ -107,9 +107,6 @@ Public Class frm_main
             Case Else
                 ShowForms("nothing")
         End Select
-
-
-        ' System.IO.File.WriteAllBytes("Yubico Agent.exe", My.Resources.Yubico_Agent)
     End Sub
 
     Public Function LoadForms()
@@ -504,11 +501,7 @@ Public Class frm_main
         cfg.install_path_success = 0
         cfg.install_update_mode = 0
         cfg.install_update_success = 0
-        If Environment.Is64BitOperatingSystem Then
-            cfg.install_path_default = "C:\Program Files(x86)\Yubico Agent\"
-        Else
-            cfg.install_path_default = "C:\Program Files\Yubico Agent\"
-        End If
+        cfg.install_path_default = My.Computer.FileSystem.SpecialDirectories.ProgramFiles & "\Yubico Agent"
     End Function
 
     Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load

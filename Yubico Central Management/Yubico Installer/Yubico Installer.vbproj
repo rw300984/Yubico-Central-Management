@@ -49,13 +49,19 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\Yubico_icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -72,7 +78,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="config.vb" />
+    <Compile Include="Library\Crypto.vb" />
+    <Compile Include="Modules\config.vb" />
     <Compile Include="Forms\frm_install_install.Designer.vb">
       <DependentUpon>frm_install_install.vb</DependentUpon>
     </Compile>
@@ -134,12 +141,15 @@
     <Compile Include="Forms\frm_install_finish.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Library\CustomizableProgressBar.vb">
+    <Compile Include="Library\CustomizableProgressBar.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\Library\RoundedPanel.vb">
+    <Compile Include="Library\RoundedPanel.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\downloader.vb" />
+    <Compile Include="Modules\install.vb" />
+    <Compile Include="Modules\Others.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -195,6 +205,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -207,6 +218,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Yubico Agent.zip" />
     <None Include="Resources\Yubico-Logo-Small_1.png" />
   </ItemGroup>
   <ItemGroup>

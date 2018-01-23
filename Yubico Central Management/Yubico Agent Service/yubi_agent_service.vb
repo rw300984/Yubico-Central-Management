@@ -13,20 +13,19 @@ Public Class yubi_agent_service
         Catch ex As Exception
         End Try
     End Sub
-
     Private Shared Sub OnTimedEvent(source As Object, e As ElapsedEventArgs)
         Dim install_path As String = My.Computer.FileSystem.SpecialDirectories.ProgramFiles & "\Yubico Agent"
         Dim exec_path As String = install_path & "\Yubico Agent.exe"
 
-        Dim hklm_reg_path_64 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Yubico\Yubico Agent"
-        Dim hklm_reg_path_32 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Yubico\Yubico Agent"
+        Dim hklm_reg_path_64 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)"
+        Dim hklm_reg_path_32 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)"
 
         If System.IO.File.Exists(exec_path) Then
         Else
             If Environment.Is64BitOperatingSystem Then
-                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "install_dir", Nothing)
+                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "InstallLocation", Nothing)
             Else
-                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "install_dir", Nothing)
+                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "InstallLocation", Nothing)
             End If
 
         End If
@@ -49,11 +48,6 @@ Public Class yubi_agent_service
             Dim ps As Process() = Process.GetProcessesByName("Yubico Agent")
             If ps.Length > 0 Then
             Else
-                '   Dim ps_info As ProcessStartInfo
-                '  With ps_info
-                ' .FileName = exec_path
-                '.Verb = "runas"
-                'End With
                 ProcessExtensions.StartProcessAsCurrentUser(exec_path,, install_path)
             End If
         Else
@@ -64,23 +58,20 @@ Public Class yubi_agent_service
             End If
         End If
     End Sub
-
     Protected Overrides Sub OnStop()
         Dim install_path As String = My.Computer.FileSystem.SpecialDirectories.ProgramFiles & "\Yubico Agent"
         Dim exec_path As String = install_path & "\Yubico Agent.exe"
 
-        Dim hklm_reg_path_64 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Yubico\Yubico Agent"
-        Dim hklm_reg_path_32 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Yubico\Yubico Agent"
-
+        Dim hklm_reg_path_64 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)"
+        Dim hklm_reg_path_32 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)"
 
         If System.IO.File.Exists(exec_path) Then
         Else
             If Environment.Is64BitOperatingSystem Then
-                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "install_dir", Nothing)
+                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "InstallLocation", Nothing)
             Else
-                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "install_dir", Nothing)
+                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "InstallLocation", Nothing)
             End If
-
         End If
 
         exec_path = install_path & "\Yubico Agent.exe"

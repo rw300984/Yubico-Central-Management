@@ -13,6 +13,21 @@
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,10 +62,13 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Yubico_icon.ico</ApplicationIcon>
+    <ApplicationIcon>resources\Yubico_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -81,60 +99,60 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\frm_2fa.Designer.vb">
+    <Compile Include="forms\frm_2fa.Designer.vb">
       <DependentUpon>frm_2fa.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_2fa.vb">
+    <Compile Include="forms\frm_2fa.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_admin.Designer.vb">
+    <Compile Include="forms\frm_admin.Designer.vb">
       <DependentUpon>frm_admin.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_admin.vb">
+    <Compile Include="forms\frm_admin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_admin_personal.Designer.vb">
+    <Compile Include="forms\frm_admin_personal.Designer.vb">
       <DependentUpon>frm_admin_personal.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_admin_personal.vb">
+    <Compile Include="forms\frm_admin_personal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_admin_save.Designer.vb">
+    <Compile Include="forms\frm_admin_save.Designer.vb">
       <DependentUpon>frm_admin_save.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_admin_save.vb">
+    <Compile Include="forms\frm_admin_save.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_initial.Designer.vb">
+    <Compile Include="forms\frm_initial.Designer.vb">
       <DependentUpon>frm_initial.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_initial.vb">
+    <Compile Include="forms\frm_initial.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_main.vb">
+    <Compile Include="forms\frm_main.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_main.Designer.vb">
+    <Compile Include="forms\frm_main.Designer.vb">
       <DependentUpon>frm_main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_monitor.Designer.vb">
+    <Compile Include="forms\frm_monitor.Designer.vb">
       <DependentUpon>frm_monitor.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_monitor.vb">
+    <Compile Include="forms\frm_monitor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\Config.vb" />
-    <Compile Include="Modules\Crypto.vb" />
-    <Compile Include="Modules\CustomizableProgressBar.vb">
+    <Compile Include="modules\Config.vb" />
+    <Compile Include="modules\Crypto.vb" />
+    <Compile Include="modules\CustomizableProgressBar.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Modules\Downloader.vb" />
-    <Compile Include="Modules\Localization.vb" />
-    <Compile Include="Modules\monitor.vb" />
-    <Compile Include="Modules\Others.vb" />
-    <Compile Include="Modules\themes.vb" />
-    <Compile Include="Modules\tools.vb" />
+    <Compile Include="modules\Downloader.vb" />
+    <Compile Include="modules\Localization.vb" />
+    <Compile Include="modules\monitor.vb" />
+    <Compile Include="modules\Others.vb" />
+    <Compile Include="modules\themes.vb" />
+    <Compile Include="modules\tools.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -152,25 +170,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\frm_2fa.resx">
+    <EmbeddedResource Include="forms\frm_2fa.resx">
       <DependentUpon>frm_2fa.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_admin.resx">
+    <EmbeddedResource Include="forms\frm_admin.resx">
       <DependentUpon>frm_admin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_admin_personal.resx">
+    <EmbeddedResource Include="forms\frm_admin_personal.resx">
       <DependentUpon>frm_admin_personal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_admin_save.resx">
+    <EmbeddedResource Include="forms\frm_admin_save.resx">
       <DependentUpon>frm_admin_save.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_initial.resx">
+    <EmbeddedResource Include="forms\frm_initial.resx">
       <DependentUpon>frm_initial.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_main.resx">
+    <EmbeddedResource Include="forms\frm_main.resx">
       <DependentUpon>frm_main.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_monitor.resx">
+    <EmbeddedResource Include="forms\frm_monitor.resx">
       <DependentUpon>frm_monitor.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -182,14 +200,19 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\tools.xml">
+    <Content Include="config\tools.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Plugins\ykclient\YubiClientAPI.dll">
+    <Content Include="plugins\ykclient\YubiClientAPI.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="services\ProcessExtensions.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="services\Yubico Agent Service.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="app.manifest" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -213,32 +236,44 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lang\de.xml">
+    <Content Include="lang\de.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Lang\en.xml">
+    <Content Include="lang\en.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Plugins\ykinfo\libjson-c-2.dll">
+    <Content Include="plugins\ykinfo\libjson-c-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Plugins\ykinfo\libykpers-1-1.dll">
+    <Content Include="plugins\ykinfo\libykpers-1-1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Plugins\ykinfo\libyubikey-0.dll">
+    <Content Include="plugins\ykinfo\libyubikey-0.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Plugins\ykinfo\ykinfo.exe">
+    <Content Include="plugins\ykinfo\ykinfo.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Plugins\ykinfo\export.bat">
+    <Content Include="plugins\ykinfo\export.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\Yubico_icon.ico" />
-    <None Include="Resources\Yubico-Logo-Small.png" />
+    <None Include="resources\Yubico_icon.ico" />
+    <None Include="resources\Yubico-Logo-Small.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Plugins\geoip\" />
+    <Folder Include="plugins\geoip\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
