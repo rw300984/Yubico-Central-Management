@@ -3,6 +3,7 @@
     Dim config_combobox As Integer = 0
     Dim config_textbox2 As Integer = 0
     Dim config_textbox3 As Integer = 0
+    Dim config_textbox6 As Integer = 0
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
         If RadioButton2.Checked Then
             RadioButton1.Checked = False
@@ -18,7 +19,10 @@
             If TextBox3.Text <> "" Then
                 config_textbox3 = 1
             End If
-            If config_combobox + config_textbox2 + config_textbox3 = 3 Then
+            If TextBox6.Text <> "" Then
+                config_textbox6 = 1
+            End If
+            If config_combobox + config_textbox2 + config_textbox3 + config_textbox6 = 4 Then
                 cfg.install_options_success = 1
             Else
                 cfg.install_options_success = 0
@@ -51,7 +55,10 @@
             If TextBox3.Text <> "" Then
                 config_textbox3 = 1
             End If
-            If config_combobox + config_textbox2 + config_textbox3 = 3 Then
+            If TextBox6.Text <> "" Then
+                config_textbox6 = 1
+            End If
+            If config_combobox + config_textbox2 + config_textbox3 + config_textbox6 = 3 Then
                 cfg.install_options_success = 1
             Else
                 cfg.install_options_success = 0
@@ -74,13 +81,15 @@
 
                 TextBox2.Enabled = False
                 TextBox3.Enabled = False
+                TextBox6.Enabled = False
 
                 cfg.install_options_success = 1
             Else
                 TextBox2.Enabled = True
                 TextBox3.Enabled = True
+                TextBox6.Enabled = True
                 config_combobox = 1
-                If config_combobox + config_textbox2 + config_textbox3 = 3 Then
+                If config_combobox + config_textbox2 + config_textbox3 + config_textbox6 = 3 Then
                     cfg.install_options_success = 1
                 Else
                     cfg.install_options_success = 0
@@ -95,7 +104,7 @@
             cfg.install_options_success = 0
         Else
             config_textbox2 = 1
-            If config_combobox + config_textbox2 + config_textbox3 = 3 Then
+            If config_combobox + config_textbox2 + config_textbox3 + config_textbox6 = 3 Then
                 cfg.install_options_success = 1
             Else
                 cfg.install_options_success = 0
@@ -109,7 +118,21 @@
             cfg.install_options_success = 0
         Else
             config_textbox3 = 1
-            If config_combobox + config_textbox2 + config_textbox3 = 3 Then
+            If config_combobox + config_textbox2 + config_textbox3 + config_textbox6 = 3 Then
+                cfg.install_options_success = 1
+            Else
+                cfg.install_options_success = 0
+            End If
+        End If
+    End Sub
+
+    Private Sub TextBox6_TextChanged(sender As Object, e As EventArgs) Handles TextBox6.TextChanged
+        cfg.install_options_business_server = TextBox6.Text
+        If TextBox6.Text = "" Then
+            cfg.install_options_success = 0
+        Else
+            config_textbox6 = 1
+            If config_combobox + config_textbox2 + config_textbox3 + config_textbox6 = 3 Then
                 cfg.install_options_success = 1
             Else
                 cfg.install_options_success = 0

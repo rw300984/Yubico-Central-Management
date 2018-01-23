@@ -11,14 +11,20 @@
             GroupBox2.Enabled = False
             cfg.install_password_mode = 0
             cfg.install_password_success = 1
+            My.Forms.frm_main.btn_main_next.Enabled = True
+            TextBox3.BackColor = Color.White
         Else
             RadioButton2.Checked = True
             GroupBox2.Enabled = True
             cfg.install_password_mode = 1
-            If TextBox3.Text = "" Then
+            If Crypto.ValidatePassword(TextBox3.Text) = False Then
                 cfg.install_password_success = 0
+                TextBox3.BackColor = Color.LightCoral
+                My.Forms.frm_main.btn_main_next.Enabled = False
             Else
                 cfg.install_password_success = 1
+                My.Forms.frm_main.btn_main_next.Enabled = True
+                TextBox3.BackColor = Color.LightGreen
             End If
         End If
     End Sub
@@ -28,20 +34,34 @@
             RadioButton1.Checked = False
             GroupBox1.Enabled = False
             cfg.install_password_mode = 1
-            If TextBox3.Text = "" Then
+            If Crypto.ValidatePassword(TextBox3.Text) = False Then
                 cfg.install_password_success = 0
+                TextBox3.BackColor = Color.LightCoral
+                My.Forms.frm_main.btn_main_next.Enabled = False
             Else
                 cfg.install_password_success = 1
+                My.Forms.frm_main.btn_main_next.Enabled = True
+                TextBox3.BackColor = Color.LightGreen
             End If
         Else
             RadioButton1.Checked = True
             GroupBox1.Enabled = True
             cfg.install_password_mode = 0
             cfg.install_password_success = 1
+            My.Forms.frm_main.btn_main_next.Enabled = True
+            TextBox3.BackColor = Color.White
         End If
     End Sub
 
     Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+        Dim PasswordPolicy As Boolean = Crypto.ValidatePassword(TextBox3.Text)
+        If PasswordPolicy = False Then
+            TextBox3.BackColor = Color.LightCoral
+            My.Forms.frm_main.btn_main_next.Enabled = False
+        Else
+            My.Forms.frm_main.btn_main_next.Enabled = True
+            TextBox3.BackColor = Color.LightGreen
+        End If
         cfg.install_password_custom = TextBox3.Text
         If TextBox3.Text = "" Then
             cfg.install_password_success = 0

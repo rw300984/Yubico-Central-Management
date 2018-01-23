@@ -3,6 +3,7 @@ Public Class frm_main
     Dim drag As Boolean
     Dim mousex As Integer
     Dim mousey As Integer
+    Dim frm_main_action As New frm_main_action
     Dim frm_read_eula As New frm_read_eula
     Dim frm_install_update As New frm_install_update
     Dim frm_install_path As New frm_install_path
@@ -15,6 +16,14 @@ Public Class frm_main
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btn_main_next.Click
         Select Case True
+            Case frm_main_action.Visible
+                Select Case cfg.main_action
+                    Case 1
+                        ShowForms("frm_read_eula")
+                    Case 2
+                    Case 3
+                    Case 4
+                End Select
             Case frm_read_eula.Visible
                 ShowForms("frm_install_update")
             Case frm_install_update.Visible
@@ -64,8 +73,10 @@ Public Class frm_main
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btn_main_back.Click
         Select Case True
-            Case frm_read_eula.Visible
+            Case frm_main_action.Visible
                 ShowForms("nothing")
+            Case frm_read_eula.Visible
+                ShowForms("frm_main_action")
             Case frm_install_update.Visible
                 ShowForms("frm_read_eula")
             Case frm_install_path.Visible
@@ -112,6 +123,7 @@ Public Class frm_main
     Public Function LoadForms()
 
         Me.Visible = True
+        frm_main_action.Visible = False
         frm_read_eula.Visible = False
         frm_install_update.Visible = False
         frm_install_path.Visible = False
@@ -121,6 +133,16 @@ Public Class frm_main
         frm_install_install.Visible = False
         frm_install_finish.Visible = False
         frm_start_Agent.Visible = False
+
+        frm_main_action.WindowState = FormWindowState.Maximized
+        frm_main_action.Dock = DockStyle.Fill
+        frm_main_action.TopLevel = False
+        frm_main_action.FormBorderStyle = FormBorderStyle.None
+
+        frm_read_eula.WindowState = FormWindowState.Maximized
+        frm_read_eula.Dock = DockStyle.Fill
+        frm_read_eula.TopLevel = False
+        frm_read_eula.FormBorderStyle = FormBorderStyle.None
 
         frm_read_eula.WindowState = FormWindowState.Maximized
         frm_read_eula.Dock = DockStyle.Fill
@@ -167,6 +189,7 @@ Public Class frm_main
         frm_start_Agent.TopLevel = False
         frm_start_Agent.FormBorderStyle = FormBorderStyle.None
 
+        Me.Panel2.Controls.Add(frm_main_action)
         Me.Panel2.Controls.Add(frm_read_eula)
         Me.Panel2.Controls.Add(frm_install_update)
         Me.Panel2.Controls.Add(frm_install_path)
@@ -182,6 +205,7 @@ Public Class frm_main
     Public Function ShowForms(ByVal frm As String)
         Select Case frm
             Case "nothing"
+                frm_main_action.Visible = False
                 frm_read_eula.Visible = False
                 frm_install_update.Visible = False
                 frm_install_path.Visible = False
@@ -202,12 +226,12 @@ Public Class frm_main
 
                 btn_main_next.Visible = False
                 btn_main_back.Visible = False
-
-            Case "frm_read_eula"
+            Case "frm_main_action"
 
                 ' Frm visibility
 
-                frm_read_eula.Visible = True
+                frm_main_action.Visible = True
+                frm_read_eula.Visible = False
                 frm_install_update.Visible = False
                 frm_install_path.Visible = False
                 frm_install_password.Visible = False
@@ -220,9 +244,50 @@ Public Class frm_main
                 ' Button Config
 
                 btn_main_back.Visible = False
+                btn_main_next.Text = "Next"
+
+                ' Label Menue Config
+
+                lbl_main_eula.Visible = False
+                lbl_main_updates.Visible = False
+                lbl_main_path.Visible = False
+                lbl_main_password.Visible = False
+                lbl_main_options.Visible = False
+                lbl_main_start_install.Visible = False
+                lbl_main_finish.Visible = False
+                lbl_main_start_agent.Visible = False
+
+            Case "frm_read_eula"
+
+                ' Frm visibility
+
+                frm_main_action.Visible = False
+                frm_read_eula.Visible = True
+                frm_install_update.Visible = False
+                frm_install_path.Visible = False
+                frm_install_password.Visible = False
+                frm_install_options.Visible = False
+                frm_install_start.Visible = False
+                frm_install_install.Visible = False
+                frm_install_finish.Visible = False
+                frm_start_Agent.Visible = False
+
+                ' Button Config
+
+                btn_main_back.Visible = True
+                btn_main_back.Text = "Back"
                 btn_main_next.Text = "I agree"
 
                 ' Label Menue Config
+
+                lbl_main_eula.Visible = True
+                lbl_main_updates.Visible = True
+                lbl_main_path.Visible = True
+                lbl_main_password.Visible = True
+                lbl_main_options.Visible = True
+                lbl_main_start_install.Visible = True
+                lbl_main_finish.Visible = True
+                lbl_main_start_agent.Visible = True
 
                 SetFontUnderline(lbl_main_eula, 1)
                 SetFontUnderline(lbl_main_updates, 0)
@@ -236,6 +301,7 @@ Public Class frm_main
 
                 ' Frm visibility
 
+                frm_main_action.Visible = False
                 frm_read_eula.Visible = False
                 frm_install_update.Visible = True
                 frm_install_path.Visible = False
@@ -269,6 +335,7 @@ Public Class frm_main
 
                 ' Frm visibility
 
+                frm_main_action.Visible = False
                 frm_read_eula.Visible = False
                 frm_install_update.Visible = False
                 frm_install_path.Visible = True
@@ -299,6 +366,7 @@ Public Class frm_main
             Case "frm_install_password"
                 ' Frm visibility
 
+                frm_main_action.Visible = False
                 frm_read_eula.Visible = False
                 frm_install_update.Visible = False
                 frm_install_path.Visible = False
@@ -331,6 +399,7 @@ Public Class frm_main
             Case "frm_install_options"
                 ' Frm visibility
 
+                frm_main_action.Visible = False
                 frm_read_eula.Visible = False
                 frm_install_update.Visible = False
                 frm_install_path.Visible = False
@@ -362,6 +431,7 @@ Public Class frm_main
             Case "frm_install_start"
                 ' Frm visibility
 
+                frm_main_action.Visible = False
                 frm_read_eula.Visible = False
                 frm_install_update.Visible = False
                 frm_install_path.Visible = False
@@ -394,6 +464,7 @@ Public Class frm_main
 
                 ' Frm visibility
 
+                frm_main_action.Visible = False
                 frm_read_eula.Visible = False
                 frm_install_update.Visible = False
                 frm_install_path.Visible = False
@@ -426,6 +497,7 @@ Public Class frm_main
             Case "frm_install_finish"
                 ' Frm visibility
 
+                frm_main_action.Visible = False
                 frm_read_eula.Visible = False
                 frm_install_update.Visible = False
                 frm_install_path.Visible = False
@@ -462,6 +534,7 @@ Public Class frm_main
 
                 ' Frm visibility
 
+                frm_main_action.Visible = False
                 frm_read_eula.Visible = False
                 frm_install_update.Visible = False
                 frm_install_path.Visible = False
@@ -507,7 +580,7 @@ Public Class frm_main
     Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
         FillDefaultValue()
         LoadForms()
-        ShowForms("frm_read_eula")
+        ShowForms("frm_main_action")
     End Sub
 
     Private Sub Panel3_Click(sender As Object, e As EventArgs) Handles Panel3.Click

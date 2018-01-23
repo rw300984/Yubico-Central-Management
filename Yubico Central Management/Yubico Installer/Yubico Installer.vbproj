@@ -78,6 +78,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\frm_main_action.Designer.vb">
+      <DependentUpon>frm_main_action.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_main_action.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Library\Crypto.vb" />
     <Compile Include="Modules\config.vb" />
     <Compile Include="Forms\frm_install_install.Designer.vb">
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_install_update.resx">
       <DependentUpon>frm_install_update.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_main_action.resx">
+      <DependentUpon>frm_main_action.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_read_eula.resx">
       <DependentUpon>frm_read_eula.vb</DependentUpon>

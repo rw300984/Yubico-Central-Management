@@ -42,6 +42,8 @@ Partial Class frm_install_options
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
@@ -101,8 +103,8 @@ Partial Class frm_install_options
         Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 2
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.06451!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.93548!))
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(383, 124)
         Me.TableLayoutPanel2.TabIndex = 1
         '
@@ -112,31 +114,35 @@ Partial Class frm_install_options
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox3, 2, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.Label5, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label1, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label2, 0, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label3, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.Label4, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Label6, 1, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.ComboBox1, 2, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.TextBox2, 2, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label3, 0, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label2, 0, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox3, 2, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox2, 2, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label7, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.TextBox6, 2, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 3
+        Me.TableLayoutPanel1.RowCount = 4
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.34!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(383, 86)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(383, 102)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'TextBox3
         '
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.TextBox3.Location = New System.Drawing.Point(106, 59)
+        Me.TextBox3.Location = New System.Drawing.Point(106, 84)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(139, 13)
         Me.TextBox3.TabIndex = 8
@@ -162,7 +168,7 @@ Partial Class frm_install_options
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 28)
+        Me.Label2.Location = New System.Drawing.Point(3, 54)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(55, 13)
         Me.Label2.TabIndex = 1
@@ -171,7 +177,7 @@ Partial Class frm_install_options
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(3, 56)
+        Me.Label3.Location = New System.Drawing.Point(3, 81)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(53, 13)
         Me.Label3.TabIndex = 2
@@ -180,7 +186,7 @@ Partial Class frm_install_options
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(87, 28)
+        Me.Label4.Location = New System.Drawing.Point(87, 27)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(10, 13)
         Me.Label4.TabIndex = 3
@@ -189,7 +195,7 @@ Partial Class frm_install_options
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(87, 56)
+        Me.Label6.Location = New System.Drawing.Point(87, 54)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(10, 13)
         Me.Label6.TabIndex = 5
@@ -212,7 +218,7 @@ Partial Class frm_install_options
         '
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.TextBox2.Location = New System.Drawing.Point(106, 31)
+        Me.TextBox2.Location = New System.Drawing.Point(106, 57)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(139, 13)
         Me.TextBox2.TabIndex = 7
@@ -222,10 +228,10 @@ Partial Class frm_install_options
         Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox4.Location = New System.Drawing.Point(3, 89)
+        Me.TextBox4.Location = New System.Drawing.Point(3, 105)
         Me.TextBox4.Multiline = True
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(377, 32)
+        Me.TextBox4.Size = New System.Drawing.Size(377, 16)
         Me.TextBox4.TabIndex = 1
         Me.TextBox4.Text = "Authentication: Basic = Username/Password | Integrated: Logged on user"
         '
@@ -275,6 +281,24 @@ Partial Class frm_install_options
         Me.RadioButton1.Text = "Personal mode"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(3, 27)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(38, 13)
+        Me.Label7.TabIndex = 9
+        Me.Label7.Text = "Server"
+        '
+        'TextBox6
+        '
+        Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox6.Dock = System.Windows.Forms.DockStyle.Left
+        Me.TextBox6.Location = New System.Drawing.Point(106, 30)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(139, 13)
+        Me.TextBox6.TabIndex = 10
+        '
         'frm_install_options
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -316,4 +340,6 @@ Partial Class frm_install_options
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents TextBox6 As TextBox
 End Class

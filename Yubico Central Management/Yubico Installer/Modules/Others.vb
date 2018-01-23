@@ -267,6 +267,7 @@ Module Others
                 .integrity_tools_file = config_tools_path
                 .admin_general_lang = "English"
                 .admin_central_auth = cfg.install_options_business_auth
+                .admin_central_server = cfg.install_options_business_server
                 .admin_central_username = cfg.install_options_business_username
                 .admin_central_password = cfg.install_options_business_password
                 .admin_general_theme = "Gray (default)"
