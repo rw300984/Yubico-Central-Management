@@ -137,6 +137,7 @@ Partial Class frm_install_password
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(312, 13)
         Me.TextBox3.TabIndex = 2
+        Me.TextBox3.UseSystemPasswordChar = True
         '
         'Label1
         '
