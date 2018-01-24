@@ -21,7 +21,7 @@
         Else
             lbl_install_start_install_password.Text = "Custom password"
         End If
-        If cfg.install_options_mode = 0 Then
+        If cfg.install_options_mode = "Personal" Then
             lbl_install_start_install_agent_mode.Text = "Personal"
         Else
             lbl_install_start_install_agent_mode.Text = "Business (" & cfg.install_options_business_auth & ")"

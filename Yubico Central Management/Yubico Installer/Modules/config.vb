@@ -13,15 +13,16 @@ Module config
         Dim install_password_random As String
         Dim install_password_custom As String
         Dim install_password_success As Integer
-        Dim install_options_mode As Integer
+        Dim install_options_mode As String
         Dim install_options_business_server As String
         Dim install_options_business_auth As String
         Dim install_options_business_username As String
         Dim install_options_business_password As String
         Dim install_options_success As Integer
         Dim main_action As Integer
+        Dim install_success_status As Integer
+        Dim install_rollback_status As Integer
     End Structure
-
     Public Structure initial_configuration
         Dim initial_enabled As Integer
         Dim initial_verify As String

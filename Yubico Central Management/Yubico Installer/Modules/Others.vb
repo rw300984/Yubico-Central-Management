@@ -11,21 +11,31 @@ Module Others
             For Each svc As ServiceController In ServiceController.GetServices
                 If svc.ServiceName = "yubi_agent_svc" Then
                     count = count + 1
-                    svc.Stop()
-                    svc.WaitForStatus(ServiceControllerStatus.Stopped)
+                    If svc.Status = ServiceControllerStatus.Running Then
+                        svc.Stop()
+                        svc.WaitForStatus(ServiceControllerStatus.Stopped)
+                    ElseIf svc.Status = ServiceControllerStatus.Stopped Then
+                    Else
+                        For Each ps As Process In Process.GetProcesses
+                            If ps.ProcessName = "Yubico Agent Service" Then
+                                ps.Kill()
+                            End If
+                        Next
+                    End If
                 End If
             Next
-            If count = 1 Then
+            If count > 1 Then
                 Threading.Thread.Sleep(5000)
+                For Each ps As Process In Process.GetProcesses
+                    If ps.ProcessName = "Yubico Agent" Then
+                        ps.Kill()
+                    End If
+                Next
             End If
-            For Each ps As Process In Process.GetProcesses
-                If ps.ProcessName = "Yubico Agent" Then
-                    ps.Kill()
-                End If
-            Next
             result = 1
             Return result
         Catch ex As Exception
+            MessageBox.Show(ex.Message)
             Return result
         End Try
     End Function
@@ -37,7 +47,7 @@ Module Others
             Dim ApplicationName As String = "Yubico Agent (Alpha)"
             Dim ApplicationVersion As String = "0.0.1.0"
             Dim ApplicationPublisher As String = "RW300984 (Ronny Wolf)"
-            Dim ApplicationUnInstallPath As String = install_path & "unintall.exe"
+            Dim ApplicationUnInstallPath As String = install_path & "\unintall.exe"
             Dim ApplicationInstallDirectory As String = install_path
 
             'Opening the Uninstall RegistryKey (don't forget to set the writable flag to true)
@@ -55,6 +65,19 @@ Module Others
                 AppKey.SetValue("UninstallPath", ApplicationUnInstallPath, Microsoft.Win32.RegistryValueKind.String)
                 AppKey.SetValue("InstallLocation", ApplicationInstallDirectory, Microsoft.Win32.RegistryValueKind.String)
             End With
+            result = 1
+            Return result
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return result
+        End Try
+    End Function
+
+    Public Function UnregisterInstallation(ByVal install_path As String) As Integer
+        Dim result As Integer = 0
+        Try
+            Dim ApplicationName As String = "Yubico Agent (Alpha)"
+            My.Computer.Registry.LocalMachine.DeleteSubKey("Software\Microsoft\Windows\CurrentVersion\Uninstall\" & ApplicationName)
             result = 1
             Return result
         Catch ex As Exception
@@ -79,6 +102,7 @@ Module Others
             result = 1
             Return result
         Catch ex As Exception
+            MessageBox.Show(ex.Message)
             Return result
         End Try
     End Function
@@ -90,7 +114,7 @@ Module Others
             Dim ps_installsvc As New Process
             With ps_installsvc.StartInfo
                 .FileName = DotNetPath & "\installutil.exe"
-                .Arguments = Chr(34) & source_service_file & Chr(34)
+                .Arguments = "/LogFile= " & Chr(34) & source_service_file & Chr(34)
                 .Verb = "runas"
                 .UseShellExecute = True
                 .CreateNoWindow = True
@@ -110,6 +134,7 @@ Module Others
             End If
             Return result
         Catch ex As Exception
+            MessageBox.Show(ex.Message)
             Return result
         End Try
     End Function
@@ -176,7 +201,7 @@ Module Others
             Dim ps_regdll As New Process
             With ps_regdll.StartInfo
                 .FileName = "regsvr32.exe"
-                .Arguments = "/u " & Chr(34) & source_dll & Chr(34)
+                .Arguments = "/u /s " & Chr(34) & source_dll & Chr(34)
                 .Verb = "runas"
                 .UseShellExecute = True
                 .CreateNoWindow = True
@@ -213,6 +238,20 @@ Module Others
             result = 1
             Return result
         Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return result
+        End Try
+    End Function
+
+    Public Function RemoveFolderStructure(ByVal install_path As String) As Integer
+        Dim result As Integer = 0
+        Try
+            If Directory.Exists(install_path) Then
+                Directory.Delete(install_path, True)
+            End If
+            result = 1
+            Return result
+        Catch ex As Exception
             Return result
         End Try
     End Function
@@ -230,6 +269,7 @@ Module Others
             result = 1
             Return result
         Catch ex As Exception
+            MessageBox.Show(ex.Message)
             Return result
         End Try
     End Function
@@ -246,11 +286,12 @@ Module Others
             result = 1
             Return result
         Catch ex As Exception
+            MessageBox.Show(ex.Message)
             Return result
         End Try
     End Function
 
-    Public Function GenerateDefaultConfig(ByVal install_path As String, ByVal password As String, ByVal agent_mode As String) As Integer
+    Public Function GenerateDefaultConfig(ByVal install_path As String, ByVal password As String) As Integer
         Dim result As Integer = 0
         Try
             Dim config_path As String = install_path & "\config\config.xml"
@@ -271,13 +312,14 @@ Module Others
                 .admin_central_username = cfg.install_options_business_username
                 .admin_central_password = cfg.install_options_business_password
                 .admin_general_theme = "Gray (default)"
-                .admin_general_mode = agent_mode
+                .admin_general_mode = cfg.install_options_mode
             End With
 
             Write_Config(config_path, password, cfg_config)
             result = 1
             Return result
         Catch ex As Exception
+            MessageBox.Show(ex.Message)
             Return result
         End Try
     End Function

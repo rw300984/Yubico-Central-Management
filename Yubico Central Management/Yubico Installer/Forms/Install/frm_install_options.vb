@@ -8,7 +8,7 @@
         If RadioButton2.Checked Then
             RadioButton1.Checked = False
             GroupBox1.Enabled = False
-            cfg.install_options_mode = 1
+            cfg.install_options_mode = "Business"
             cfg.install_options_success = 0
             If ComboBox1.Text <> "" Then
                 config_combobox = 1
@@ -30,7 +30,7 @@
         Else
             RadioButton1.Checked = True
             GroupBox1.Enabled = True
-            cfg.install_options_mode = 0
+            cfg.install_options_mode = "Personal"
             cfg.install_options_success = 1
         End If
     End Sub
@@ -39,12 +39,12 @@
         If RadioButton1.Checked Then
             RadioButton2.Checked = False
             GroupBox2.Enabled = False
-            cfg.install_options_mode = 0
+            cfg.install_options_mode = "Personal"
             cfg.install_options_success = 1
         Else
             RadioButton2.Checked = True
             GroupBox2.Enabled = True
-            cfg.install_options_mode = 1
+            cfg.install_options_mode = "Business"
             cfg.install_options_success = 0
             If ComboBox1.Text <> "" Then
                 config_combobox = 1

@@ -84,36 +84,54 @@
     <Compile Include="Forms\frm_main_action.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Unintall\frm_uninstall_finish.Designer.vb">
+      <DependentUpon>frm_uninstall_finish.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Unintall\frm_uninstall_finish.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Unintall\frm_uninstall_start.Designer.vb">
+      <DependentUpon>frm_uninstall_start.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Unintall\frm_uninstall_start.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Unintall\frm_uninstall_uninstall.Designer.vb">
+      <DependentUpon>frm_uninstall_uninstall.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Unintall\frm_uninstall_uninstall.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Library\Crypto.vb" />
     <Compile Include="Modules\config.vb" />
-    <Compile Include="Forms\frm_install_install.Designer.vb">
+    <Compile Include="Forms\Install\frm_install_install.Designer.vb">
       <DependentUpon>frm_install_install.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_install_install.vb">
+    <Compile Include="Forms\Install\frm_install_install.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_install_options.Designer.vb">
+    <Compile Include="Forms\Install\frm_install_options.Designer.vb">
       <DependentUpon>frm_install_options.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_install_options.vb">
+    <Compile Include="Forms\Install\frm_install_options.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_install_password.Designer.vb">
+    <Compile Include="Forms\Install\frm_install_password.Designer.vb">
       <DependentUpon>frm_install_password.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_install_password.vb">
+    <Compile Include="Forms\Install\frm_install_password.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_install_start.Designer.vb">
+    <Compile Include="Forms\Install\frm_install_start.Designer.vb">
       <DependentUpon>frm_install_start.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_install_start.vb">
+    <Compile Include="Forms\Install\frm_install_start.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_install_update.Designer.vb">
+    <Compile Include="Forms\Install\frm_install_update.Designer.vb">
       <DependentUpon>frm_install_update.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_install_update.vb">
+    <Compile Include="Forms\Install\frm_install_update.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frm_read_eula.Designer.vb">
@@ -129,10 +147,10 @@
       <DependentUpon>frm_main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_install_path.Designer.vb">
+    <Compile Include="Forms\Install\frm_install_path.Designer.vb">
       <DependentUpon>frm_install_path.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_install_path.vb">
+    <Compile Include="Forms\Install\frm_install_path.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frm_start_agent.Designer.vb">
@@ -141,10 +159,10 @@
     <Compile Include="Forms\frm_start_agent.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_install_finish.Designer.vb">
+    <Compile Include="Forms\Install\frm_install_finish.Designer.vb">
       <DependentUpon>frm_install_finish.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_install_finish.vb">
+    <Compile Include="Forms\Install\frm_install_finish.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Library\CustomizableProgressBar.vb">
@@ -173,25 +191,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\frm_install_finish.resx">
+    <EmbeddedResource Include="Forms\Install\frm_install_finish.resx">
       <DependentUpon>frm_install_finish.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_install_install.resx">
+    <EmbeddedResource Include="Forms\Install\frm_install_install.resx">
       <DependentUpon>frm_install_install.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_install_options.resx">
+    <EmbeddedResource Include="Forms\Install\frm_install_options.resx">
       <DependentUpon>frm_install_options.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_install_password.resx">
+    <EmbeddedResource Include="Forms\Install\frm_install_password.resx">
       <DependentUpon>frm_install_password.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_install_path.resx">
+    <EmbeddedResource Include="Forms\Install\frm_install_path.resx">
       <DependentUpon>frm_install_path.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_install_start.resx">
+    <EmbeddedResource Include="Forms\Install\frm_install_start.resx">
       <DependentUpon>frm_install_start.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_install_update.resx">
+    <EmbeddedResource Include="Forms\Install\frm_install_update.resx">
       <DependentUpon>frm_install_update.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_main_action.resx">
@@ -205,6 +223,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_start_agent.resx">
       <DependentUpon>frm_start_agent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Unintall\frm_uninstall_finish.resx">
+      <DependentUpon>frm_uninstall_finish.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Unintall\frm_uninstall_start.resx">
+      <DependentUpon>frm_uninstall_start.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Unintall\frm_uninstall_uninstall.resx">
+      <DependentUpon>frm_uninstall_uninstall.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

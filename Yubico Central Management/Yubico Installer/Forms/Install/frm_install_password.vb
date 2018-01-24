@@ -11,6 +11,7 @@
             GroupBox2.Enabled = False
             cfg.install_password_mode = 0
             cfg.install_password_success = 1
+            cfg.install_password_random = GeneratePassword(12)
             My.Forms.frm_main.btn_main_next.Enabled = True
             TextBox3.BackColor = Color.White
         Else
@@ -47,6 +48,7 @@
             RadioButton1.Checked = True
             GroupBox1.Enabled = True
             cfg.install_password_mode = 0
+            cfg.install_password_random = GeneratePassword(12)
             cfg.install_password_success = 1
             My.Forms.frm_main.btn_main_next.Enabled = True
             TextBox3.BackColor = Color.White

@@ -1,4 +1,31 @@
-﻿Public Class frm_main_action
+﻿Imports Microsoft.Win32
+
+Public Class frm_main_action
+
+    Private Sub frm_main_action_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Try
+            Dim key As RegistryKey = My.Computer.Registry.LocalMachine.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)", False)
+            If key IsNot Nothing Then
+                RadioButton1.Enabled = False
+                RadioButton2.Checked = True
+                RadioButton2.Enabled = True
+                RadioButton3.Enabled = True
+                RadioButton4.Enabled = True
+                RadioButton1.Text = "Install (already installed)"
+            Else
+                RadioButton1.Enabled = True
+                RadioButton1.Checked = True
+                RadioButton1.Text = "Install"
+                RadioButton2.Enabled = False
+                RadioButton3.Enabled = False
+                RadioButton4.Enabled = False
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+    End Sub
+
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
         If RadioButton1.Checked Then
             RadioButton2.Checked = False
@@ -8,7 +35,6 @@
             TextBox2.Enabled = False
             TextBox3.Enabled = False
             TextBox4.Enabled = False
-
             cfg.main_action = 1
         End If
     End Sub
@@ -51,5 +77,4 @@
             cfg.main_action = 4
         End If
     End Sub
-
 End Class
