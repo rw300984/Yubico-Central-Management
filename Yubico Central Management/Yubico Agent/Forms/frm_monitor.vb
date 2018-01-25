@@ -10,9 +10,9 @@ Public Class frm_monitor
                     bgw_ykinfo.ReportProgress(0, ykinfo)
                     Threading.Thread.Sleep(1000)
                 Case 1
-                    If bgw_ykinfo.CancellationPending = True Then
-                        Exit Sub
-                    End If
+                    '  If bgw_ykinfo.CancellationPending = True Then
+                    Exit Sub
+                    ' End If
             End Select
         Loop
     End Sub

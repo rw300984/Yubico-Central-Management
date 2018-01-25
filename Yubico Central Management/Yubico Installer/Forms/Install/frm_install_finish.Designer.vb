@@ -63,8 +63,8 @@ Partial Class frm_install_finish
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(389, 54)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Please insert your Yubikey to your computer. A Yubico Agent icon appears in the t" &
-    "ask tray bar on your Windows computer."
+        Me.Label1.Text = "Please insert your Yubikey into your computer. A Yubico Agent icon appears in the" &
+    " task tray bar on your Windows computer."
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frm_install_finish
