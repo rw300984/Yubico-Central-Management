@@ -328,6 +328,7 @@ Module Others
             Dim lang_de_path As String = install_path & "\lang\de.xml"
             Dim lang_en_path As String = install_path & "\lang\en.xml"
             Dim config_tools_path As String = install_path & "\config\tools.xml"
+            Dim config_geoip_path As String = install_path & "\config\geoip.xml"
 
             Dim cfg_config As New initial_configuration
             With cfg_config
@@ -336,6 +337,7 @@ Module Others
                 .integrity_lang_de_file = lang_de_path
                 .integrity_lang_en_file = lang_en_path
                 .integrity_tools_file = config_tools_path
+                .integrity_geoip_file = config_geoip_path
                 .admin_general_lang = "English"
                 .admin_central_auth = cfg.install_options_business_auth
                 .admin_central_server = cfg.install_options_business_server

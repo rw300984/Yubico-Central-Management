@@ -56,6 +56,10 @@ Public Class frm_main
     End Sub
 
     Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
+        '   System.Reflection.Assembly.LoadFile(Application.StartupPath & "\plugins\geoip\MaxMind.Db.dll")
+        '  System.Reflection.Assembly.LoadFile(Application.StartupPath & "\plugins\geoip\MaxMind.GeoIP2.dll")
+        ' System.Reflection.Assembly.LoadFile(Application.StartupPath & "\plugins\geoip\Newtonsoft.Json.dll")
+
         File.Delete("close.bin")
         bgw_close.RunWorkerAsync()
         FillGlobalFixedVariables()

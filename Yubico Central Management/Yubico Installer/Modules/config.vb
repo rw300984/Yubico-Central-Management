@@ -39,6 +39,9 @@ Module config
         Dim integrity_lang_en_file As String
         Dim integrity_tools As String
         Dim integrity_tools_file As String
+        Dim integrity_geoip As String
+        Dim integrity_geoip_file As String
+
     End Structure
     Public Function Write_Config(ByVal config_file As String, ByVal key As String, ByVal cfg_config As initial_configuration) As Integer
         Dim ConfigWriter As New XmlTextWriter(config_file, System.Text.Encoding.UTF8)
@@ -58,6 +61,7 @@ Module config
         CreateNodes("integrity_lang_de", Crypto.AES_Encrypt(SHA1FileHash(cfg_config.integrity_lang_de_file), key), ConfigWriter)
         CreateNodes("integrity_lang_en", Crypto.AES_Encrypt(SHA1FileHash(cfg_config.integrity_lang_en_file), key), ConfigWriter)
         CreateNodes("integrity_tools", Crypto.AES_Encrypt(SHA1FileHash(cfg_config.integrity_tools_file), key), ConfigWriter)
+        CreateNodes("integrity_geoip", Crypto.AES_Encrypt(SHA1FileHash(cfg_config.integrity_geoip_file), key), ConfigWriter)
         ConfigWriter.WriteEndElement()
         ConfigWriter.WriteEndDocument()
         ConfigWriter.Close()

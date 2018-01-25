@@ -53,10 +53,14 @@ Module plg_geoip
                     dbreader = New MaxMind.GeoIP2.DatabaseReader("plugins\geoip\GeoLite2-City.mmdb", MaxMind.Db.FileAccessMode.Memory)
             End Select
             city = dbreader.City(externalip)
-            '     Process.Start("http://maps.google.com/?q=" & city.Location.Latitude & "," & city.Location.Longitude)
-            '   MessageBox.Show(city.City.Name & vbCrLf & city.Country.Name & vbCrLf & city.Continent.Name & vbCrLf & city.Location.Latitude & vbCrLf & city.Location.Longitude & vbCrLf & city.Postal.Code)
+            Dim cache_file As New StreamWriter(Application.StartupPath & "\temp\geo.cache", True)
+            cache_file.WriteLine(DateTime.Now & "," & city.City.Name & "," & city.Country.Name & "," & city.Continent.Name & "," & city.Location.Latitude & "," & city.Location.Longitude & "," & city.Postal.Code)
+            cache_file.Close()
+
         Catch ex As Exception
-            '  MessageBox.Show("Address not found")
+            Dim cache_file As New StreamWriter(Application.StartupPath & "\temp\geo.cache", True)
+            cache_file.WriteLine(DateTime.Now & "," & "," & "," & "," & "," & ",")
+            cache_file.Close()
         End Try
     End Function
 

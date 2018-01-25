@@ -4,5 +4,5 @@
   <external_ipservice2>https://api.ipify.org</external_ipservice2>
   <external_ipservice3>http://www.icanhazip.com</external_ipservice3>
   <geoip_service_mode>local</geoip_service_mode>
-  <geoip_db_mode>0</geoip_db_mode>
+  <geoip_db_mode>1</geoip_db_mode>
 </tools>
