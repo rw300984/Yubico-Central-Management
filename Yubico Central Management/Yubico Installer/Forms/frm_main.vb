@@ -417,21 +417,12 @@ Public Class frm_main
                 ShowFormsDefaults(0, 0)
                 frm_uninstall_start.Visible = True
 
-                ' Button Config
-
-                btn_main_next.Visible = True
-                btn_main_back.Visible = True
-                btn_main_back.Text = "Back"
-                btn_main_next.Text = "Next"
-
             Case "frm_uninstall_uninstall"
                 ' Frm visibility
                 ShowFormsDefaults(0, 0)
                 frm_uninstall_uninstall.Visible = True
 
                 ' Button Config
-
-                btn_main_next.Visible = True
                 btn_main_next.Text = "Next"
 
             Case "frm_uninstall_finish"

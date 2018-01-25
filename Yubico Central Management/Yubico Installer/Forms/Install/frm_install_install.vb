@@ -78,70 +78,50 @@ Public Class frm_install_install
                 lbl_install_install_status.Update()
                 CustomizableProgressBar2.Value = 10
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic1
-                PictureBox1.Update()
             Case "StopService"
                 lbl_install_install_status.Text = "Check if Agent process or service is running..."
                 lbl_install_install_status.Update()
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic2
-                PictureBox1.Update()
                 CustomizableProgressBar2.Value = 20
             Case "CreateFolder"
                 lbl_install_install_status.Text = "Create Yubico agent directory..."
                 lbl_install_install_status.Update()
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic3
-                PictureBox1.Update()
                 CustomizableProgressBar2.Value = 30
             Case "SetPermissions"
                 lbl_install_install_status.Text = "Set permissions on Yubico Agent directory..."
                 lbl_install_install_status.Update()
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic4
-                PictureBox1.Update()
                 CustomizableProgressBar2.Value = 40
             Case "ExtractAgent"
                 lbl_install_install_status.Text = "Extract Agent from installer and copy to directory..."
                 lbl_install_install_status.Update()
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic1
-                PictureBox1.Update()
                 CustomizableProgressBar2.Value = 50
             Case "RegisterDLL"
                 lbl_install_install_status.Text = "Register Plugin Libraries..."
                 lbl_install_install_status.Update()
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic2
-                PictureBox1.Update()
                 CustomizableProgressBar2.Value = 60
             Case "RegisterInstall"
                 lbl_install_install_status.Text = "Register installation to Windows Installer libraries..."
                 lbl_install_install_status.Update()
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic3
-                PictureBox1.Update()
                 CustomizableProgressBar2.Value = 70
             Case "InstallService"
                 lbl_install_install_status.Text = "Install Yubico Agent Service..."
                 lbl_install_install_status.Update()
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic4
-                PictureBox1.Update()
                 CustomizableProgressBar2.Value = 80
             Case "DefaultConfig"
                 lbl_install_install_status.Text = "Generate initial configuration..."
                 lbl_install_install_status.Update()
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic1
-                PictureBox1.Update()
                 CustomizableProgressBar2.Value = 90
             Case "StartService"
                 lbl_install_install_status.Text = "Start Yubico Agent Service..."
                 lbl_install_install_status.Update()
                 SmoothProgressBarStatusForward()
-                PictureBox1.Image = My.Resources.install_pic2
-                PictureBox1.Update()
                 CustomizableProgressBar2.Value = 100
         End Select
     End Sub
@@ -195,45 +175,39 @@ Public Class frm_install_install
     Private Sub bgw_rollback_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles bgw_rollback.ProgressChanged
         Select Case TryCast(e.UserState, String)
             Case "StopAllServicesAndProcess"
-
                 lbl_install_install_status.Text = "Rollback: Stop services and processes..."
                 lbl_install_install_status.Update()
                 CustomizableProgressBar2.Value = 20
                 SmoothProgressBarStatusrewind()
-                PictureBox1.Image = My.Resources.install_pic1
-                PictureBox1.Update()
+
             Case "UninstallService"
 
                 lbl_install_install_status.Text = "Rollback: Uninstall Yubico Agent service..."
                 lbl_install_install_status.Update()
                 CustomizableProgressBar2.Value = 40
                 SmoothProgressBarStatusrewind()
-                PictureBox1.Image = My.Resources.install_pic1
-                PictureBox1.Update()
+
             Case "UnregisterDll"
 
                 lbl_install_install_status.Text = "Rollback: Unregister plugins..."
                 lbl_install_install_status.Update()
                 CustomizableProgressBar2.Value = 60
                 SmoothProgressBarStatusrewind()
-                PictureBox1.Image = My.Resources.install_pic1
-                PictureBox1.Update()
+
             Case "UnregisterInstall"
 
                 lbl_install_install_status.Text = "Rollback: Remove installer entries..."
                 lbl_install_install_status.Update()
                 CustomizableProgressBar2.Value = 80
                 SmoothProgressBarStatusrewind()
-                PictureBox1.Image = My.Resources.install_pic1
-                PictureBox1.Update()
+
             Case "RemoveFolderStructure"
 
                 lbl_install_install_status.Text = "Rollback: Remove installer entries..."
                 lbl_install_install_status.Update()
                 CustomizableProgressBar2.Value = 100
                 SmoothProgressBarStatusrewind()
-                PictureBox1.Image = My.Resources.install_pic1
-                PictureBox1.Update()
+
         End Select
     End Sub
 

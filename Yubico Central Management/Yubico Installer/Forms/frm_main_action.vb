@@ -12,6 +12,9 @@ Public Class frm_main_action
                 RadioButton3.Enabled = True
                 RadioButton4.Enabled = True
                 RadioButton1.Text = "Install (already installed)"
+                With My.Computer.Registry.LocalMachine.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)", True)
+                    cfg.install_path_custom = .GetValue("InstallLocation").ToString
+                End With
             Else
                 RadioButton1.Enabled = True
                 RadioButton1.Checked = True
