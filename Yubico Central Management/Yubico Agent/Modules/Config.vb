@@ -14,10 +14,15 @@ Module Config
         Dim admin_central_password As String
         Dim integrity_lang_de As String
         Dim integrity_lang_en As String
+        Dim integrity_tools As String
+        Dim integrity_geoip As String
+
+        ' Below global config variables but not written to config.xml
+
         Dim integrity_lang_de_file As String
         Dim integrity_lang_en_file As String
-        Dim integrity_tools As String
         Dim integrity_tools_file As String
+        Dim integrity_geoip_file As String
         Dim config_path_file As String
         Dim temp_path As String
     End Structure
@@ -39,6 +44,7 @@ Module Config
         CreateNodes("integrity_lang_de", Crypto.AES_Encrypt(SHA1FileHash(cfg_config.integrity_lang_de_file), key), ConfigWriter)
         CreateNodes("integrity_lang_en", Crypto.AES_Encrypt(SHA1FileHash(cfg_config.integrity_lang_en_file), key), ConfigWriter)
         CreateNodes("integrity_tools", Crypto.AES_Encrypt(SHA1FileHash(cfg_config.integrity_tools_file), key), ConfigWriter)
+        CreateNodes("integrity_geoip", Crypto.AES_Encrypt(SHA1FileHash(cfg_config.integrity_geoip_file), key), ConfigWriter)
         ConfigWriter.WriteEndElement()
         ConfigWriter.WriteEndDocument()
         ConfigWriter.Close()
@@ -80,6 +86,8 @@ Module Config
         cfg_config.integrity_lang_en = Crypto.AES_Decrypt(Read_Config(config, counter), key)
         counter = counter + 1
         cfg_config.integrity_tools = Crypto.AES_Decrypt(Read_Config(config, counter), key)
+        counter = counter + 1
+        cfg_config.integrity_geoip = Crypto.AES_Decrypt(Read_Config(config, counter), key)
         counter = counter + 1
     End Function
 End Module

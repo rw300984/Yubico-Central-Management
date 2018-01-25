@@ -10,9 +10,7 @@ Public Class frm_monitor
                     bgw_ykinfo.ReportProgress(0, ykinfo)
                     Threading.Thread.Sleep(1000)
                 Case 1
-                    '  If bgw_ykinfo.CancellationPending = True Then
                     Exit Sub
-                    ' End If
             End Select
         Loop
     End Sub
@@ -53,10 +51,12 @@ Public Class frm_monitor
     Public Function YK_Agent_FillSystemInfo()
         Dim Systeminfo As String() = YK_Agent_GetSystemInfo()
         lbl_monitor_sys_username_output.Text = Systeminfo(0)
-        lbl_monitor_sys_ip_output.Text = Systeminfo(1)
+        lbl_monitor_sys_ip_output.Text = Systeminfo(1) & " - " & Systeminfo(5)
         lbl_monitor_sys_hostname_output.Text = Systeminfo(2)
         lbl_monitor_sys_os_output.Text = Systeminfo(3)
         lbl_monitor_sys_devicemodel_output.Text = Systeminfo(4)
+        Dim ip As String = Systeminfo(5)
+        GetLocationFromMaxMindDB(ip)
     End Function
 
 End Class

@@ -35,6 +35,7 @@ Module monitor
             SystemInfo(2) = My.Computer.Name
             SystemInfo(3) = My.Computer.Info.OSFullName
             SystemInfo(4) = Generic_GetWMI_SingleEntry("Win32_ComputerSystem", "manufacturer") & " " & Generic_GetWMI_SingleEntry("Win32_ComputerSystem", "model")
+            SystemInfo(5) = GetExternalIP()
             Return SystemInfo
         Catch ex As Exception
 

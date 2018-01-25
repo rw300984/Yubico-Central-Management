@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<tools>
+  <external_ipservice1>http://tools.feron.it/php/ip.php</external_ipservice1>
+  <external_ipservice2>https://api.ipify.org</external_ipservice2>
+  <external_ipservice3>http://www.icanhazip.com</external_ipservice3>
+  <geoip_service_mode>local</geoip_service_mode>
+  <geoip_db_mode>0</geoip_db_mode>
+</tools>

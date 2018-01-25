@@ -415,11 +415,13 @@ Public Class frm_main
         new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_de_file))
         new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_en_file))
         new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_tools_file))
+        new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_geoip_file))
 
         Dim org_integrity_files As New List(Of String)
         org_integrity_files.Add(cfg_config.integrity_lang_de)
         org_integrity_files.Add(cfg_config.integrity_lang_en)
         org_integrity_files.Add(cfg_config.integrity_tools)
+        org_integrity_files.Add(cfg_config.integrity_geoip)
 
         Select Case Mode
             Case 1
@@ -429,6 +431,7 @@ Public Class frm_main
                 Dim count As Integer = 0
                 For Each sha1_file As String In new_integrity_files
                     If sha1_file <> org_integrity_files(count) Then
+
                         status = status + 1
                         count = count + 1
                     Else
@@ -439,6 +442,7 @@ Public Class frm_main
                 Dim count As Integer = 0
                 For Each sha1_file As String In new_integrity_files
                     If sha1_file <> org_integrity_files(count) Then
+
                         status = status + 1
                         count = count + 1
                     Else
@@ -463,13 +467,10 @@ Public Class frm_main
                 If System.IO.File.Exists(cfg_config.config_path_file) Then
                     ThemeForm(Read_Config(cfg_config.config_path_file, "3"))
                     SetLanguage(Read_Config(cfg_config.config_path_file, "2"))
-                    GetToolsXML(cfg_config.integrity_tools_file)
-                    FillTextWithLanguagefile()
+                    LoadStartUpConfig()
                 Else
                     ThemeForm("Gray (default)")
                     SetLanguage("English")
-                    GetToolsXML(cfg_config.integrity_tools_file)
-                    FillTextWithLanguagefile()
                 End If
             Case 1
                 If System.IO.File.Exists(cfg_config.config_path_file) Then
@@ -484,10 +485,19 @@ Public Class frm_main
         End Select
     End Function
 
+    Public Function LoadStartUpConfig()
+        GetToolsXML(cfg_config.integrity_tools_file)
+        GetGeoIPXML(cfg_config.integrity_geoip_file)
+        FillTextWithLanguagefile()
+    End Function
+
+
+
     Public Function FillGlobalFixedVariables()
         cfg_config.integrity_lang_de_file = Application.StartupPath & "\Lang\de.xml"
         cfg_config.integrity_lang_en_file = Application.StartupPath & "\Lang\en.xml"
         cfg_config.integrity_tools_file = Application.StartupPath & "\Config\tools.xml"
+        cfg_config.integrity_geoip_file = Application.StartupPath & "\Config\geoip.xml"
         cfg_config.config_path_file = Application.StartupPath & "\Config\config.xml"
         cfg_config.temp_path = Application.StartupPath & "\temp\"
 
