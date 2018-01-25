@@ -23,12 +23,12 @@ Partial Class frm_install_update
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
@@ -44,6 +44,22 @@ Partial Class frm_install_update
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox2.Location = New System.Drawing.Point(3, 16)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(0)
+        Me.TextBox2.Multiline = True
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(383, 63)
+        Me.TextBox2.TabIndex = 0
+        Me.TextBox2.TabStop = False
+        Me.TextBox2.Text = "During the installation process, the installer will check online for a newer vers" &
+    "ion of the Yubico Agent. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If available it will download the latest version an" &
+    "d install it."
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.TextBox1)
@@ -53,6 +69,22 @@ Partial Class frm_install_update
         Me.GroupBox2.Size = New System.Drawing.Size(389, 143)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Location = New System.Drawing.Point(3, 16)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(0)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(383, 124)
+        Me.TextBox1.TabIndex = 0
+        Me.TextBox1.TabStop = False
+        Me.TextBox1.Text = "The installer will use the embedded Yubico Agent installation." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "No internet con" &
+    "nection is required."
         '
         'TableLayoutPanel3
         '
@@ -87,45 +119,14 @@ Partial Class frm_install_update
         'RadioButton1
         '
         Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Enabled = False
         Me.RadioButton1.Location = New System.Drawing.Point(3, 3)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(194, 17)
+        Me.RadioButton1.Size = New System.Drawing.Size(259, 17)
         Me.RadioButton1.TabIndex = 2
         Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Online Installation (Internet required)"
+        Me.RadioButton1.Text = "Online Installation (not available in Alpha Version) "
         Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Location = New System.Drawing.Point(3, 16)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(0)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(383, 124)
-        Me.TextBox1.TabIndex = 0
-        Me.TextBox1.TabStop = False
-        Me.TextBox1.Text = "The installer will use the embedded Yubico Agent installation." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "No internet con" &
-    "nection is required."
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox2.Location = New System.Drawing.Point(3, 16)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(0)
-        Me.TextBox2.Multiline = True
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(383, 63)
-        Me.TextBox2.TabIndex = 0
-        Me.TextBox2.TabStop = False
-        Me.TextBox2.Text = "During the installation process, the installer will check online for a newer vers" &
-    "ion of the Yubico Agent. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If available it will download the latest version an" &
-    "d install it."
         '
         'frm_install_update
         '

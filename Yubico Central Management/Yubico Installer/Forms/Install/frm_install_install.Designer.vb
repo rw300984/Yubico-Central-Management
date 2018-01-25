@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frm_install_install
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,14 +20,14 @@ Partial Class frm_install_install
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.CustomizableProgressBar1 = New Yubico_Installer.CustomizableProgressBar()
         Me.CustomizableProgressBar2 = New Yubico_Installer.CustomizableProgressBar()
+        Me.lbl_install_install_status = New System.Windows.Forms.Label()
         Me.bgw_install = New System.ComponentModel.BackgroundWorker()
         Me.bgw_rollback = New System.ComponentModel.BackgroundWorker()
-        Me.lbl_install_install_status = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -71,15 +71,6 @@ Partial Class frm_install_install
         Me.CustomizableProgressBar2.Size = New System.Drawing.Size(389, 23)
         Me.CustomizableProgressBar2.TabIndex = 0
         '
-        'bgw_install
-        '
-        Me.bgw_install.WorkerReportsProgress = True
-        Me.bgw_install.WorkerSupportsCancellation = True
-        '
-        'bgw_rollback
-        '
-        Me.bgw_rollback.WorkerReportsProgress = True
-        '
         'lbl_install_install_status
         '
         Me.lbl_install_install_status.AutoSize = True
@@ -89,6 +80,15 @@ Partial Class frm_install_install
         Me.lbl_install_install_status.Size = New System.Drawing.Size(389, 14)
         Me.lbl_install_install_status.TabIndex = 4
         Me.lbl_install_install_status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'bgw_install
+        '
+        Me.bgw_install.WorkerReportsProgress = True
+        Me.bgw_install.WorkerSupportsCancellation = True
+        '
+        'bgw_rollback
+        '
+        Me.bgw_rollback.WorkerReportsProgress = True
         '
         'frm_install_install
         '

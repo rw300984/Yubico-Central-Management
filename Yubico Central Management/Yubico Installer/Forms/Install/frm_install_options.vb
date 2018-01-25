@@ -165,27 +165,28 @@
 
     Private Sub frm_install_options_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Visible Then
-            If ComboBox1.Text <> "" Then
-                config_combobox = 1
-            Else
-                config_combobox = 0
+            If RadioButton2.Checked Then
+                If ComboBox1.Text <> "" Then
+                    config_combobox = 1
+                Else
+                    config_combobox = 0
+                End If
+                If TextBox2.Text <> "" Then
+                    config_textbox2 = 1
+                Else
+                    config_textbox2 = 0
+                End If
+                If TextBox3.Text <> "" Then
+                    config_textbox3 = 1
+                Else
+                    config_textbox3 = 0
+                End If
+                If TextBox6.Text <> "" Then
+                    config_textbox6 = 1
+                Else
+                    config_textbox6 = 0
+                End If
             End If
-            If TextBox2.Text <> "" Then
-                config_textbox2 = 1
-            Else
-                config_textbox2 = 0
-            End If
-            If TextBox3.Text <> "" Then
-                config_textbox3 = 1
-            Else
-                config_textbox3 = 0
-            End If
-            If TextBox6.Text <> "" Then
-                config_textbox6 = 1
-            Else
-                config_textbox6 = 0
-            End If
-
         End If
     End Sub
 End Class

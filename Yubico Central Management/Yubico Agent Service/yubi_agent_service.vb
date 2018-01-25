@@ -1,6 +1,7 @@
 ﻿Imports System.Timers
 Imports System.Security.AccessControl
 Imports murrayju.ProcessExtensions
+Imports Microsoft.Win32
 
 Public Class yubi_agent_service
     Protected Overrides Sub OnStart(ByVal args() As String)
@@ -14,34 +15,14 @@ Public Class yubi_agent_service
         End Try
     End Sub
     Private Shared Sub OnTimedEvent(source As Object, e As ElapsedEventArgs)
-        Dim install_path As String = My.Computer.FileSystem.SpecialDirectories.ProgramFiles & "\Yubico Agent"
+        Dim install_path As String
+        Dim key As RegistryKey = My.Computer.Registry.LocalMachine.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)", False)
+        With My.Computer.Registry.LocalMachine.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)", True)
+            install_path = .GetValue("InstallLocation").ToString
+        End With
+
         Dim exec_path As String = install_path & "\Yubico Agent.exe"
-
-        Dim hklm_reg_path_64 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)"
-        Dim hklm_reg_path_32 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)"
-
-        If System.IO.File.Exists(exec_path) Then
-        Else
-            If Environment.Is64BitOperatingSystem Then
-                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "InstallLocation", Nothing)
-            Else
-                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "InstallLocation", Nothing)
-            End If
-
-        End If
-
-        exec_path = install_path & "\Yubico Agent.exe"
         Dim close_path As String = install_path & "\temp\close.bin"
-
-        Dim FolderPath As String = install_path 'Specify the folder here
-        Dim UserAccountSID As String = "S-1-5-32-545" 'Specify the user here
-        Dim UserAccountSIDIdentifier As New System.Security.Principal.SecurityIdentifier(UserAccountSID)
-
-        Dim FolderInfo As IO.DirectoryInfo = New IO.DirectoryInfo(FolderPath)
-        Dim FolderAcl As New DirectorySecurity
-        FolderAcl.AddAccessRule(New FileSystemAccessRule(UserAccountSIDIdentifier, FileSystemRights.Modify, InheritanceFlags.ContainerInherit Or InheritanceFlags.ObjectInherit, PropagationFlags.None, AccessControlType.Allow))
-
-        FolderInfo.SetAccessControl(FolderAcl)
 
         Dim yubi_client As New YubiClientAPILib.YubiClient
         If yubi_client.isInserted = YubiClientAPILib.ycRETCODE.ycRETCODE_OK Then
@@ -59,26 +40,13 @@ Public Class yubi_agent_service
         End If
     End Sub
     Protected Overrides Sub OnStop()
-        Dim install_path As String = My.Computer.FileSystem.SpecialDirectories.ProgramFiles & "\Yubico Agent"
-        Dim exec_path As String = install_path & "\Yubico Agent.exe"
-
-        Dim hklm_reg_path_64 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)"
-        Dim hklm_reg_path_32 As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)"
-
-        If System.IO.File.Exists(exec_path) Then
-        Else
-            If Environment.Is64BitOperatingSystem Then
-                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "InstallLocation", Nothing)
-            Else
-                install_path = My.Computer.Registry.GetValue(hklm_reg_path_64, "InstallLocation", Nothing)
-            End If
-        End If
-
-        exec_path = install_path & "\Yubico Agent.exe"
+        Dim install_path As String
+        Dim key As RegistryKey = My.Computer.Registry.LocalMachine.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)", False)
+        With My.Computer.Registry.LocalMachine.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)", True)
+            install_path = .GetValue("InstallLocation").ToString
+        End With
         Dim close_path As String = install_path & "\temp\close.bin"
-        Dim file As System.IO.StreamWriter
-        file = My.Computer.FileSystem.OpenTextFileWriter(close_path, True)
-        file.WriteLine("")
-        file.Close()
+        Dim close_file As New System.IO.FileStream(close_path, IO.FileMode.Create)
+        close_file.Close()
     End Sub
 End Class

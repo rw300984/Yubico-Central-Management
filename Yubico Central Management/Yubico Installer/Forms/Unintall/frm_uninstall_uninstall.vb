@@ -53,7 +53,7 @@ Public Class frm_uninstall_uninstall
                 CustomizableProgressBar2.Value = 80
                 SmoothProgressBarStatusForward()
             Case "RemoveFolderStructure"
-                lbl_uninstall_status.Text = "Uninstall: Remove installer entries..."
+                lbl_uninstall_status.Text = "Uninstall: Remove files and folders..."
                 lbl_uninstall_status.Update()
                 CustomizableProgressBar2.Value = 100
                 SmoothProgressBarStatusForward()

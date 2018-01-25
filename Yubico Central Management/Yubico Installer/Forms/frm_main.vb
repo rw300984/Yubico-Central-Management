@@ -12,12 +12,12 @@ Public Class frm_main
     Dim frm_install_start As New frm_install_start
     Dim frm_install_install As New frm_install_install
     Dim frm_install_finish As New frm_install_finish
-    Dim frm_start_Agent As New frm_start_agent
     Dim frm_uninstall_start As New frm_uninstall_start
     Dim frm_uninstall_uninstall As New frm_uninstall_uninstall
     Dim frm_uninstall_finish As New frm_uninstall_finish
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btn_main_next.Click
+
         Select Case True
             Case frm_main_action.Visible
                 Select Case cfg.main_action
@@ -73,8 +73,6 @@ Public Class frm_main
             Case frm_install_install.Visible
                 ShowForms("frm_install_finish")
             Case frm_install_finish.Visible
-                ShowForms("frm_start_agent")
-            Case frm_start_Agent.Visible
                 Application.Exit()
             Case Else
                 ShowForms("nothing")
@@ -129,8 +127,6 @@ Public Class frm_main
                 ShowForms("frm_install_options")
             Case frm_install_finish.Visible
                 ShowForms("nothing")
-            Case frm_start_Agent.Visible
-                ShowForms("nothing")
             Case Else
                 ShowForms("nothing")
         End Select
@@ -148,7 +144,6 @@ Public Class frm_main
         forms.Add(frm_install_start)
         forms.Add(frm_install_install)
         forms.Add(frm_install_finish)
-        forms.Add(frm_start_Agent)
         forms.Add(frm_uninstall_start)
         forms.Add(frm_uninstall_finish)
         forms.Add(frm_uninstall_uninstall)
@@ -176,8 +171,9 @@ Public Class frm_main
         frm_install_password.Visible = False
         frm_install_options.Visible = False
         frm_install_start.Visible = False
+        frm_install_install.Visible = False
         frm_install_finish.Visible = False
-        frm_start_Agent.Visible = False
+
         frm_uninstall_finish.Visible = False
         frm_uninstall_start.Visible = False
         frm_uninstall_uninstall.Visible = False
@@ -192,7 +188,7 @@ Public Class frm_main
             lbl_main_options.Visible = False
             lbl_main_start_install.Visible = False
             lbl_main_finish.Visible = False
-            lbl_main_start_agent.Visible = False
+
         Else
             lbl_main_eula.Visible = True
             lbl_main_updates.Visible = True
@@ -201,7 +197,7 @@ Public Class frm_main
             lbl_main_options.Visible = True
             lbl_main_start_install.Visible = True
             lbl_main_finish.Visible = True
-            lbl_main_start_agent.Visible = True
+
         End If
         If lbl_enabled = 1 Then
             lbl_main_eula.Enabled = True
@@ -211,7 +207,7 @@ Public Class frm_main
             lbl_main_options.Enabled = True
             lbl_main_start_install.Enabled = True
             lbl_main_finish.Enabled = True
-            lbl_main_start_agent.Enabled = True
+
         Else
             lbl_main_eula.Enabled = False
             lbl_main_updates.Enabled = False
@@ -220,7 +216,7 @@ Public Class frm_main
             lbl_main_options.Enabled = False
             lbl_main_start_install.Enabled = False
             lbl_main_finish.Enabled = False
-            lbl_main_start_agent.Enabled = False
+
         End If
 
         SetFontUnderline(lbl_main_eula, 0)
@@ -230,12 +226,16 @@ Public Class frm_main
         SetFontUnderline(lbl_main_options, 0)
         SetFontUnderline(lbl_main_start_install, 0)
         SetFontUnderline(lbl_main_finish, 0)
-        SetFontUnderline(lbl_main_start_agent, 0)
+
 
         ' Disable the navigation buttons
 
         btn_main_next.Visible = False
         btn_main_back.Visible = False
+
+        ' RoundedPanel1 and Installer Status disabled
+
+        RoundedPanel1.Visible = False
 
     End Function
     Public Function ShowForms(ByVal frm As String)
@@ -375,7 +375,7 @@ Public Class frm_main
                 ' Label Menue Config
 
                 lbl_main_finish.Enabled = True
-                lbl_main_start_agent.Enabled = True
+
 
             Case "frm_install_finish"
                 ' Frm visibility
@@ -386,29 +386,11 @@ Public Class frm_main
                 ' Button config
 
                 btn_main_next.Visible = True
-                btn_main_next.Text = "Next"
+                btn_main_next.Text = "Exit"
 
                 'Label Menue Config
 
                 SetFontUnderline(lbl_main_finish, 1)
-
-            Case "frm_start_agent"
-
-                ' Frm visibility
-
-                ShowFormsDefaults(1, 0)
-                frm_start_Agent.Visible = True
-
-                ' button config
-
-                btn_main_next.Visible = True
-                btn_main_back.Visible = False
-                btn_main_back.Text = "Back"
-                btn_main_next.Text = "Exit"
-
-                ' Label Menue Config
-
-                SetFontUnderline(lbl_main_start_agent, 1)
 
             Case "frm_uninstall_start"
 
@@ -543,11 +525,11 @@ Public Class frm_main
         '    SetFontUnderline(lbl_main_finish, 0)
     End Sub
 
-    Private Sub lbl_main_start_agent_MouseHover(sender As Object, e As EventArgs) Handles lbl_main_start_agent.MouseHover
+    Private Sub lbl_main_start_agent_MouseHover(sender As Object, e As EventArgs)
         ' SetFontUnderline(lbl_main_start_agent, 1)
     End Sub
 
-    Private Sub lbl_main_start_agent_MouseLeave(sender As Object, e As EventArgs) Handles lbl_main_start_agent.MouseLeave
+    Private Sub lbl_main_start_agent_MouseLeave(sender As Object, e As EventArgs)
         '    SetFontUnderline(lbl_main_start_agent, 0)
     End Sub
 

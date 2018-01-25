@@ -35,8 +35,20 @@ Module Others
             result = 1
             Return result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
-            Return result
+            For Each ps As Process In Process.GetProcesses
+                If ps.ProcessName = "Yubico Agent Service" Then
+                    ps.Kill()
+                End If
+            Next
+            For Each ps As Process In Process.GetProcesses
+                If ps.ProcessName = "Yubico Agent Service" Then
+                    result = 0
+                    Return result
+                End If
+            Next
+
+            '  MessageBox.Show(ex.Message)
+            ' Return result
         End Try
     End Function
 
@@ -47,7 +59,7 @@ Module Others
             Dim ApplicationName As String = "Yubico Agent (Alpha)"
             Dim ApplicationVersion As String = "0.0.1.0"
             Dim ApplicationPublisher As String = "RW300984 (Ronny Wolf)"
-            Dim ApplicationUnInstallPath As String = install_path & "\unintall.exe"
+            Dim ApplicationUnInstallPath As String = install_path & "\Yubico Installer.exe"
             Dim ApplicationInstallDirectory As String = install_path
 
             'Opening the Uninstall RegistryKey (don't forget to set the writable flag to true)
@@ -158,7 +170,23 @@ Module Others
             Dim count As Integer
             For Each svc As ServiceController In ServiceController.GetServices
                 If svc.ServiceName = "yubi_agent_svc" Then
-                    count = count + 1
+                    Dim ps_sc_delete As New Process
+                    With ps_sc_delete.StartInfo
+                        .FileName = "sc.exe"
+                        .Arguments = "delete yubi_agent_svc"
+                        .Verb = "runas"
+                        .UseShellExecute = True
+                        .CreateNoWindow = True
+                        .WindowStyle = ProcessWindowStyle.Hidden
+                    End With
+                    ps_sc_delete.Start()
+                    ps_sc_delete.WaitForExit()
+                    Threading.Thread.Sleep(5000)
+                    For Each svc_after_sc As ServiceController In ServiceController.GetServices
+                        If svc.ServiceName = "yubi_agent_svc" Then
+                            count = count + 1
+                        End If
+                    Next
                 End If
             Next
             If count = 0 Then
@@ -166,6 +194,7 @@ Module Others
             End If
             Return result
         Catch ex As Exception
+            MessageBox.Show(ex.Message)
             Return result
         End Try
     End Function
@@ -235,6 +264,7 @@ Module Others
             Else
                 Directory.CreateDirectory(install_path)
             End If
+            File.Copy("Yubico Installer.exe", install_path & "/Yubico Installer.exe")
             result = 1
             Return result
         Catch ex As Exception

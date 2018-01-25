@@ -120,10 +120,10 @@ Partial Class frm_main_action
         Me.RadioButton2.Enabled = False
         Me.RadioButton2.Location = New System.Drawing.Point(3, 76)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(212, 17)
+        Me.RadioButton2.Size = New System.Drawing.Size(65, 17)
         Me.RadioButton2.TabIndex = 1
         Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Uninstall (not available in Alpha version)"
+        Me.RadioButton2.Text = "Uninstall"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'RadioButton3

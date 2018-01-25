@@ -51,14 +51,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ProcessExtensions">
-      <HintPath>..\..\..\..\..\Desktop\CreateProcessAsUser-master\ProcessExtensions\bin\ProcessExtensions.dll</HintPath>
+      <HintPath>Libraries\ProcessExtensions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
@@ -71,7 +71,6 @@
     <Import Include="System.Data" />
     <Import Include="System.Diagnostics" />
     <Import Include="System.Linq" />
-    <Import Include="System.Xml.Linq" />
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>

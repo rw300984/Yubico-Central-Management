@@ -81,46 +81,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property install_pic1() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("install_pic1", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property install_pic2() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("install_pic2", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property install_pic3() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("install_pic3", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property install_pic4() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("install_pic4", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized resource of type System.Byte[].
         '''</summary>
         Friend ReadOnly Property Yubico_Agent() As Byte()
@@ -137,6 +97,16 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("Yubico_icon", resourceCulture)
                 Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property yubikey_insert() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("yubikey_insert", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
     End Module

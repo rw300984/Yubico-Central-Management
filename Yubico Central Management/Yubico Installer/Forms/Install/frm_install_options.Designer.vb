@@ -73,12 +73,13 @@ Partial Class frm_install_options
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Enabled = False
         Me.RadioButton2.Location = New System.Drawing.Point(3, 120)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(96, 17)
+        Me.RadioButton2.Size = New System.Drawing.Size(243, 17)
         Me.RadioButton2.TabIndex = 3
         Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Business mode"
+        Me.RadioButton2.Text = "Business mode (not available in Alpha version)"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'GroupBox2

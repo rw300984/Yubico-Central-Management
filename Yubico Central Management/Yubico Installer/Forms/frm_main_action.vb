@@ -9,8 +9,8 @@ Public Class frm_main_action
                 RadioButton1.Enabled = False
                 RadioButton2.Checked = True
                 RadioButton2.Enabled = True
-                RadioButton3.Enabled = True
-                RadioButton4.Enabled = True
+                '   RadioButton3.Enabled = True
+                '  RadioButton4.Enabled = True
                 RadioButton1.Text = "Install (already installed)"
                 With My.Computer.Registry.LocalMachine.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Uninstall\Yubico Agent (Alpha)", True)
                     cfg.install_path_custom = .GetValue("InstallLocation").ToString
@@ -20,11 +20,12 @@ Public Class frm_main_action
                 RadioButton1.Checked = True
                 RadioButton1.Text = "Install"
                 RadioButton2.Enabled = False
-                RadioButton3.Enabled = False
-                RadioButton4.Enabled = False
+                '    RadioButton3.Enabled = False
+                '   RadioButton4.Enabled = False
             End If
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            My.Forms.frm_main.RoundedPanel1.Visible = True
+            My.Forms.frm_main.Label1.Text = ex.Message
         End Try
 
     End Sub

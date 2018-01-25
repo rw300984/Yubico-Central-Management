@@ -153,12 +153,6 @@
     <Compile Include="Forms\Install\frm_install_path.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_start_agent.Designer.vb">
-      <DependentUpon>frm_start_agent.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frm_start_agent.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\Install\frm_install_finish.Designer.vb">
       <DependentUpon>frm_install_finish.vb</DependentUpon>
     </Compile>
@@ -221,9 +215,6 @@
     <EmbeddedResource Include="Forms\frm_main.resx">
       <DependentUpon>frm_main.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_start_agent.resx">
-      <DependentUpon>frm_start_agent.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Unintall\frm_uninstall_finish.resx">
       <DependentUpon>frm_uninstall_finish.vb</DependentUpon>
     </EmbeddedResource>
@@ -274,6 +265,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\install_pic4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yubikey_connect.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yubikey_insert.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

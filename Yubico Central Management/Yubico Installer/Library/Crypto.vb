@@ -85,12 +85,15 @@ Module Crypto
     Public Function GeneratePassword(ByVal length As Byte) As String
         Dim RawChars As String = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuwvxyz!§$%&/()=?*':;,.-_><@"
         Dim str As New System.Text.StringBuilder
-        For t As Byte = 1 To length 'length of req key
+        Do Until ValidatePassword(str.ToString) = True
+            str.Clear()
+            For t As Byte = 1 To length 'length of req key
             Dim xx As Integer
-            Randomize()
-            xx = Rnd() * (Len(RawChars) - 1) 'number of rawchars
-            str.Append(RawChars.Trim.Chars(xx))
-        Next
+                Randomize()
+                xx = Rnd() * (Len(RawChars) - 1) 'number of rawchars
+                str.Append(RawChars.Trim.Chars(xx))
+            Next
+        Loop
         Return str.ToString
     End Function
 End Module

@@ -30,14 +30,11 @@ Partial Class frm_main
         Me.btn_main_next = New System.Windows.Forms.Button()
         Me.btn_main_back = New System.Windows.Forms.Button()
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
-        Me.RoundedPanel1 = New Yubico_Installer.RoundedPanel()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
-        Me.lbl_main_start_agent = New System.Windows.Forms.Label()
         Me.lbl_main_finish = New System.Windows.Forms.Label()
         Me.lbl_main_start_install = New System.Windows.Forms.Label()
         Me.lbl_main_options = New System.Windows.Forms.Label()
@@ -45,15 +42,17 @@ Partial Class frm_main
         Me.lbl_main_path = New System.Windows.Forms.Label()
         Me.lbl_main_updates = New System.Windows.Forms.Label()
         Me.lbl_main_eula = New System.Windows.Forms.Label()
+        Me.RoundedPanel1 = New Yubico_Installer.RoundedPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
-        Me.RoundedPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel5.SuspendLayout()
         Me.TableLayoutPanel6.SuspendLayout()
+        Me.RoundedPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -171,30 +170,6 @@ Partial Class frm_main
         Me.TableLayoutPanel4.Size = New System.Drawing.Size(500, 354)
         Me.TableLayoutPanel4.TabIndex = 2
         '
-        'RoundedPanel1
-        '
-        Me.RoundedPanel1.BackColor = System.Drawing.Color.LightCoral
-        Me.RoundedPanel1.BorderColor = System.Drawing.Color.LightCoral
-        Me.RoundedPanel1.Controls.Add(Me.Label1)
-        Me.RoundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RoundedPanel1.Edge = 15
-        Me.RoundedPanel1.Location = New System.Drawing.Point(53, 331)
-        Me.RoundedPanel1.Name = "RoundedPanel1"
-        Me.RoundedPanel1.Size = New System.Drawing.Size(419, 20)
-        Me.RoundedPanel1.TabIndex = 0
-        Me.RoundedPanel1.Visible = False
-        '
-        'Label1
-        '
-        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 4)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(130, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Error: Please check logfile"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'Panel2
         '
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -248,7 +223,6 @@ Partial Class frm_main
         Me.TableLayoutPanel6.ColumnCount = 1
         Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel6.Controls.Add(Me.lbl_main_start_agent, 0, 7)
         Me.TableLayoutPanel6.Controls.Add(Me.lbl_main_finish, 0, 6)
         Me.TableLayoutPanel6.Controls.Add(Me.lbl_main_start_install, 0, 5)
         Me.TableLayoutPanel6.Controls.Add(Me.lbl_main_options, 0, 4)
@@ -270,19 +244,6 @@ Partial Class frm_main
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel6.Size = New System.Drawing.Size(187, 320)
         Me.TableLayoutPanel6.TabIndex = 1
-        '
-        'lbl_main_start_agent
-        '
-        Me.lbl_main_start_agent.AutoSize = True
-        Me.lbl_main_start_agent.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lbl_main_start_agent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.lbl_main_start_agent.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lbl_main_start_agent.Location = New System.Drawing.Point(3, 280)
-        Me.lbl_main_start_agent.Name = "lbl_main_start_agent"
-        Me.lbl_main_start_agent.Size = New System.Drawing.Size(181, 40)
-        Me.lbl_main_start_agent.TabIndex = 7
-        Me.lbl_main_start_agent.Text = "Start Yubico Agent"
-        Me.lbl_main_start_agent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lbl_main_finish
         '
@@ -375,6 +336,30 @@ Partial Class frm_main
         Me.lbl_main_eula.Text = "End User License Agreement"
         Me.lbl_main_eula.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'RoundedPanel1
+        '
+        Me.RoundedPanel1.BackColor = System.Drawing.Color.LightCoral
+        Me.RoundedPanel1.BorderColor = System.Drawing.Color.LightCoral
+        Me.RoundedPanel1.Controls.Add(Me.Label1)
+        Me.RoundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RoundedPanel1.Edge = 15
+        Me.RoundedPanel1.Location = New System.Drawing.Point(53, 331)
+        Me.RoundedPanel1.Name = "RoundedPanel1"
+        Me.RoundedPanel1.Size = New System.Drawing.Size(419, 20)
+        Me.RoundedPanel1.TabIndex = 0
+        Me.RoundedPanel1.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 4)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(130, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Error: Please check logfile"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'frm_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -390,12 +375,12 @@ Partial Class frm_main
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel4.ResumeLayout(False)
-        Me.RoundedPanel1.ResumeLayout(False)
-        Me.RoundedPanel1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.TableLayoutPanel5.ResumeLayout(False)
         Me.TableLayoutPanel6.ResumeLayout(False)
         Me.TableLayoutPanel6.PerformLayout()
+        Me.RoundedPanel1.ResumeLayout(False)
+        Me.RoundedPanel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -412,7 +397,6 @@ Partial Class frm_main
     Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents TableLayoutPanel6 As TableLayoutPanel
-    Friend WithEvents lbl_main_start_agent As Label
     Friend WithEvents lbl_main_finish As Label
     Friend WithEvents lbl_main_start_install As Label
     Friend WithEvents lbl_main_options As Label

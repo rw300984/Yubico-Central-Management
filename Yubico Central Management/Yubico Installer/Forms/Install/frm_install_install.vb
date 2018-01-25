@@ -23,37 +23,45 @@ Public Class frm_install_install
         Else
             password = cfg.install_password_custom
         End If
+
         bgw_install.ReportProgress(100, "Prepare")
+
         cfg.install_success_status = StopAllServicesAndProcess()
         If cfg.install_success_status = 0 Then
             Exit Sub
         End If
         bgw_install.ReportProgress(100, "StopService")
+
         cfg.install_success_status = CreateFolderStructure(install_path)
         If cfg.install_success_status = 0 Then
             Exit Sub
         End If
         bgw_install.ReportProgress(100, "CreateFolder")
+
         cfg.install_success_status = SetPermissions(install_path)
         If cfg.install_success_status = 0 Then
             Exit Sub
         End If
         bgw_install.ReportProgress(100, "SetPermissions")
+
         cfg.install_success_status = ExtractApplication(install_path)
         If cfg.install_success_status = 0 Then
             Exit Sub
         End If
         bgw_install.ReportProgress(100, "ExtractAgent")
+
         cfg.install_success_status = RegisterDLLs(install_path & "\plugins\ykclient\yubiclientapi.dll")
         If cfg.install_success_status = 0 Then
             Exit Sub
         End If
         bgw_install.ReportProgress(100, "RegisterDLL")
+
         cfg.install_success_status = RegisterInstallation(install_path)
         If cfg.install_success_status = 0 Then
             Exit Sub
         End If
         bgw_install.ReportProgress(100, "RegisterInstall")
+
         cfg.install_success_status = InstallService(install_path & "\services\Yubico Agent Service.exe")
         If cfg.install_success_status = 0 Then
             Exit Sub
@@ -64,11 +72,13 @@ Public Class frm_install_install
             Exit Sub
         End If
         bgw_install.ReportProgress(100, "DefaultConfig")
+
         cfg.install_success_status = StartService()
         If cfg.install_success_status = 0 Then
             Exit Sub
         End If
         bgw_install.ReportProgress(100, "StartService")
+
     End Sub
 
     Private Sub bgw_install_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles bgw_install.ProgressChanged
@@ -162,14 +172,19 @@ Public Class frm_install_install
         End If
         cfg.install_rollback_status = StopAllServicesAndProcess()
         bgw_rollback.ReportProgress(100, "StopAllServicesAndProcess")
+
         cfg.install_rollback_status = UninstallService(install_path & "\services\Yubico Agent Service.exe")
         bgw_rollback.ReportProgress(100, "UninstallService")
+
         cfg.install_rollback_status = UnRegisterDLLs(install_path & "\plugins\ykclient\yubiclientapi.dll")
         bgw_rollback.ReportProgress(100, "UnregisterDll")
+
         cfg.install_rollback_status = UnregisterInstallation(install_path)
         bgw_rollback.ReportProgress(100, "UnregisterInstall")
+
         cfg.install_rollback_status = RemoveFolderStructure(install_path)
         bgw_rollback.ReportProgress(100, "RemoveFolderStructure")
+
     End Sub
 
     Private Sub bgw_rollback_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles bgw_rollback.ProgressChanged
@@ -203,7 +218,7 @@ Public Class frm_install_install
 
             Case "RemoveFolderStructure"
 
-                lbl_install_install_status.Text = "Rollback: Remove installer entries..."
+                lbl_install_install_status.Text = "Rollback: Remove files and folders..."
                 lbl_install_install_status.Update()
                 CustomizableProgressBar2.Value = 100
                 SmoothProgressBarStatusrewind()
@@ -217,4 +232,5 @@ Public Class frm_install_install
         My.Forms.frm_main.btn_main_next.Visible = True
         My.Forms.frm_main.btn_main_next.Enabled = True
     End Sub
+
 End Class
