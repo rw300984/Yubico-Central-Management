@@ -464,7 +464,6 @@ Public Class frm_main
         Threading.Thread.Sleep(5000)
         Application.Exit()
     End Function
-
     Public Function CheckConfigFileAndLoadInitFrm(ByVal Mode As Integer)
         Select Case Mode
             Case 0
@@ -495,8 +494,6 @@ Public Class frm_main
         FillTextWithLanguagefile()
     End Function
 
-
-
     Public Function FillGlobalFixedVariables()
         cfg_config.integrity_lang_de_file = Application.StartupPath & "\Lang\de.xml"
         cfg_config.integrity_lang_en_file = Application.StartupPath & "\Lang\en.xml"
@@ -512,7 +509,40 @@ Public Class frm_main
     End Function
 
     Private Sub bgw_close_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_close.DoWork
+        Dim count As Integer = 0
+        Dim org_externalip As String = GetExternalIP()
         Do While bgw_close_status = 0
+            Dim geo_info As geoip_data
+            Select Case count
+                Case 150
+                    Dim new_externalip As String = GetExternalIP()
+                    If org_externalip = new_externalip Then
+                    Else
+                        org_externalip = new_externalip
+                        Select Case cfg_geoip.geoip_service_mode
+                            Case "local"
+                                geo_info = GetLocationFromMaxMindDB(new_externalip)
+                            Case "web"
+                                geo_info = GetLocationFromWeb()
+                        End Select
+                    End If
+                Case 0
+                    Select Case cfg_geoip.geoip_service_mode
+                        Case "local"
+                            geo_info = GetLocationFromMaxMindDB(org_externalip)
+                        Case "web"
+                            geo_info = GetLocationFromWeb()
+                    End Select
+            End Select
+            If count = 150 Or count = 0 Then
+                If org_externalip <> "" Then
+                    Dim FileWriter As New StreamWriter(Application.StartupPath & "/temp/geo.cache", True)
+                    FileWriter.WriteLine(DateTime.Now & "," & geo_info.ip & "," & geo_info.country_code & "," & geo_info.country_name & "," & geo_info.region_code & "," & geo_info.region_name & "," & geo_info.city_name & "," & geo_info.city_postal & "," & geo_info.latitude & "," & geo_info.longtitude)
+                    FileWriter.Close()
+                End If
+                count = 0
+            End If
+            count = count + 1
             If File.Exists(cfg_config.temp_path & "close.bin") Then
                 File.Delete(cfg_config.temp_path & "close.bin")
                 Application.Exit()
