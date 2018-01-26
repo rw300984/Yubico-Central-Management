@@ -30,6 +30,8 @@ Partial Class frm_main
         Me.btn_main_next = New System.Windows.Forms.Button()
         Me.btn_main_back = New System.Windows.Forms.Button()
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
+        Me.RoundedPanel1 = New Yubico_Installer.RoundedPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
@@ -42,17 +44,15 @@ Partial Class frm_main
         Me.lbl_main_path = New System.Windows.Forms.Label()
         Me.lbl_main_updates = New System.Windows.Forms.Label()
         Me.lbl_main_eula = New System.Windows.Forms.Label()
-        Me.RoundedPanel1 = New Yubico_Installer.RoundedPanel()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
+        Me.RoundedPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel5.SuspendLayout()
         Me.TableLayoutPanel6.SuspendLayout()
-        Me.RoundedPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -169,6 +169,30 @@ Partial Class frm_main
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.0!))
         Me.TableLayoutPanel4.Size = New System.Drawing.Size(500, 354)
         Me.TableLayoutPanel4.TabIndex = 2
+        '
+        'RoundedPanel1
+        '
+        Me.RoundedPanel1.BackColor = System.Drawing.Color.LightCoral
+        Me.RoundedPanel1.BorderColor = System.Drawing.Color.LightCoral
+        Me.RoundedPanel1.Controls.Add(Me.Label1)
+        Me.RoundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RoundedPanel1.Edge = 15
+        Me.RoundedPanel1.Location = New System.Drawing.Point(53, 331)
+        Me.RoundedPanel1.Name = "RoundedPanel1"
+        Me.RoundedPanel1.Size = New System.Drawing.Size(419, 20)
+        Me.RoundedPanel1.TabIndex = 0
+        Me.RoundedPanel1.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 4)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(130, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Error: Please check logfile"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Panel2
         '
@@ -336,30 +360,6 @@ Partial Class frm_main
         Me.lbl_main_eula.Text = "End User License Agreement"
         Me.lbl_main_eula.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'RoundedPanel1
-        '
-        Me.RoundedPanel1.BackColor = System.Drawing.Color.LightCoral
-        Me.RoundedPanel1.BorderColor = System.Drawing.Color.LightCoral
-        Me.RoundedPanel1.Controls.Add(Me.Label1)
-        Me.RoundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RoundedPanel1.Edge = 15
-        Me.RoundedPanel1.Location = New System.Drawing.Point(53, 331)
-        Me.RoundedPanel1.Name = "RoundedPanel1"
-        Me.RoundedPanel1.Size = New System.Drawing.Size(419, 20)
-        Me.RoundedPanel1.TabIndex = 0
-        Me.RoundedPanel1.Visible = False
-        '
-        'Label1
-        '
-        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 4)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(130, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Error: Please check logfile"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'frm_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -375,12 +375,12 @@ Partial Class frm_main
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel4.ResumeLayout(False)
+        Me.RoundedPanel1.ResumeLayout(False)
+        Me.RoundedPanel1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.TableLayoutPanel5.ResumeLayout(False)
         Me.TableLayoutPanel6.ResumeLayout(False)
         Me.TableLayoutPanel6.PerformLayout()
-        Me.RoundedPanel1.ResumeLayout(False)
-        Me.RoundedPanel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

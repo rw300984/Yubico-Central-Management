@@ -5,33 +5,19 @@
         End If
     End Sub
 
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+    Private Sub RadioButtons_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged, RadioButton2.CheckedChanged
         If RadioButton1.Checked Then
             RadioButton2.Checked = False
             GroupBox2.Enabled = False
             cfg.install_path_mode = 0
             cfg.install_path_success = 1
+            TextBox1.BackColor = Color.White
             My.Forms.frm_main.btn_main_next.Enabled = True
         Else
             RadioButton2.Checked = True
             GroupBox2.Enabled = True
             cfg.install_path_mode = 1
             ValidatePath(TextBox1.Text)
-        End If
-    End Sub
-
-    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
-        If RadioButton2.Checked Then
-            RadioButton1.Checked = False
-            GroupBox1.Enabled = False
-            cfg.install_path_mode = 1
-            ValidatePath(TextBox1.Text)
-        Else
-            RadioButton1.Checked = True
-            GroupBox1.Enabled = True
-            cfg.install_path_mode = 1
-            cfg.install_path_success = 1
-            My.Forms.frm_main.btn_main_next.Enabled = True
         End If
     End Sub
 

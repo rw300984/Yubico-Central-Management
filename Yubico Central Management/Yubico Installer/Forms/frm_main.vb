@@ -238,6 +238,7 @@ Public Class frm_main
         RoundedPanel1.Visible = False
 
     End Function
+
     Public Function ShowForms(ByVal frm As String)
         Select Case frm
             Case "nothing"
@@ -425,7 +426,7 @@ Public Class frm_main
         cfg.install_password_success = 0
         cfg.install_path_mode = 0
         cfg.install_path_success = 0
-        cfg.install_update_mode = 0
+        cfg.install_update_mode = 1
         cfg.install_update_success = 0
         cfg.install_path_default = My.Computer.FileSystem.SpecialDirectories.ProgramFiles & "\Yubico Agent"
     End Function
@@ -440,24 +441,27 @@ Public Class frm_main
         Application.Exit()
     End Sub
 
-    Private Sub lbl_main_eula_Click(sender As Object, e As EventArgs) Handles lbl_main_eula.Click
-        ShowForms("frm_read_eula")
+    Private Sub Label_Click(sender As Label, e As EventArgs) Handles lbl_main_password.Click, lbl_main_options.Click, lbl_main_path.Click, lbl_main_updates.Click, lbl_main_eula.Click
+        Select Case sender.Name
+            Case "lbl_main_password"
+                ShowForms("frm_install_password")
+            Case "lbl_main_options"
+                ShowForms("frm_install_options")
+            Case "lbl_main_path"
+                ShowForms("frm_install_path")
+            Case "lbl_main_updates"
+                ShowForms("frm_install_update")
+            Case "lbl_main_eula"
+                ShowForms("frm_read_eula")
+        End Select
     End Sub
 
-    Private Sub lbl_main_updates_Click(sender As Object, e As EventArgs) Handles lbl_main_updates.Click
-        ShowForms("frm_install_update")
+    Private Sub Label_MouseHover(sender As Label, e As EventArgs) Handles lbl_main_password.MouseHover, lbl_main_options.MouseHover, lbl_main_path.MouseHover, lbl_main_updates.MouseHover, lbl_main_eula.MouseHover
+        SetFontUnderline(sender, 1)
     End Sub
 
-    Private Sub lbl_main_path_Click(sender As Object, e As EventArgs) Handles lbl_main_path.Click
-        ShowForms("frm_install_path")
-    End Sub
-
-    Private Sub lbl_main_password_Click(sender As Object, e As EventArgs) Handles lbl_main_password.Click
-        ShowForms("frm_install_password")
-    End Sub
-
-    Private Sub lbl_main_options_Click(sender As Object, e As EventArgs) Handles lbl_main_options.Click
-        ShowForms("frm_install_options")
+    Private Sub Label_MouseLeave(sender As Label, e As EventArgs) Handles lbl_main_password.MouseLeave, lbl_main_options.MouseLeave, lbl_main_path.MouseLeave, lbl_main_updates.MouseLeave, lbl_main_eula.MouseLeave
+        SetFontUnderline(sender, 0)
     End Sub
 
     Public Function SetFontUnderline(ByVal label As Label, mode As Integer)
@@ -469,71 +473,7 @@ Public Class frm_main
         End Select
     End Function
 
-    Private Sub lbl_main_eula_MouseHover(sender As Object, e As EventArgs) Handles lbl_main_eula.MouseHover
-        SetFontUnderline(lbl_main_eula, 1)
-    End Sub
-
-    Private Sub lbl_main_eula_MouseLeave(sender As Object, e As EventArgs) Handles lbl_main_eula.MouseLeave
-        SetFontUnderline(lbl_main_eula, 0)
-    End Sub
-
-    Private Sub lbl_main_updates_MouseHover(sender As Object, e As EventArgs) Handles lbl_main_updates.MouseHover
-        SetFontUnderline(lbl_main_updates, 1)
-    End Sub
-
-    Private Sub lbl_main_updates_MouseLeave(sender As Object, e As EventArgs) Handles lbl_main_updates.MouseLeave
-        SetFontUnderline(lbl_main_updates, 0)
-    End Sub
-
-    Private Sub lbl_main_path_MouseHover(sender As Object, e As EventArgs) Handles lbl_main_path.MouseHover
-        SetFontUnderline(lbl_main_path, 1)
-    End Sub
-
-    Private Sub lbl_main_path_MouseLeave(sender As Object, e As EventArgs) Handles lbl_main_path.MouseLeave
-        SetFontUnderline(lbl_main_path, 0)
-    End Sub
-
-    Private Sub lbl_main_password_MouseHover(sender As Object, e As EventArgs) Handles lbl_main_password.MouseHover
-        SetFontUnderline(lbl_main_password, 1)
-    End Sub
-
-    Private Sub lbl_main_password_MouseLeave(sender As Object, e As EventArgs) Handles lbl_main_password.MouseLeave
-        SetFontUnderline(lbl_main_password, 0)
-    End Sub
-
-    Private Sub lbl_main_options_MouseHover(sender As Object, e As EventArgs) Handles lbl_main_options.MouseHover
-        SetFontUnderline(lbl_main_options, 1)
-    End Sub
-
-    Private Sub lbl_main_options_MouseLeave(sender As Object, e As EventArgs) Handles lbl_main_options.MouseLeave
-        SetFontUnderline(lbl_main_options, 0)
-    End Sub
-
-    Private Sub lbl_main_start_install_MouseHover(sender As Object, e As EventArgs) Handles lbl_main_start_install.MouseHover
-        '   SetFontUnderline(lbl_main_start_install, 1)
-    End Sub
-
-    Private Sub lbl_main_start_install_MouseLeave(sender As Object, e As EventArgs) Handles lbl_main_start_install.MouseLeave
-        '  SetFontUnderline(lbl_main_start_install, 0)
-    End Sub
-
-    Private Sub Llbl_main_finish_MouseHover(sender As Object, e As EventArgs) Handles lbl_main_finish.MouseHover
-        '  SetFontUnderline(lbl_main_finish, 1)
-    End Sub
-
-    Private Sub lbl_main_finish_MouseLeave(sender As Object, e As EventArgs) Handles lbl_main_finish.MouseLeave
-        '    SetFontUnderline(lbl_main_finish, 0)
-    End Sub
-
-    Private Sub lbl_main_start_agent_MouseHover(sender As Object, e As EventArgs)
-        ' SetFontUnderline(lbl_main_start_agent, 1)
-    End Sub
-
-    Private Sub lbl_main_start_agent_MouseLeave(sender As Object, e As EventArgs)
-        '    SetFontUnderline(lbl_main_start_agent, 0)
-    End Sub
-
-    Private Sub TableLayoutPanel2_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel2.MouseDown
+    Private Sub MoveWindow_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel2.MouseDown, TableLayoutPanel6.MouseDown, TableLayoutPanel5.MouseDown, TableLayoutPanel4.MouseDown, TableLayoutPanel3.MouseDown, TableLayoutPanel1.MouseDown, RoundedPanel1.MouseDown, PictureBox1.MouseDown, Panel3.MouseDown, Panel2.MouseDown, Panel1.MouseDown, lbl_main_updates.MouseDown, lbl_main_start_install.MouseDown, lbl_main_path.MouseDown, lbl_main_password.MouseDown, lbl_main_options.MouseDown, lbl_main_finish.MouseDown, lbl_main_eula.MouseDown, Label1.MouseDown, btn_main_next.MouseDown, btn_main_back.MouseDown
         If e.Button = System.Windows.Forms.MouseButtons.Left Then
             ' Get the new position
             drag = True
@@ -542,104 +482,17 @@ Public Class frm_main
         End If
     End Sub
 
-    Private Sub TableLayoutPanel2_MouseUp(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel2.MouseUp
+    Private Sub MoveWindow_MouseUp(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel2.MouseUp, TableLayoutPanel6.MouseUp, TableLayoutPanel5.MouseUp, TableLayoutPanel4.MouseUp, TableLayoutPanel3.MouseUp, TableLayoutPanel1.MouseUp, RoundedPanel1.MouseUp, PictureBox1.MouseUp, Panel3.MouseUp, Panel2.MouseUp, Panel1.MouseUp, lbl_main_updates.MouseUp, lbl_main_start_install.MouseUp, lbl_main_path.MouseUp, lbl_main_password.MouseUp, lbl_main_options.MouseUp, lbl_main_finish.MouseUp, lbl_main_eula.MouseUp, Label1.MouseUp, btn_main_next.MouseUp, btn_main_back.MouseUp
         If e.Button = System.Windows.Forms.MouseButtons.Left Then
             drag = False
         End If
     End Sub
 
-    Private Sub TableLayoutPanel2_MouseMove(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel2.MouseMove
+    Private Sub MoveWindow_MouseMove(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel2.MouseMove, TableLayoutPanel6.MouseMove, TableLayoutPanel5.MouseMove, TableLayoutPanel4.MouseMove, TableLayoutPanel3.MouseMove, TableLayoutPanel1.MouseMove, RoundedPanel1.MouseMove, PictureBox1.MouseMove, Panel3.MouseMove, Panel2.MouseMove, Panel1.MouseMove, lbl_main_updates.MouseMove, lbl_main_start_install.MouseMove, lbl_main_path.MouseMove, lbl_main_password.MouseMove, lbl_main_options.MouseMove, lbl_main_finish.MouseMove, lbl_main_eula.MouseMove, Label1.MouseMove, btn_main_next.MouseMove, btn_main_back.MouseMove
         If drag Then
             Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
             Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
         End If
     End Sub
 
-    Private Sub TableLayoutPanel5_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel5.MouseDown
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            ' Get the new position
-            drag = True
-            mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
-            mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
-        End If
-    End Sub
-
-    Private Sub TableLayoutPanel5_MouseMove(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel5.MouseMove
-        If drag Then
-            Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
-            Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
-        End If
-    End Sub
-
-    Private Sub TableLayoutPanel5_MouseUp(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel5.MouseUp
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            drag = False
-        End If
-    End Sub
-
-    Private Sub TableLayoutPanel3_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel3.MouseDown
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            ' Get the new position
-            drag = True
-            mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
-            mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
-        End If
-    End Sub
-
-    Private Sub TableLayoutPanel3_MouseMove(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel3.MouseMove
-        If drag Then
-            Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
-            Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
-        End If
-    End Sub
-
-    Private Sub TableLayoutPanel3_MouseUp(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel3.MouseUp
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            drag = False
-        End If
-    End Sub
-
-    Private Sub TableLayoutPanel4_MouseUp(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel4.MouseUp
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            drag = False
-        End If
-    End Sub
-
-    Private Sub TableLayoutPanel4_MouseMove(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel4.MouseMove
-        If drag Then
-            Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
-            Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
-        End If
-    End Sub
-
-    Private Sub TableLayoutPanel4_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel4.MouseDown
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            ' Get the new position
-            drag = True
-            mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
-            mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
-        End If
-    End Sub
-
-    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            ' Get the new position
-            drag = True
-            mousex = System.Windows.Forms.Cursor.Position.X - Me.Left
-            mousey = System.Windows.Forms.Cursor.Position.Y - Me.Top
-        End If
-    End Sub
-
-    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
-        If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            drag = False
-        End If
-    End Sub
-
-    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
-        If drag Then
-            Me.Top = System.Windows.Forms.Cursor.Position.Y - mousey
-            Me.Left = System.Windows.Forms.Cursor.Position.X - mousex
-        End If
-    End Sub
 End Class

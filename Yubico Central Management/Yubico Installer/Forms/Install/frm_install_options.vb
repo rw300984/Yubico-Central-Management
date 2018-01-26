@@ -4,11 +4,16 @@
     Dim config_textbox2 As Integer = 0
     Dim config_textbox3 As Integer = 0
     Dim config_textbox6 As Integer = 0
-    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+
+    Private Sub RadioButtons_CheckedChanged(sender As RadioButton, e As EventArgs) Handles RadioButton1.CheckedChanged, RadioButton2.CheckedChanged
         cfg.install_options_success = 0
         If RadioButton2.Checked Then
             RadioButton1.Checked = False
             GroupBox1.Enabled = False
+            ComboBox1.Enabled = True
+            TextBox2.Enabled = True
+            TextBox3.Enabled = True
+            TextBox6.Enabled = True
             cfg.install_options_mode = "Business"
             cfg.install_options_success = 0
             If ComboBox1.Text <> "" Then
@@ -31,40 +36,12 @@
         Else
             RadioButton1.Checked = True
             GroupBox1.Enabled = True
+            ComboBox1.Enabled = False
+            TextBox2.Enabled = False
+            TextBox3.Enabled = False
+            TextBox6.Enabled = False
             cfg.install_options_mode = "Personal"
             cfg.install_options_success = 1
-        End If
-    End Sub
-
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
-        cfg.install_options_success = 0
-        If RadioButton1.Checked Then
-            RadioButton2.Checked = False
-            GroupBox2.Enabled = False
-            cfg.install_options_mode = "Personal"
-            cfg.install_options_success = 1
-        Else
-            RadioButton2.Checked = True
-            GroupBox2.Enabled = True
-            cfg.install_options_mode = "Business"
-            cfg.install_options_success = 0
-            If ComboBox1.Text <> "" Then
-                config_combobox = 1
-            End If
-            If TextBox2.Text <> "" Then
-                config_textbox2 = 1
-            End If
-            If TextBox3.Text <> "" Then
-                config_textbox3 = 1
-            End If
-            If TextBox6.Text <> "" Then
-                config_textbox6 = 1
-            End If
-            If config_combobox + config_textbox2 + config_textbox3 + config_textbox6 = 4 Then
-                cfg.install_options_success = 1
-            Else
-                cfg.install_options_success = 0
-            End If
         End If
     End Sub
 

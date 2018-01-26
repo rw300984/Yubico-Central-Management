@@ -5,7 +5,7 @@
         End If
     End Sub
 
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+    Private Sub RadioButtons_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged, RadioButton2.CheckedChanged
         If RadioButton1.Checked Then
             RadioButton2.Checked = False
             GroupBox2.Enabled = False
@@ -27,31 +27,6 @@
                 My.Forms.frm_main.btn_main_next.Enabled = True
                 TextBox3.BackColor = Color.LightGreen
             End If
-        End If
-    End Sub
-
-    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
-        If RadioButton2.Checked Then
-            RadioButton1.Checked = False
-            GroupBox1.Enabled = False
-            cfg.install_password_mode = 1
-            If Crypto.ValidatePassword(TextBox3.Text) = False Then
-                cfg.install_password_success = 0
-                TextBox3.BackColor = Color.LightCoral
-                My.Forms.frm_main.btn_main_next.Enabled = False
-            Else
-                cfg.install_password_success = 1
-                My.Forms.frm_main.btn_main_next.Enabled = True
-                TextBox3.BackColor = Color.LightGreen
-            End If
-        Else
-            RadioButton1.Checked = True
-            GroupBox1.Enabled = True
-            cfg.install_password_mode = 0
-            cfg.install_password_random = GeneratePassword(12)
-            cfg.install_password_success = 1
-            My.Forms.frm_main.btn_main_next.Enabled = True
-            TextBox3.BackColor = Color.White
         End If
     End Sub
 

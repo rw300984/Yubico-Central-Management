@@ -251,8 +251,10 @@ Partial Class frm_install_options
         Me.TextBox4.Location = New System.Drawing.Point(3, 106)
         Me.TextBox4.Multiline = True
         Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.ReadOnly = True
         Me.TextBox4.Size = New System.Drawing.Size(377, 15)
         Me.TextBox4.TabIndex = 1
+        Me.TextBox4.TabStop = False
         Me.TextBox4.Text = "Authentication: Basic = Username/Password | Integrated: Logged on user"
         '
         'GroupBox1
