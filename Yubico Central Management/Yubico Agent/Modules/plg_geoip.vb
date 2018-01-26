@@ -1,5 +1,4 @@
-﻿
-Module plg_geoip
+﻿Module plg_geoip
     Public Structure geoip
         Dim external_ip1 As String
         Dim external_ip2 As String
