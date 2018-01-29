@@ -30,7 +30,12 @@ Public Class frm_monitor
                 lbl_monitor_yub_vendor_output.Text = ykinfo(0)
                 lbl_monitor_yub_model_output.Text = ykinfo(1)
                 lbl_monitor_yub_firmware_output.Text = ykinfo(3)
-                lbl_monitor_yub_serial_output.Text = ykinfo(2)
+                If cfg_ykinv.Name = "" Or cfg_ykinv.Name = Nothing Then
+                    lbl_monitor_yub_serial_output.Text = ykinfo(2)
+                Else
+                    lbl_monitor_yub_serial_output.Text = ykinfo(2) & " (" & cfg_ykinv.Name & ")"
+                End If
+
                 If ykinfo(4) = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present Then
                     lbl_monitor_yub_touch_output.Text = ykinfo(4)
                 ElseIf CType(ykinfo(4), Double) > 520 And CType(ykinfo(4), Double) < 65000 Then

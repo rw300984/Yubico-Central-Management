@@ -155,6 +155,12 @@
     <Compile Include="forms\frm_monitor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frm_plg_ykinv.Designer.vb">
+      <DependentUpon>frm_plg_ykinv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frm_plg_ykinv.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="modules\Config.vb" />
     <Compile Include="modules\Crypto.vb" />
     <Compile Include="modules\CustomizableProgressBar.vb">
@@ -165,6 +171,8 @@
     <Compile Include="modules\monitor.vb" />
     <Compile Include="modules\Others.vb" />
     <Compile Include="modules\plg_geoip.vb" />
+    <Compile Include="modules\plg_notify.vb" />
+    <Compile Include="modules\plg_ykinv.vb" />
     <Compile Include="modules\themes.vb" />
     <Compile Include="modules\tools.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -205,6 +213,9 @@
     <EmbeddedResource Include="forms\frm_monitor.resx">
       <DependentUpon>frm_monitor.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frm_plg_ykinv.resx">
+      <DependentUpon>frm_plg_ykinv.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

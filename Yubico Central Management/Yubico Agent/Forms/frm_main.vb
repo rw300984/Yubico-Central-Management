@@ -9,8 +9,11 @@ Public Class frm_main
     Dim frm_admin_save As New frm_admin_save
     Dim frm_initial As New frm_initial
     Dim frm_admin_personal As New frm_admin_personal
+    Dim frm_plg_ykinv As New frm_plg_ykinv
     Dim login_count As Integer = 0
     Dim bgw_close_status As Integer = 0
+    Dim bgw_plg_ykinv_status As Integer = 0
+    Dim Agent_frms As New List(Of Form)
 
     ' Context Menu strip item on click event to show version and copyright
 
@@ -28,13 +31,8 @@ Public Class frm_main
 
     Private Sub cms_notify_agent_open_Click(sender As Object, e As EventArgs) Handles cms_notify_agent_open.Click
         frm_initial.txt_initial_enc_password.Text = ""
-        CheckConfigFileAndLoadInitFrm(0)
-        If Me.WindowState = FormWindowState.Minimized Then
-            PositionMainForm()
-            CheckConfigFileAndLoadInitFrm(1)
-        Else
-            ShowForms("nothing")
-        End If
+        ' CheckConfigFileAndLoadInitFrm(0)
+        ShowHideCMS_Tray()
     End Sub
 
     ' On Left Mouse Click event show frm_main or close |  On Right Mouse Click event show cms_notify_agent
@@ -43,25 +41,34 @@ Public Class frm_main
         frm_initial.txt_initial_enc_password.Text = ""
         CheckConfigFileAndLoadInitFrm(0)
         If e.Button = MouseButtons.Left Then
-            If Me.WindowState = FormWindowState.Minimized Then
-                PositionMainForm()
-                CheckConfigFileAndLoadInitFrm(1)
-            Else
-                ShowForms("nothing")
-            End If
+            ShowHideCMS_Tray()
         Else
             ShowForms("nothing")
             cms_notify_agent.Show()
         End If
     End Sub
 
-    Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
-        '   System.Reflection.Assembly.LoadFile(Application.StartupPath & "\plugins\geoip\MaxMind.Db.dll")
-        '  System.Reflection.Assembly.LoadFile(Application.StartupPath & "\plugins\geoip\MaxMind.GeoIP2.dll")
-        ' System.Reflection.Assembly.LoadFile(Application.StartupPath & "\plugins\geoip\Newtonsoft.Json.dll")
+    Public Function ShowHideCMS_Tray()
+        If Me.WindowState = FormWindowState.Minimized Then
+            bgw_plg_ykinv_status = 1
+            PositionMainForm()
+            CheckConfigFileAndLoadInitFrm(1)
+        Else
+            ShowForms("nothing")
+        End If
+    End Function
 
+    Private Sub frm_main_Load(sender As Object, e As EventArgs) Handles Me.Load
         File.Delete("close.bin")
+        Agent_frms.Add(Me)
+        Agent_frms.Add(frm_admin)
+        Agent_frms.Add(frm_monitor)
+        Agent_frms.Add(frm_admin_save)
+        Agent_frms.Add(frm_initial)
+        Agent_frms.Add(frm_admin_personal)
+        Agent_frms.Add(frm_plg_ykinv)
         bgw_close.RunWorkerAsync()
+        bgw_plg_ykinv.RunWorkerAsync()
         FillGlobalFixedVariables()
         LoadForms()
     End Sub
@@ -69,42 +76,21 @@ Public Class frm_main
     Private Function LoadForms()
         PositionMainForm()
         Me.Visible = False
-        frm_admin.Visible = False
-        frm_monitor.Visible = False
-        frm_admin_save.Visible = False
-        frm_admin_personal.Visible = False
-        frm_initial.Visible = False
+        DefaultFormProperties()
+    End Function
 
-        frm_admin.TopLevel = False
-        frm_admin.WindowState = FormWindowState.Maximized
-        frm_admin.FormBorderStyle = FormBorderStyle.None
-        frm_admin.Dock = DockStyle.Fill
-
-        frm_monitor.TopLevel = False
-        frm_monitor.WindowState = FormWindowState.Maximized
-        frm_monitor.FormBorderStyle = FormBorderStyle.None
-        frm_monitor.Dock = DockStyle.Fill
-
-        frm_admin_save.TopLevel = False
-        frm_admin_save.WindowState = FormWindowState.Maximized
-        frm_admin_save.FormBorderStyle = FormBorderStyle.None
-        frm_admin_save.Dock = DockStyle.Fill
-
-        frm_initial.TopLevel = False
-        frm_initial.WindowState = FormWindowState.Maximized
-        frm_initial.FormBorderStyle = FormBorderStyle.None
-        frm_initial.Dock = DockStyle.Fill
-
-        frm_admin_personal.TopLevel = False
-        frm_admin_personal.WindowState = FormWindowState.Maximized
-        frm_admin_personal.FormBorderStyle = FormBorderStyle.None
-        frm_admin_personal.Dock = DockStyle.Fill
-
-        panel_main_form.Controls.Add(frm_monitor)
-        panel_main_form.Controls.Add(frm_admin)
-        panel_main_form.Controls.Add(frm_admin_save)
-        panel_main_form.Controls.Add(frm_initial)
-        panel_main_form.Controls.Add(frm_admin_personal)
+    Public Function DefaultFormProperties()
+        For Each frm In Agent_frms
+            If frm.Name = "frm_main" Then
+            Else
+                frm.Visible = False
+                frm.TopLevel = False
+                frm.WindowState = FormWindowState.Maximized
+                frm.FormBorderStyle = FormBorderStyle.None
+                frm.Dock = DockStyle.Fill
+                panel_main_form.Controls.Add(frm)
+            End If
+        Next
     End Function
 
     Public Function FillTextWithLanguagefile()
@@ -303,18 +289,8 @@ Public Class frm_main
     End Function
 
     Public Function ThemeForm(ByVal theme As String)
-        Dim Agent_frms As New List(Of Form)
-        Agent_frms.Add(Me)
-        Agent_frms.Add(frm_admin)
-        Agent_frms.Add(frm_monitor)
-        Agent_frms.Add(frm_admin_save)
-        Agent_frms.Add(frm_initial)
-        Agent_frms.Add(frm_admin_personal)
-
         Dim Agent_ctrls As New List(Of Control)
-
         Agent_ctrls.Add(cms_notify_agent)
-
         For Each frm As Form In Agent_frms
             Change_theme_frm(frm, theme)
         Next
@@ -326,77 +302,67 @@ Public Class frm_main
     Public Function ShowForms(ByVal form As String)
         Select Case form
             Case "frm_main"
-                frm_monitor.Visible = False
-                frm_admin_save.Visible = False
-                frm_initial.Visible = False
-                frm_admin.Visible = False
-                frm_admin_personal.Visible = False
-                Me.btn_main_admin_login.Enabled = False
+                DefaultShowForms()
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_empty
             Case "frm_admin"
-                frm_monitor.Visible = False
-                frm_admin_save.Visible = False
-                frm_initial.Visible = False
+                DefaultShowForms()
                 frm_admin.Visible = True
-                frm_admin_personal.Visible = False
                 Me.btn_main_admin_login.Enabled = True
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_close
             Case "frm_admin_personal"
-                frm_monitor.Visible = False
-                frm_admin_save.Visible = False
-                frm_initial.Visible = False
-                frm_admin.Visible = False
+                DefaultShowForms()
                 frm_admin_personal.Visible = True
                 Me.btn_main_admin_login.Enabled = True
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_close
             Case "frm_monitor"
+                DefaultShowForms()
                 frm_monitor.Visible = True
-                frm_admin_save.Visible = False
-                frm_initial.Visible = False
-                frm_admin.Visible = False
-                frm_admin_personal.Visible = False
                 Me.btn_main_admin_login.Enabled = True
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_open
             Case "frm_admin_save"
-                frm_monitor.Visible = False
+                DefaultShowForms()
                 frm_admin_save.Visible = True
-                frm_initial.Visible = False
-                frm_admin.Visible = False
-                frm_admin_personal.Visible = False
-                Me.btn_main_admin_login.Enabled = False
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_close
             Case "frm_initial"
+                DefaultShowForms()
                 frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc
                 Me.btn_main_admin_login.Enabled = True
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_initial
                 Me.Visible = True
                 Me.WindowState = FormWindowState.Normal
-                frm_monitor.Visible = False
-                frm_admin_save.Visible = False
                 frm_initial.Visible = True
-                frm_admin.Visible = False
-                frm_admin_personal.Visible = False
             Case "frm_initial_login"
+                DefaultShowForms()
                 frm_initial.lbl_initial_enc.Text = cfg_lang.frm_initial_lbl_initial_enc_login
                 Me.btn_main_admin_login.Enabled = True
                 Me.btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login
                 Me.Visible = True
                 Me.WindowState = FormWindowState.Normal
-                frm_monitor.Visible = False
-                frm_admin_save.Visible = False
                 frm_initial.Visible = True
-                frm_admin.Visible = False
-                frm_admin_personal.Visible = False
+            Case "frm_plg_ykinv"
+                DefaultShowForms()
+                Me.Visible = True
+                Me.WindowState = FormWindowState.Normal
+                Me.btn_main_admin_login.Visible = False
+                frm_plg_ykinv.Visible = True
             Case "nothing"
+                DefaultShowForms()
                 frm_monitor.bgw_status = 1
+                bgw_plg_ykinv_start()
                 Me.Visible = False
                 Me.WindowState = FormWindowState.Minimized
-                frm_monitor.Visible = False
-                frm_admin_save.Visible = False
-                frm_initial.Visible = False
-                frm_admin.Visible = False
-                frm_admin_personal.Visible = False
         End Select
+    End Function
+
+    Public Function DefaultShowForms()
+        For Each frm In Agent_frms
+            If frm.Name = "frm_main" Then
+            Else
+                frm.Visible = False
+            End If
+        Next
+        Me.btn_main_admin_login.Visible = True
+        Me.btn_main_admin_login.Enabled = False
     End Function
 
     Public Function FillControlsWithConfig()
@@ -456,6 +422,7 @@ Public Class frm_main
         End Select
         Return status
     End Function
+
     Public Function IntegrityFailedFor_btn_admin_login()
         btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_integrity
         btn_main_admin_login.Update()
@@ -464,6 +431,7 @@ Public Class frm_main
         Threading.Thread.Sleep(5000)
         Application.Exit()
     End Function
+
     Public Function CheckConfigFileAndLoadInitFrm(ByVal Mode As Integer)
         Select Case Mode
             Case 0
@@ -549,5 +517,53 @@ Public Class frm_main
             End If
             Threading.Thread.Sleep(2000)
         Loop
+    End Sub
+
+    Public Function bgw_plg_ykinv_start()
+        bgw_plg_ykinv_status = 0
+        bgw_plg_ykinv.RunWorkerAsync()
+    End Function
+
+    Private Sub bgw_plg_ykinv_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_plg_ykinv.DoWork
+        Try
+            Do While bgw_plg_ykinv_status = 0
+                Dim ykinfo As String() = YK_Agent_GetFromykinfo()
+                Dim ykinv As plg_ykinv.dt_serial
+                Dim SerialDT As New DataTable
+                If System.IO.File.Exists(Application.StartupPath & "\temp\serial.xml") Then
+                    SerialDT.TableName = "SerialNumbers"
+                    SerialDT.ReadXml(Application.StartupPath & "\temp\serial.xml")
+                Else
+                    SerialDT = Serial_CreateDataTable(SerialDT)
+                End If
+                If plg_ykinv.Serial_ExistInDT(SerialDT, ykinfo(0)) = True Then
+                    ykinv = plg_ykinv.Serial_GetYubiKey(SerialDT, ykinfo(0))
+                    cfg_ykinv.dt = SerialDT
+                    cfg_ykinv.GUID = ykinv.GUID
+                    cfg_ykinv.Serial = ykinv.Serial
+                    cfg_ykinv.Name = ykinv.Name
+                    If ykinv.Name = "" Or ykinv.Name = Nothing Then
+                        bgw_plg_ykinv.ReportProgress(100)
+                    Else
+                    End If
+                Else
+                    plg_ykinv.Serial_AddToDatabase(SerialDT, ykinfo(0))
+                    bgw_plg_ykinv.ReportProgress(100)
+
+                End If
+                Threading.Thread.Sleep(2000)
+            Loop
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub bgw_plg_ykinv_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles bgw_plg_ykinv.ProgressChanged
+        '  MessageBox.Show("Progress")
+        If frm_plg_ykinv.Visible = True Then
+            bgw_plg_ykinv_status = 1
+        Else
+            ShowForms("frm_plg_ykinv")
+        End If
     End Sub
 End Class

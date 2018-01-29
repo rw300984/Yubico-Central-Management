@@ -35,6 +35,7 @@ Partial Class frm_main
         Me.cms_notify_agent_about = New System.Windows.Forms.ToolStripMenuItem()
         Me.cms_notify_agent_close = New System.Windows.Forms.ToolStripMenuItem()
         Me.bgw_close = New System.ComponentModel.BackgroundWorker()
+        Me.bgw_plg_ykinv = New System.ComponentModel.BackgroundWorker()
         Me.panel_table_main.SuspendLayout()
         CType(Me.picture_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_table_main_work.SuspendLayout()
@@ -142,6 +143,10 @@ Partial Class frm_main
         '
         Me.bgw_close.WorkerSupportsCancellation = True
         '
+        'bgw_plg_ykinv
+        '
+        Me.bgw_plg_ykinv.WorkerReportsProgress = True
+        '
         'frm_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -157,6 +162,7 @@ Partial Class frm_main
         Me.Name = "frm_main"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Yubico Agent"
         Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
         Me.panel_table_main.ResumeLayout(False)
@@ -178,4 +184,5 @@ Partial Class frm_main
     Friend WithEvents btn_main_admin_login As Button
     Friend WithEvents panel_main_form As Panel
     Friend WithEvents bgw_close As System.ComponentModel.BackgroundWorker
+    Friend WithEvents bgw_plg_ykinv As System.ComponentModel.BackgroundWorker
 End Class
