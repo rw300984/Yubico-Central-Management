@@ -56,7 +56,9 @@
         Dim frm_monitor_lbl_monitor_yub_touch_output_not_present As String
         Dim frm_admin_personal_btn_admin_personal_integrity_check As String
         Dim frm_admin_personal_btn_admin_personal_integrity_failed As String
-
+        Dim frm_plg_ykinv_lbl_frm_plg_ykinv As String
+        Dim frm_plg_ykinv_btn_frm_plg_ykinv_ignore As String
+        Dim frm_plg_ykinv_btn_frm_plg_ykinv_addname As String
     End Structure
     Public Function GetLanguage(ByVal lang As String)
         Dim counter As Integer = 0
@@ -169,6 +171,12 @@
         cfg_lang.frm_admin_personal_btn_admin_personal_integrity_check = Read_Config(lang, counter)
         counter = counter + 1
         cfg_lang.frm_admin_personal_btn_admin_personal_integrity_failed = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_plg_ykinv_lbl_frm_plg_ykinv = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_plg_ykinv_btn_frm_plg_ykinv_ignore = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.frm_plg_ykinv_btn_frm_plg_ykinv_addname = Read_Config(lang, counter)
         counter = counter + 1
     End Function
 End Module

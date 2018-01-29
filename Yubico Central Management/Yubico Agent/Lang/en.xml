@@ -55,4 +55,7 @@
   <frm_monitor_lbl_monitor_yub_touch_output_not_present>Yubikey not connected</frm_monitor_lbl_monitor_yub_touch_output_not_present>
   <frm_admin_personal_btn_admin_personal_integrity_check>Check Integrity</frm_admin_personal_btn_admin_personal_integrity_check>
   <frm_admin_personal_btn_admin_personal_integrity_failed>Failed!</frm_admin_personal_btn_admin_personal_integrity_failed>
+  <frm_plg_ykinv_lbl_frm_plg_ykinv>New Yubikey detected, enter name:</frm_plg_ykinv_lbl_frm_plg_ykinv>
+  <frm_plg_ykinv_btn_frm_plg_ykinv_ignore>Ignore</frm_plg_ykinv_btn_frm_plg_ykinv_ignore>
+  <frm_plg_ykinv_btn_frm_plg_ykinv_addname>Add</frm_plg_ykinv_btn_frm_plg_ykinv_addname>
 </language>

@@ -26,9 +26,9 @@ Public Class yubi_agent_service
             End With
             Dim SerialDT As New DataTable
 
-            If System.IO.File.Exists(install_path & "\temp\serial.xml") Then
+            If System.IO.File.Exists(install_path & "\temp\serial.cache") Then
                 SerialDT.TableName = "SerialNumbers"
-                SerialDT.ReadXml(install_path & "\temp\serial.xml")
+                SerialDT.ReadXml(install_path & "\temp\serial.cache")
             Else
                 SerialDT = CreateSerialDataTable(SerialDT)
             End If
@@ -38,14 +38,13 @@ Public Class yubi_agent_service
 
             Dim yubi_client As New YubiClientAPILib.YubiClient
             If yubi_client.isInserted = YubiClientAPILib.ycRETCODE.ycRETCODE_OK Then
-                '   test.WriteLine("here 4")
                 Dim serial As New YubiClientAPILib.ycRETCODE
                 serial = yubi_client.readSerial(YubiClientAPILib.ycCALL_MODE.ycCALL_BLOCKING)
                 If serial = YubiClientAPILib.ycRETCODE.ycRETCODE_OK Then
                     yubi_client.dataEncoding = YubiClientAPILib.ycENCODING.ycENCODING_UINT32
                     If MatchSerialDatatable(SerialDT, yubi_client.dataBuffer) = False Then
                         AddSerialDatatable(SerialDT, yubi_client.dataBuffer.ToString)
-                        SerialDT.WriteXml(install_path & "\temp\serial.xml", XmlWriteMode.WriteSchema)
+                        SerialDT.WriteXml(install_path & "\temp\serial.cache", XmlWriteMode.WriteSchema)
                     Else
                     End If
                 End If
@@ -56,16 +55,13 @@ Public Class yubi_agent_service
                 End If
             Else
 
-                '    test.WriteLine("here")
 
                 If System.IO.File.Exists(close_path) Then
-                    '      test.WriteLine("here 2")
+
                 Else
                     Dim close_file As New System.IO.FileStream(close_path, IO.FileMode.Create)
                     close_file.Close()
-                    '      test.WriteLine("here 3")
                 End If
-                '   test.Close()
             End If
         Catch ex As Exception
             Dim install_path As String

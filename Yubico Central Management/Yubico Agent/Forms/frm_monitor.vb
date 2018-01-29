@@ -30,7 +30,7 @@ Public Class frm_monitor
                 lbl_monitor_yub_vendor_output.Text = ykinfo(0)
                 lbl_monitor_yub_model_output.Text = ykinfo(1)
                 lbl_monitor_yub_firmware_output.Text = ykinfo(3)
-                If cfg_ykinv.Name = "" Or cfg_ykinv.Name = Nothing Then
+                If cfg_ykinv.Name = "" Or cfg_ykinv.Name = Nothing Or ykinfo(2) = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present Then
                     lbl_monitor_yub_serial_output.Text = ykinfo(2)
                 Else
                     lbl_monitor_yub_serial_output.Text = ykinfo(2) & " (" & cfg_ykinv.Name & ")"
@@ -54,7 +54,8 @@ Public Class frm_monitor
     End Sub
 
     Private Sub frm_monitor_Load(sender As Object, e As EventArgs) Handles Me.Load
-        bgw_ykinfo.RunWorkerAsync()
+        Visible = False
+        '  bgw_ykinfo.RunWorkerAsync()
     End Sub
 
     Private Sub frm_monitor_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged

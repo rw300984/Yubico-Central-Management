@@ -46,9 +46,6 @@ Module Others
                     Return result
                 End If
             Next
-
-            '  MessageBox.Show(ex.Message)
-            ' Return result
         End Try
     End Function
 
@@ -261,8 +258,10 @@ Module Others
             If Directory.Exists(install_path) Then
                 Directory.Delete(install_path, True)
                 Directory.CreateDirectory(install_path)
+                Directory.CreateDirectory(install_path & "/temp")
             Else
                 Directory.CreateDirectory(install_path)
+                Directory.CreateDirectory(install_path & "/temp")
             End If
             File.Copy("Yubico Installer.exe", install_path & "/Yubico Installer.exe")
             result = 1

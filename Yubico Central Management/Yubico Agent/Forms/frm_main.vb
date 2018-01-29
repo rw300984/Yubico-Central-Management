@@ -67,10 +67,10 @@ Public Class frm_main
         Agent_frms.Add(frm_initial)
         Agent_frms.Add(frm_admin_personal)
         Agent_frms.Add(frm_plg_ykinv)
-        bgw_close.RunWorkerAsync()
-        bgw_plg_ykinv.RunWorkerAsync()
         FillGlobalFixedVariables()
         LoadForms()
+        bgw_close.RunWorkerAsync()
+        bgw_plg_ykinv_start()
     End Sub
 
     Private Function LoadForms()
@@ -166,6 +166,13 @@ Public Class frm_main
 
             frm_admin_personal.btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_run & " (" & tools_installed(2) & ")"
         End If
+
+        ' localization for frm_plg_ykinv
+
+        frm_plg_ykinv.lbl_frm_plg_ykinv.Text = cfg_lang.frm_plg_ykinv_lbl_frm_plg_ykinv
+        frm_plg_ykinv.btn_frm_plg_ykinv_addname.Text = cfg_lang.frm_plg_ykinv_btn_frm_plg_ykinv_addname
+        frm_plg_ykinv.btn_frm_plg_ykinv_ignore.Text = cfg_lang.frm_plg_ykinv_btn_frm_plg_ykinv_ignore
+
     End Function
 
     ' Show child forms on button click event (monitor / admin)
@@ -344,6 +351,7 @@ Public Class frm_main
                 Me.Visible = True
                 Me.WindowState = FormWindowState.Normal
                 Me.btn_main_admin_login.Visible = False
+                My.Forms.frm_plg_ykinv.txt_frm_plg_ykinv.BackColor = Color.AliceBlue
                 frm_plg_ykinv.Visible = True
             Case "nothing"
                 DefaultShowForms()
@@ -355,6 +363,7 @@ Public Class frm_main
     End Function
 
     Public Function DefaultShowForms()
+        '  FillTextWithLanguagefile()
         For Each frm In Agent_frms
             If frm.Name = "frm_main" Then
             Else
@@ -478,6 +487,7 @@ Public Class frm_main
 
     Private Sub bgw_close_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_close.DoWork
         Dim count As Integer = 0
+        GetGeoIPXML(cfg_config.integrity_geoip_file)
         Dim org_externalip As String = GetExternalIP()
         Do While bgw_close_status = 0
             Dim geo_info As geoip_data
@@ -495,12 +505,16 @@ Public Class frm_main
                         End Select
                     End If
                 Case 0
-                    Select Case cfg_geoip.geoip_service_mode
-                        Case "local"
-                            geo_info = GetLocationFromMaxMindDB(org_externalip)
-                        Case "web"
-                            geo_info = GetLocationFromWeb()
-                    End Select
+                    If org_externalip = "" Then
+                        geo_info = GetLocationFromWeb()
+                    Else
+                        Select Case cfg_geoip.geoip_service_mode
+                            Case "local"
+                                geo_info = GetLocationFromMaxMindDB(org_externalip)
+                            Case "web"
+                                geo_info = GetLocationFromWeb()
+                        End Select
+                    End If
             End Select
             If count = 150 Or count = 0 Then
                 If org_externalip <> "" Then
@@ -512,6 +526,7 @@ Public Class frm_main
             End If
             count = count + 1
             If File.Exists(cfg_config.temp_path & "close.bin") Then
+                bgw_plg_ykinv_status = 1
                 File.Delete(cfg_config.temp_path & "close.bin")
                 Application.Exit()
             End If
@@ -520,8 +535,16 @@ Public Class frm_main
     End Sub
 
     Public Function bgw_plg_ykinv_start()
-        bgw_plg_ykinv_status = 0
-        bgw_plg_ykinv.RunWorkerAsync()
+        If bgw_plg_ykinv.IsBusy Then
+        Else
+            If System.IO.File.Exists(cfg_config.config_path_file) Then
+                SetLanguage(Read_Config(cfg_config.config_path_file, "2"))
+                ThemeForm(Read_Config(cfg_config.config_path_file, "3"))
+                LoadStartUpConfig()
+                bgw_plg_ykinv_status = 0
+                bgw_plg_ykinv.RunWorkerAsync()
+            End If
+        End If
     End Function
 
     Private Sub bgw_plg_ykinv_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_plg_ykinv.DoWork
@@ -530,9 +553,9 @@ Public Class frm_main
                 Dim ykinfo As String() = YK_Agent_GetFromykinfo()
                 Dim ykinv As plg_ykinv.dt_serial
                 Dim SerialDT As New DataTable
-                If System.IO.File.Exists(Application.StartupPath & "\temp\serial.xml") Then
+                If System.IO.File.Exists(Application.StartupPath & "\temp\serial.cache") Then
                     SerialDT.TableName = "SerialNumbers"
-                    SerialDT.ReadXml(Application.StartupPath & "\temp\serial.xml")
+                    SerialDT.ReadXml(Application.StartupPath & "\temp\serial.cache")
                 Else
                     SerialDT = Serial_CreateDataTable(SerialDT)
                 End If
@@ -554,7 +577,6 @@ Public Class frm_main
                 Threading.Thread.Sleep(2000)
             Loop
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
         End Try
     End Sub
 

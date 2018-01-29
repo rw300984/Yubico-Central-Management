@@ -38,17 +38,36 @@
                                     sub_sub_ctr.BackColor = backcolor_sub
                                     sub_sub_ctr.ForeColor = forecolor_sub
                                 Case GetType(TextBox)
+
                                     sub_sub_ctr.BackColor = backcolor_sub
                                     sub_sub_ctr.ForeColor = forecolor_sub
                             End Select
                         Next
                     End If
-                    sub_ctr.BackColor = backcolor
-                    sub_ctr.ForeColor = forecolor
+                    Select Case sub_ctr.GetType
+                        Case GetType(ComboBox)
+                            sub_ctr.BackColor = backcolor_sub
+                            sub_ctr.ForeColor = forecolor_sub
+                        Case GetType(TextBox)
+                            sub_ctr.BackColor = backcolor_sub
+                            sub_ctr.ForeColor = forecolor_sub
+                        Case Else
+                            sub_ctr.BackColor = backcolor
+                            sub_ctr.ForeColor = forecolor
+                    End Select
                 Next
             Else
-                ctr.BackColor = backcolor
-                ctr.ForeColor = forecolor
+                Select Case ctr.GetType
+                    Case GetType(ComboBox)
+                        ctr.BackColor = backcolor_sub
+                        ctr.ForeColor = forecolor_sub
+                    Case GetType(TextBox)
+                        ctr.BackColor = backcolor_sub
+                        ctr.ForeColor = forecolor_sub
+                    Case Else
+                        ctr.BackColor = backcolor
+                        ctr.ForeColor = forecolor
+                End Select
             End If
             ctr.BackColor = backcolor
             ctr.ForeColor = forecolor
@@ -98,12 +117,30 @@
                             End Select
                         Next
                     End If
-                    sub_ctr.BackColor = backcolor
-                    sub_ctr.ForeColor = forecolor
+                    Select Case sub_ctr.GetType
+                        Case GetType(ComboBox)
+                            sub_ctr.BackColor = backcolor_sub
+                            sub_ctr.ForeColor = forecolor_sub
+                        Case GetType(TextBox)
+                            sub_ctr.BackColor = backcolor_sub
+                            sub_ctr.ForeColor = forecolor_sub
+                        Case Else
+                            sub_ctr.BackColor = backcolor
+                            sub_ctr.ForeColor = forecolor
+                    End Select
                 Next
             Else
-                ctr.BackColor = backcolor
-                ctr.ForeColor = forecolor
+                Select Case ctr.GetType
+                    Case GetType(ComboBox)
+                        ctr.BackColor = backcolor_sub
+                        ctr.ForeColor = forecolor_sub
+                    Case GetType(TextBox)
+                        ctr.BackColor = backcolor_sub
+                        ctr.ForeColor = forecolor_sub
+                    Case Else
+                        ctr.BackColor = backcolor
+                        ctr.ForeColor = forecolor
+                End Select
             End If
             ctr.BackColor = backcolor
             ctr.ForeColor = forecolor

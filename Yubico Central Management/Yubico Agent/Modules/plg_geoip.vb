@@ -23,6 +23,9 @@
     Dim geoip_status As Integer = 0
 
     Private Function IpAddress(ByVal url As String) As String
+        System.Net.ServicePointManager.Expect100Continue = True
+        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12
+
         Dim ip As String
         Try
             Using wc As New Net.WebClient
@@ -32,6 +35,7 @@
             ip = ip.Trim
             Return ip
         Catch ex As Exception
+
             geoip_status = geoip_status + 1
         End Try
     End Function
@@ -56,6 +60,7 @@
     End Function
 
     Public Function GetLocationFromMaxMindDB(ByVal externalip As String) As geoip_data
+
         Dim geoip_info As geoip_data
         Dim city As New MaxMind.GeoIP2.Responses.CityResponse
         Dim dbreader As MaxMind.GeoIP2.DatabaseReader
@@ -68,7 +73,21 @@
                 Case 2
                     dbreader = New MaxMind.GeoIP2.DatabaseReader("plugins\geoip\GeoLite2-City.mmdb", MaxMind.Db.FileAccessMode.Memory)
             End Select
-            city = dbreader.City(externalip)
+            Dim count As Integer = 0
+
+            ' Workaround to fix IP Address format issues from certain URL's
+
+            Dim ipaddress_split As String() = externalip.Split(".")
+            Dim ipaddress_part(3) As String
+            For Each part In ipaddress_split
+                Dim nums = From c In part
+                           Where Char.IsDigit(c) OrElse c = "."
+                           Select num = c.ToString
+                ipaddress_part(count) = Join(nums.ToArray, "")
+                count = count + 1
+            Next
+
+            city = dbreader.City(ipaddress_part(0) & "." & ipaddress_part(1) & "." & ipaddress_part(2) & "." & ipaddress_part(3).Count)
 
             geoip_info.ip = externalip
             geoip_info.country_code = city.Country.IsoCode
@@ -80,12 +99,9 @@
             geoip_info.latitude = city.Location.Latitude
             geoip_info.longtitude = city.Location.Longitude
 
-            '   Dim cache_file As New StreamWriter(Application.StartupPath & "\temp\geo.cache", True)
-            '  cache_file.WriteLine(DateTime.Now & "," & city.City.Name & "," & city.Country.Name & "," & city.Continent.Name & "," & city.Location.Latitude & "," & city.Location.Longitude & "," & city.Postal.Code)
-            ' cache_file.Close()
-
             Return geoip_info
         Catch ex As Exception
+
             Return Nothing
         End Try
     End Function
@@ -104,10 +120,11 @@
         counter = counter + 1
     End Function
 
+
+
     Public Function GetLocationFromWeb() As geoip_data
         Dim geoip_string As String
         Dim geoip_info As geoip_data
-        '  Dim test123 As String = "82.206.64.226,DE,Germany,HE,Hesse,Hofheim am Taunus,65719,Europe/Berlin,50.0833,8.4500,0"
 
         Try
             Using wc As New Net.WebClient
@@ -131,6 +148,7 @@
 
             Return geoip_info
         Catch ex As Exception
+
             Return Nothing
         End Try
     End Function
