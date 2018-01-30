@@ -11,6 +11,7 @@ Public Class frm_main
     Dim frm_admin_personal As New frm_admin_personal
     Dim frm_plg_ykinv As New frm_plg_ykinv
     Dim frm_plg_ykkiosk As New frm_plg_ykkiosk
+    Dim frm_about As New frm_about
     Dim login_count As Integer = 0
     Dim bgw_close_status As Integer = 0
     Dim bgw_plg_ykinv_status As Integer = 0
@@ -19,7 +20,7 @@ Public Class frm_main
     ' Context Menu strip item on click event to show version and copyright
 
     Private Sub cms_notify_agent_about_Click(sender As Object, e As EventArgs) Handles cms_notify_agent_about.Click
-        tray_notify_agent.ShowBalloonTip(2000, "Yubico Agent", "Version: " & My.Application.Info.Version.Major & vbCrLf & My.Application.Info.Copyright, ToolTipIcon.Info)
+        ShowForms("frm_about")
     End Sub
 
     ' Context Menu Strip close the whole application
@@ -69,6 +70,7 @@ Public Class frm_main
         Agent_frms.Add(frm_admin_personal)
         Agent_frms.Add(frm_plg_ykinv)
         Agent_frms.Add(frm_plg_ykkiosk)
+        Agent_frms.Add(frm_about)
         FillGlobalFixedVariables()
         LoadForms()
         bgw_close.RunWorkerAsync()
@@ -361,6 +363,12 @@ Public Class frm_main
                 Me.WindowState = FormWindowState.Normal
                 Me.btn_main_admin_login.Visible = False
                 frm_plg_ykkiosk.Visible = True
+            Case "frm_about"
+                DefaultShowForms()
+                Me.Visible = True
+                Me.WindowState = FormWindowState.Normal
+                Me.btn_main_admin_login.Visible = False
+                frm_about.Visible = True
             Case "nothing"
                 DefaultShowForms()
                 frm_monitor.bgw_status = 1
