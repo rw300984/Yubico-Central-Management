@@ -58,4 +58,5 @@
   <frm_plg_ykinv_lbl_frm_plg_ykinv>New Yubikey detected, enter name:</frm_plg_ykinv_lbl_frm_plg_ykinv>
   <frm_plg_ykinv_btn_frm_plg_ykinv_ignore>Ignore</frm_plg_ykinv_btn_frm_plg_ykinv_ignore>
   <frm_plg_ykinv_btn_frm_plg_ykinv_addname>Add</frm_plg_ykinv_btn_frm_plg_ykinv_addname>
+  <cms_notify_agent_apps>App Portal</cms_notify_agent_apps>
 </language>

@@ -161,6 +161,12 @@
     <Compile Include="forms\frm_plg_ykinv.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frm_plg_ykkiosk.Designer.vb">
+      <DependentUpon>frm_plg_ykkiosk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frm_plg_ykkiosk.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="modules\Config.vb" />
     <Compile Include="modules\Crypto.vb" />
     <Compile Include="modules\CustomizableProgressBar.vb">
@@ -217,6 +223,9 @@
     <EmbeddedResource Include="forms\frm_plg_ykinv.resx">
       <DependentUpon>frm_plg_ykinv.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frm_plg_ykkiosk.resx">
+      <DependentUpon>frm_plg_ykkiosk.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -234,6 +243,17 @@
     <Content Include="plugins\ykclient\YubiClientAPI.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="plugins\ykkiosk\icons\001-bitbucket.png" />
+    <None Include="plugins\ykkiosk\icons\002-github.png" />
+    <None Include="plugins\ykkiosk\icons\003-dropbox.png" />
+    <None Include="plugins\ykkiosk\icons\004-search.png" />
+    <None Include="plugins\ykkiosk\icons\005-facebook.png" />
+    <Content Include="plugins\ykkiosk\kiosk.xml" />
+    <None Include="resources\001-bitbucket.png" />
+    <None Include="resources\002-github.png" />
+    <None Include="resources\003-dropbox.png" />
+    <None Include="resources\004-search.png" />
+    <None Include="resources\005-facebook.png" />
     <Content Include="services\ProcessExtensions.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -10,6 +10,7 @@ Public Class frm_main
     Dim frm_initial As New frm_initial
     Dim frm_admin_personal As New frm_admin_personal
     Dim frm_plg_ykinv As New frm_plg_ykinv
+    Dim frm_plg_ykkiosk As New frm_plg_ykkiosk
     Dim login_count As Integer = 0
     Dim bgw_close_status As Integer = 0
     Dim bgw_plg_ykinv_status As Integer = 0
@@ -67,6 +68,7 @@ Public Class frm_main
         Agent_frms.Add(frm_initial)
         Agent_frms.Add(frm_admin_personal)
         Agent_frms.Add(frm_plg_ykinv)
+        Agent_frms.Add(frm_plg_ykkiosk)
         FillGlobalFixedVariables()
         LoadForms()
         bgw_close.RunWorkerAsync()
@@ -131,6 +133,7 @@ Public Class frm_main
         cms_notify_agent_about.Text = cfg_lang.cms_notify_agent_about
         cms_notify_agent_close.Text = cfg_lang.cms_notify_agent_close
         cms_notify_agent_open.Text = cfg_lang.cms_notify_agent_open
+        cms_notify_agent_apps.Text = cfg_lang.cms_notify_agent_apps
 
         ' locatilization for frm_admin_personal
 
@@ -351,8 +354,13 @@ Public Class frm_main
                 Me.Visible = True
                 Me.WindowState = FormWindowState.Normal
                 Me.btn_main_admin_login.Visible = False
-                My.Forms.frm_plg_ykinv.txt_frm_plg_ykinv.BackColor = Color.AliceBlue
                 frm_plg_ykinv.Visible = True
+            Case "frm_plg_ykkiosk"
+                DefaultShowForms()
+                Me.Visible = True
+                Me.WindowState = FormWindowState.Normal
+                Me.btn_main_admin_login.Visible = False
+                frm_plg_ykkiosk.Visible = True
             Case "nothing"
                 DefaultShowForms()
                 frm_monitor.bgw_status = 1
@@ -587,5 +595,9 @@ Public Class frm_main
         Else
             ShowForms("frm_plg_ykinv")
         End If
+    End Sub
+
+    Private Sub cms_notify_agent_apps_Click(sender As Object, e As EventArgs) Handles cms_notify_agent_apps.Click
+        ShowForms("frm_plg_ykkiosk")
     End Sub
 End Class

@@ -59,6 +59,7 @@
         Dim frm_plg_ykinv_lbl_frm_plg_ykinv As String
         Dim frm_plg_ykinv_btn_frm_plg_ykinv_ignore As String
         Dim frm_plg_ykinv_btn_frm_plg_ykinv_addname As String
+        Dim cms_notify_agent_apps As String
     End Structure
     Public Function GetLanguage(ByVal lang As String)
         Dim counter As Integer = 0
@@ -177,6 +178,8 @@
         cfg_lang.frm_plg_ykinv_btn_frm_plg_ykinv_ignore = Read_Config(lang, counter)
         counter = counter + 1
         cfg_lang.frm_plg_ykinv_btn_frm_plg_ykinv_addname = Read_Config(lang, counter)
+        counter = counter + 1
+        cfg_lang.cms_notify_agent_apps = Read_Config(lang, counter)
         counter = counter + 1
     End Function
 End Module

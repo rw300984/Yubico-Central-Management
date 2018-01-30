@@ -36,6 +36,7 @@ Partial Class frm_main
         Me.cms_notify_agent_close = New System.Windows.Forms.ToolStripMenuItem()
         Me.bgw_close = New System.ComponentModel.BackgroundWorker()
         Me.bgw_plg_ykinv = New System.ComponentModel.BackgroundWorker()
+        Me.cms_notify_agent_apps = New System.Windows.Forms.ToolStripMenuItem()
         Me.panel_table_main.SuspendLayout()
         CType(Me.picture_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_table_main_work.SuspendLayout()
@@ -119,25 +120,25 @@ Partial Class frm_main
         '
         'cms_notify_agent
         '
-        Me.cms_notify_agent.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cms_notify_agent_open, Me.cms_notify_agent_about, Me.cms_notify_agent_close})
+        Me.cms_notify_agent.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cms_notify_agent_open, Me.cms_notify_agent_apps, Me.cms_notify_agent_about, Me.cms_notify_agent_close})
         Me.cms_notify_agent.Name = "cms_notify_agent"
         Me.cms_notify_agent.ShowImageMargin = False
-        Me.cms_notify_agent.Size = New System.Drawing.Size(43, 70)
+        Me.cms_notify_agent.Size = New System.Drawing.Size(128, 114)
         '
         'cms_notify_agent_open
         '
         Me.cms_notify_agent_open.Name = "cms_notify_agent_open"
-        Me.cms_notify_agent_open.Size = New System.Drawing.Size(42, 22)
+        Me.cms_notify_agent_open.Size = New System.Drawing.Size(127, 22)
         '
         'cms_notify_agent_about
         '
         Me.cms_notify_agent_about.Name = "cms_notify_agent_about"
-        Me.cms_notify_agent_about.Size = New System.Drawing.Size(42, 22)
+        Me.cms_notify_agent_about.Size = New System.Drawing.Size(127, 22)
         '
         'cms_notify_agent_close
         '
         Me.cms_notify_agent_close.Name = "cms_notify_agent_close"
-        Me.cms_notify_agent_close.Size = New System.Drawing.Size(42, 22)
+        Me.cms_notify_agent_close.Size = New System.Drawing.Size(127, 22)
         '
         'bgw_close
         '
@@ -146,6 +147,11 @@ Partial Class frm_main
         'bgw_plg_ykinv
         '
         Me.bgw_plg_ykinv.WorkerReportsProgress = True
+        '
+        'cms_notify_agent_apps
+        '
+        Me.cms_notify_agent_apps.Name = "cms_notify_agent_apps"
+        Me.cms_notify_agent_apps.Size = New System.Drawing.Size(127, 22)
         '
         'frm_main
         '
@@ -185,4 +191,5 @@ Partial Class frm_main
     Friend WithEvents panel_main_form As Panel
     Friend WithEvents bgw_close As System.ComponentModel.BackgroundWorker
     Friend WithEvents bgw_plg_ykinv As System.ComponentModel.BackgroundWorker
+    Friend WithEvents cms_notify_agent_apps As ToolStripMenuItem
 End Class
