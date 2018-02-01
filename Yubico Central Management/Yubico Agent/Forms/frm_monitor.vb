@@ -7,15 +7,15 @@ Public Class frm_monitor
         Do
             Select Case bgw_status
                 Case 0
-                    Dim ykinfo As String() = YK_Agent_GetKeyInfo()
-                    bgw_ykinfo.ReportProgress(0, ykinfo)
+                    Dim res_ykinfo As ykinfo = plg_ykinfo.GetYKInfoFromDB()
+                    bgw_ykinfo.ReportProgress(0, res_ykinfo)
                     If count = 60 Or count = 0 Then
-                        Dim systeminfo As String() = YK_Agent_GetSystemInfo()
+                        Dim systeminfo As sysinfo = plg_sysinfo.GetSysInfoFromDB()
                         bgw_ykinfo.ReportProgress(1, systeminfo)
                         count = 0
                     End If
                     count = count + 1
-                    Threading.Thread.Sleep(1000)
+                    Threading.Thread.Sleep(500)
                 Case 1
                     count = 0
                     Exit Sub
@@ -26,30 +26,51 @@ Public Class frm_monitor
     Private Sub bgw_ykinfo_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles bgw_ykinfo.ProgressChanged
         Select Case e.ProgressPercentage
             Case 0
-                Dim ykinfo As String() = TryCast(e.UserState, String())
-                lbl_monitor_yub_vendor_output.Text = ykinfo(0)
-                lbl_monitor_yub_model_output.Text = ykinfo(1)
-                lbl_monitor_yub_firmware_output.Text = ykinfo(3)
-                If cfg_ykinv.Name = "" Or cfg_ykinv.Name = Nothing Or ykinfo(2) = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present Then
-                    lbl_monitor_yub_serial_output.Text = ykinfo(2)
+                Dim ykinfo As ykinfo = e.UserState
+                If ykinfo.vendor = "" Then
+                    lbl_monitor_yub_vendor_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present
                 Else
-                    lbl_monitor_yub_serial_output.Text = ykinfo(2) & " (" & cfg_ykinv.Name & ")"
+                    lbl_monitor_yub_vendor_output.Text = YK_Agent_ConvertInfo_to_Names(0, ykinfo.vendor)
                 End If
-
-                If ykinfo(4) = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present Then
-                    lbl_monitor_yub_touch_output.Text = ykinfo(4)
-                ElseIf CType(ykinfo(4), Double) > 520 And CType(ykinfo(4), Double) < 65000 Then
-                    lbl_monitor_yub_touch_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_touched
-                ElseIf CType(ykinfo(4), Double) <= 520 Then
-                    lbl_monitor_yub_touch_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_touched
+                If ykinfo.model = "" Then
+                    lbl_monitor_yub_model_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present
+                Else
+                    lbl_monitor_yub_model_output.Text = YK_Agent_ConvertInfo_to_Names(1, ykinfo.model)
+                End If
+                If ykinfo.firmware = "" Then
+                    lbl_monitor_yub_firmware_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present
+                Else
+                    lbl_monitor_yub_firmware_output.Text = ykinfo.firmware
+                End If
+                If ykinfo.serial = "" Then
+                    lbl_monitor_yub_serial_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present
+                Else
+                    If res_ykinv.Name = "" Or res_ykinv.Name = Nothing Or ykinfo.serial = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present Then
+                        lbl_monitor_yub_serial_output.Text = ykinfo.serial
+                    Else
+                        If res_ykinv.Name = "#ignore#" Then
+                            lbl_monitor_yub_serial_output.Text = ykinfo.serial & " (Guest)"
+                        Else
+                            lbl_monitor_yub_serial_output.Text = ykinfo.serial & " (" & res_ykinv.Name & ")"
+                        End If
+                    End If
+                End If
+                If ykinfo.touch = "" Then
+                    lbl_monitor_yub_touch_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_present
+                Else
+                    If CType(ykinfo.touch, Double) > 520 And CType(ykinfo.touch, Double) < 65000 Then
+                        lbl_monitor_yub_touch_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_touched
+                    ElseIf CType(ykinfo.touch, Double) <= 520 Then
+                        lbl_monitor_yub_touch_output.Text = cfg_lang.frm_monitor_lbl_monitor_yub_touch_output_not_touched
+                    End If
                 End If
             Case 1
-                Dim systeminfo As String() = TryCast(e.UserState, String())
-                lbl_monitor_sys_username_output.Text = systeminfo(0)
-                lbl_monitor_sys_ip_output.Text = systeminfo(1) & " - " & systeminfo(5)
-                lbl_monitor_sys_hostname_output.Text = systeminfo(2)
-                lbl_monitor_sys_os_output.Text = systeminfo(3)
-                lbl_monitor_sys_devicemodel_output.Text = systeminfo(4)
+                Dim systeminfo As sysinfo = e.UserState
+                lbl_monitor_sys_username_output.Text = systeminfo.username
+                lbl_monitor_sys_ip_output.Text = systeminfo.ip_internal & " - " & systeminfo.ip_external
+                lbl_monitor_sys_hostname_output.Text = systeminfo.computername
+                lbl_monitor_sys_os_output.Text = systeminfo.os
+                lbl_monitor_sys_devicemodel_output.Text = systeminfo.manufacturer
         End Select
     End Sub
 

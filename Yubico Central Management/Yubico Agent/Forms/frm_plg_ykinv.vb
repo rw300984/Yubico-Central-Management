@@ -1,22 +1,28 @@
 ﻿Public Class frm_plg_ykinv
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btn_frm_plg_ykinv_ignore.Click
-        Dim ret_add_serial As Boolean = plg_ykinv.Serial_AddName(cfg_ykinv.dt, cfg_ykinv.Serial, "#ignore#")
-        If ret_add_serial = False Then
+        Dim ykinv_input As ykinv
+        ykinv_input.Serial = res_ykinfo.serial
+        ykinv_input.Name = "#ignore#"
+        Dim ykinv_status As Boolean = plg_ykinv.ykinv_serial_add(ykinv_input)
+        If ykinv_status = True Then
+
         Else
-            Serial_WriteDTtoXML(Application.StartupPath & "\temp\serial.cache", cfg_ykinv.dt)
-            My.Forms.frm_main.ShowForms("nothing")
+
         End If
+        My.Forms.frm_main.ShowForms("nothing")
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btn_frm_plg_ykinv_addname.Click
-        Dim ret_add_serial As Boolean = plg_ykinv.Serial_AddName(cfg_ykinv.dt, cfg_ykinv.Serial, cfg_ykinv.Name)
-        If ret_add_serial = False Then
+        Dim ykinv_input As ykinv
+        ykinv_input.Serial = res_ykinfo.serial
+        ykinv_input.Name = txt_frm_plg_ykinv.Text
+        Dim ykinv_status As Boolean = plg_ykinv.ykinv_serial_add(ykinv_input)
+        If ykinv_status = True Then
 
         Else
-            Serial_WriteDTtoXML(Application.StartupPath & "\temp\serial.cache", cfg_ykinv.dt)
-            My.Forms.frm_main.ShowForms("nothing")
-        End If
 
+        End If
+        My.Forms.frm_main.ShowForms("nothing")
     End Sub
 
     Private Sub frm_plg_ykinv_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -33,7 +39,7 @@
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txt_frm_plg_ykinv.TextChanged
         Enable_Disable_btn()
-        cfg_ykinv.Name = txt_frm_plg_ykinv.Text
+
     End Sub
 
     Private Function Enable_Disable_btn()

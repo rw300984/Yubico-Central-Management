@@ -120,8 +120,6 @@
         counter = counter + 1
     End Function
 
-
-
     Public Function GetLocationFromWeb() As geoip_data
         Dim geoip_string As String
         Dim geoip_info As geoip_data
@@ -152,5 +150,20 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function AddLocationToDB(ByVal data As geoip_data) As Boolean
+        Dim sqlitecmd As String = "INSERT INTO ykresult_geoip (username,ip,country_code,country_name, region_code, region_name, city_name, city_postal, latitude, longtitude, geo_datetime) VALUES ('" & My.User.Name.ToString & "','" & data.ip & "','" & data.country_code & "','" & data.country_name & "','" & data.region_code & "','" & data.region_name & "','" & data.city_name & "','" & data.city_postal & "','" & data.latitude & "','" & data.longtitude & "','" & DateTime.Now & "')"
+        Dim result As Boolean = False
+        Try
+            result = db.ExecuteNonQuery("\database\data.db", sqlitecmd)
+            Return result
+        Catch ex As Exception
+            Return result
+        End Try
+    End Function
+
+    '  Public Function GetLocationFromDB() As geoip_data
+
+    'End Function
 
 End Module

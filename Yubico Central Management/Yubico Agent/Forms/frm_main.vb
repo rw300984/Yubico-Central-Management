@@ -52,7 +52,7 @@ Public Class frm_main
 
     Public Function ShowHideCMS_Tray()
         If Me.WindowState = FormWindowState.Minimized Then
-            bgw_plg_ykinv_status = 1
+            ' bgw_plg_ykinv_status = 1
             PositionMainForm()
             CheckConfigFileAndLoadInitFrm(1)
         Else
@@ -534,15 +534,16 @@ Public Class frm_main
             End Select
             If count = 150 Or count = 0 Then
                 If org_externalip <> "" Then
-                    Dim FileWriter As New StreamWriter(Application.StartupPath & "/temp/geo.cache", True)
-                    FileWriter.WriteLine(DateTime.Now & "," & geo_info.ip & "," & geo_info.country_code & "," & geo_info.country_name & "," & geo_info.region_code & "," & geo_info.region_name & "," & geo_info.city_name & "," & geo_info.city_postal & "," & geo_info.latitude & "," & geo_info.longtitude)
-                    FileWriter.Close()
+                    Dim status As Boolean = plg_geoip.AddLocationToDB(geo_info)
+                    If status = False Then
+                    Else
+                    End If
                 End If
-                count = 0
+                    count = 0
             End If
             count = count + 1
             If File.Exists(cfg_config.temp_path & "close.bin") Then
-                bgw_plg_ykinv_status = 1
+                '   bgw_plg_ykinv_status = 1
                 File.Delete(cfg_config.temp_path & "close.bin")
                 Application.Exit()
             End If
@@ -567,42 +568,46 @@ Public Class frm_main
         Try
             Do While bgw_plg_ykinv_status = 0
                 Dim ykinfo As String() = YK_Agent_GetFromykinfo()
-                Dim ykinv As plg_ykinv.dt_serial
-                Dim SerialDT As New DataTable
-                If System.IO.File.Exists(Application.StartupPath & "\temp\serial.cache") Then
-                    SerialDT.TableName = "SerialNumbers"
-                    SerialDT.ReadXml(Application.StartupPath & "\temp\serial.cache")
+                res_ykinfo.vendor = ykinfo(8)
+                res_ykinfo.model = ykinfo(9)
+                res_ykinfo.serial = ykinfo(0)
+                res_ykinfo.firmware = ykinfo(3)
+                res_ykinfo.touch = ykinfo(4)
+                plg_sysinfo.YK_Agent_GetSystemInfo()
+                plg_sysinfo.AddSysInfoToDB(res_sysinfo)
+
+                Dim res_ykinfo_status As Boolean = plg_ykinfo.AddYKInfoToDB(res_ykinfo)
+                If res_ykinfo.serial = "" Then
                 Else
-                    SerialDT = Serial_CreateDataTable(SerialDT)
-                End If
-                If plg_ykinv.Serial_ExistInDT(SerialDT, ykinfo(0)) = True Then
-                    ykinv = plg_ykinv.Serial_GetYubiKey(SerialDT, ykinfo(0))
-                    cfg_ykinv.dt = SerialDT
-                    cfg_ykinv.GUID = ykinv.GUID
-                    cfg_ykinv.Serial = ykinv.Serial
-                    cfg_ykinv.Name = ykinv.Name
-                    If ykinv.Name = "" Or ykinv.Name = Nothing Then
+                    res_ykinv.GUID = ""
+                    res_ykinv.Serial = ""
+                    res_ykinv.Name = ""
+                    res_ykinv.user = ""
+                    Dim res_ykinv_status As Boolean = plg_ykinv.ykinv_serial_exists(res_ykinfo.serial)
+                    If res_ykinv_status = False Then
                         bgw_plg_ykinv.ReportProgress(100)
                     Else
+                        res_ykinv = plg_ykinv.ykinv_serial_get(res_ykinfo.serial)
                     End If
-                Else
-                    plg_ykinv.Serial_AddToDatabase(SerialDT, ykinfo(0))
-                    bgw_plg_ykinv.ReportProgress(100)
-
                 End If
-                Threading.Thread.Sleep(2000)
+                Threading.Thread.Sleep(1000)
             Loop
         Catch ex As Exception
+            MessageBox.Show(ex.Message)
         End Try
     End Sub
 
     Private Sub bgw_plg_ykinv_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles bgw_plg_ykinv.ProgressChanged
-        '  MessageBox.Show("Progress")
-        If frm_plg_ykinv.Visible = True Then
-            bgw_plg_ykinv_status = 1
-        Else
-            ShowForms("frm_plg_ykinv")
-        End If
+        Select Case e.ProgressPercentage
+            Case 100
+                If frm_plg_ykinv.Visible = True Then
+                    bgw_plg_ykinv_status = 1
+                Else
+                    ShowForms("frm_plg_ykinv")
+                End If
+            Case 0
+                ShowForms("frm_plg_ykkiosk")
+        End Select
     End Sub
 
     Private Sub cms_notify_agent_apps_Click(sender As Object, e As EventArgs) Handles cms_notify_agent_apps.Click
