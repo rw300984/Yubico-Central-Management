@@ -34,27 +34,32 @@
             ip = ip.Trim
             Return ip
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             geoip_status = geoip_status + 1
         End Try
     End Function
 
     Public Function GetExternalIP() As String
-        Dim Lst_GetExternalIP As New List(Of String)
-        Lst_GetExternalIP.Add(cfg_geoip.external_ip1)
-        Lst_GetExternalIP.Add(cfg_geoip.external_ip2)
-        Lst_GetExternalIP.Add(cfg_geoip.external_ip3)
-        Dim externalip As String = ""
-        For Each entry As String In Lst_GetExternalIP
-            If externalip <> "" Then
+        Try
+            Dim Lst_GetExternalIP As New List(Of String)
+            Lst_GetExternalIP.Add(cfg_geoip.external_ip1)
+            Lst_GetExternalIP.Add(cfg_geoip.external_ip2)
+            Lst_GetExternalIP.Add(cfg_geoip.external_ip3)
+            Dim externalip As String = ""
+            For Each entry As String In Lst_GetExternalIP
+                If externalip <> "" Then
+                Else
+                    externalip = IpAddress(entry)
+                End If
+            Next
+            If externalip = "" Or geoip_status = 3 Then
+                Return ""
             Else
-                externalip = IpAddress(entry)
+                Return externalip
             End If
-        Next
-        If externalip = "" Or geoip_status = 3 Then
-            Return ""
-        Else
-            Return externalip
-        End If
+        Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
+        End Try
     End Function
 
     Public Function GetLocationFromMaxMindDB(ByVal externalip As String) As geoip_data
@@ -97,23 +102,28 @@
 
             Return geoip_info
         Catch ex As Exception
-
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return Nothing
         End Try
     End Function
 
-    Public Function GetGeoIPXML(ByVal config As String)
-        Dim counter As Integer = 0
-        cfg_geoip.external_ip1 = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_geoip.external_ip2 = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_geoip.external_ip3 = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_geoip.geoip_service_mode = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_geoip.geoip_db_mode = Read_Config(config, counter)
-        counter = counter + 1
+    Public Function GetGeoIPFromDB() As geoip
+        Dim result As geoip
+        Dim sqlitecmd As String = "Select * FROM ykconfig_geoip WHERE id='1'"
+        Try
+            Dim res_array As Object() = db.ExecuteReaderSingleRow("\database\data.db", sqlitecmd, 6)
+            With result
+                .external_ip1 = TryCast(res_array(1), String)
+                .external_ip2 = TryCast(res_array(2), String)
+                .external_ip3 = TryCast(res_array(3), String)
+                .geoip_service_mode = TryCast(res_array(4), String)
+                .geoip_db_mode = CType(res_array(5), Integer)
+            End With
+            Return result
+        Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
+            Return result
+        End Try
     End Function
 
     Public Function GetLocationFromWeb() As geoip_data
@@ -142,7 +152,7 @@
 
             Return geoip_info
         Catch ex As Exception
-
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return Nothing
         End Try
     End Function
@@ -154,24 +164,25 @@
             result = db.ExecuteNonQuery("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
 
     Public Function GatherLocation(ByVal sysinfo As sysinfo)
-        Dim geo_info As geoip_data
-        GetGeoIPXML(cfg_config.integrity_geoip_file)
-        Select Case cfg_geoip.geoip_service_mode
-            Case "local"
-                geo_info = GetLocationFromMaxMindDB(sysinfo.ip_external)
-            Case "web"
-                geo_info = GetLocationFromWeb()
-        End Select
-        plg_geoip.AddLocationToDB(geo_info)
+        Try
+            Dim geo_info As geoip_data
+
+            Select Case cfg_geoip.geoip_service_mode
+                Case "local"
+                    geo_info = GetLocationFromMaxMindDB(sysinfo.ip_external)
+                Case "web"
+                    geo_info = GetLocationFromWeb()
+            End Select
+            plg_geoip.AddLocationToDB(geo_info)
+        Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
+        End Try
     End Function
-
-    '  Public Function GetLocationFromDB() As geoip_data
-
-    'End Function
 
 End Module

@@ -20,7 +20,7 @@ Module db
             SQLitecon.Dispose()
             Return result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return False
         End Try
     End Function
@@ -45,7 +45,7 @@ Module db
             SQLitecon.Dispose()
             Return result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return False
         End Try
     End Function
@@ -72,7 +72,7 @@ Module db
             SQLitecon.Dispose()
             Return result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function

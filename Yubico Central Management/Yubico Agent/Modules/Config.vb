@@ -34,7 +34,7 @@ Module Config
             ConfigReader_Result = ConfigReader.DocumentElement.ChildNodes(ConfigAttribute).InnerText
             Return ConfigReader_Result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
         End Try
     End Function
     Public Function AddConfigGeneralToDB(ByVal key As String, ByVal data As configuration) As Boolean
@@ -55,6 +55,7 @@ Module Config
             result = db.ExecuteNonQuery("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -67,7 +68,7 @@ Module Config
             result = TryCast(res_array(0), String)
             Return result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -79,6 +80,7 @@ Module Config
             result = db.ExecuteScalar("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -98,7 +100,7 @@ Module Config
             result.admin_central_username = Crypto.AES_Decrypt(res_array(8), key)
             Return result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function

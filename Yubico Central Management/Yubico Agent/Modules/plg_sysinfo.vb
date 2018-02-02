@@ -25,6 +25,7 @@ Module plg_sysinfo
             result = db.ExecuteNonQuery("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -35,6 +36,7 @@ Module plg_sysinfo
             result = db.ExecuteScalar("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -51,7 +53,7 @@ Module plg_sysinfo
             result.manufacturer = TryCast(res_array(6), String)
             Return result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -64,7 +66,7 @@ Module plg_sysinfo
             res_sysinfo.manufacturer = Generic_GetWMI_SingleEntry("Win32_ComputerSystem", "manufacturer") & " " & Generic_GetWMI_SingleEntry("Win32_ComputerSystem", "model")
             res_sysinfo.ip_external = GetExternalIP()
         Catch ex As Exception
-
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
         End Try
     End Function
     Public Function Generic_GetIP() As String
@@ -84,7 +86,7 @@ Module plg_sysinfo
             Next
             Return ipaddress
         Catch ex As Exception
-            ' MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
         End Try
     End Function
     Public Function Generic_GetWMI_SingleEntry(ByVal From_source As String, ByVal SearchString As String)
@@ -97,7 +99,7 @@ Module plg_sysinfo
             Next
             Return Result
         Catch ex As Exception
-
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
         End Try
     End Function
 

@@ -15,6 +15,7 @@
             result = db.ExecuteScalar("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -30,7 +31,7 @@
             result.user = TryCast(res_array(4), String)
             Return result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -43,18 +44,21 @@
             result = db.ExecuteNonQuery("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
 
     Public Function ykinv_serial_add(ByVal data As ykinv) As Boolean
         Dim sqlitecmd As String
+        data.Name = data.Name.Replace("'", "''")
         sqlitecmd = "INSERT INTO ykresult_inv (uid,serial,name,user) VALUES ('" & Guid.NewGuid.ToString & "','" & data.Serial & "','" & data.Name & "','" & My.User.Name & "')"
         Dim result As Boolean = False
         Try
             result = db.ExecuteNonQuery("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -62,4 +66,5 @@
     Public Function ykinv_delete() As Boolean
 
     End Function
+
 End Module

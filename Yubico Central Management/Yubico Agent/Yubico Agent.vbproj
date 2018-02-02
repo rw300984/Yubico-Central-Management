@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="modules\db.vb" />
     <Compile Include="modules\Downloader.vb" />
+    <Compile Include="modules\plg_debuglog.vb" />
     <Compile Include="modules\plg_lang.vb" />
     <Compile Include="modules\Others.vb" />
     <Compile Include="modules\plg_auth.vb" />

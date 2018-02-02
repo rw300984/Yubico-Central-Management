@@ -18,6 +18,7 @@
             result = db.ExecuteNonQuery("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -32,7 +33,7 @@
             result.key = TryCast(res_array(3), String)
             Return result
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -44,6 +45,7 @@
             result = db.ExecuteScalar("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -55,6 +57,7 @@
             result = db.ExecuteScalar("\database\data.db", sqlitecmd)
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
@@ -75,6 +78,7 @@
             End If
             Return result
         Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
             Return result
         End Try
     End Function
