@@ -25,7 +25,6 @@
     Private Function IpAddress(ByVal url As String) As String
         System.Net.ServicePointManager.Expect100Continue = True
         System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12
-
         Dim ip As String
         Try
             Using wc As New Net.WebClient
@@ -35,7 +34,6 @@
             ip = ip.Trim
             Return ip
         Catch ex As Exception
-
             geoip_status = geoip_status + 1
         End Try
     End Function
@@ -74,8 +72,6 @@
                     dbreader = New MaxMind.GeoIP2.DatabaseReader("plugins\geoip\GeoLite2-City.mmdb", MaxMind.Db.FileAccessMode.Memory)
             End Select
             Dim count As Integer = 0
-
-            ' Workaround to fix IP Address format issues from certain URL's
 
             Dim ipaddress_split As String() = externalip.Split(".")
             Dim ipaddress_part(3) As String
@@ -160,6 +156,18 @@
         Catch ex As Exception
             Return result
         End Try
+    End Function
+
+    Public Function GatherLocation(ByVal sysinfo As sysinfo)
+        Dim geo_info As geoip_data
+        GetGeoIPXML(cfg_config.integrity_geoip_file)
+        Select Case cfg_geoip.geoip_service_mode
+            Case "local"
+                geo_info = GetLocationFromMaxMindDB(sysinfo.ip_external)
+            Case "web"
+                geo_info = GetLocationFromWeb()
+        End Select
+        plg_geoip.AddLocationToDB(geo_info)
     End Function
 
     '  Public Function GetLocationFromDB() As geoip_data

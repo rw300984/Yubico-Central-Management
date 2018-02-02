@@ -33,7 +33,6 @@ Module db
             SQLitecon.Open()
             If SQLitecon.State = ConnectionState.Open Then
                 Dim rows As Integer = SQLitecmd.ExecuteScalar
-                '  MessageBox.Show(rows)
                 If rows > 0 Then
                     result = True
                 Else

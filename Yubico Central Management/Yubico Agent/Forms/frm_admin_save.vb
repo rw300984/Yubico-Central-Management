@@ -1,14 +1,13 @@
 ﻿Public Class frm_admin_save
     Private Sub btn_admin_save_yes_Click(sender As Object, e As EventArgs) Handles btn_admin_save_yes.Click
-        If My.Forms.frm_main.IntegrityCheck(1) > 0 Then
-            My.Forms.frm_main.IntegrityFailedFor_btn_admin_login()
-        Else
+        Dim user As auth_user = plg_auth.GetUserFromDB()
+        Config.AddConfigGeneralToDB(My.Forms.frm_main.machinekey_cache, cfg_config)
+        cfg_config = Config.GetConfigGeneralFromDB(My.Forms.frm_main.machinekey_cache)
 
-            Config.Write_Config(Application.StartupPath & "\Config\config.xml", cfg_config.initial_verify)
-            Config.GetConfig(Application.StartupPath & "\Config\config.xml", cfg_config.initial_verify)
-            My.Forms.frm_main.FillControlsWithConfig()
-            My.Forms.frm_main.ShowForms("frm_monitor")
-        End If
+        My.Forms.frm_main.FillGlobalFixedVariables()
+        My.Forms.frm_main.FillControlsWithConfig()
+        My.Forms.frm_main.ShowForms("frm_monitor")
+        '' End If
     End Sub
     Private Sub btn_admin_save_no_Click(sender As Object, e As EventArgs) Handles btn_admin_save_no.Click
         My.Forms.frm_main.ShowForms("frm_monitor")

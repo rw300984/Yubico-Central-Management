@@ -1,4 +1,4 @@
-﻿Module Localization
+﻿Module plg_lang
     Public cfg_lang As configuration
     Public Structure configuration
         Dim btn_main_admin_login_open As String
@@ -60,6 +60,10 @@
         Dim frm_plg_ykinv_btn_frm_plg_ykinv_ignore As String
         Dim frm_plg_ykinv_btn_frm_plg_ykinv_addname As String
         Dim cms_notify_agent_apps As String
+    End Structure
+    Public Structure res_lang
+        Dim lang As String
+        Dim path As String
     End Structure
     Public Function GetLanguage(ByVal lang As String)
         Dim counter As Integer = 0
@@ -181,5 +185,18 @@
         counter = counter + 1
         cfg_lang.cms_notify_agent_apps = Read_Config(lang, counter)
         counter = counter + 1
+    End Function
+    Public Function GetLanguageFromDatabase(ByVal lang As String)
+        Dim result As res_lang
+        Dim sqlitecmd As String = "Select * FROM ykconfig_lang WHERE lang='" & lang & "'"
+        Try
+            Dim res_array As Object() = db.ExecuteReaderSingleRow("\database\data.db", sqlitecmd, 2)
+            result.lang = TryCast(res_array(1), String)
+            result.path = TryCast(res_array(2), String)
+            Return result
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return result
+        End Try
     End Function
 End Module

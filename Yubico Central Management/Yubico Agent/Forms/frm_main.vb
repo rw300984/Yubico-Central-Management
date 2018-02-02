@@ -13,9 +13,9 @@ Public Class frm_main
     Dim frm_plg_ykkiosk As New frm_plg_ykkiosk
     Dim frm_about As New frm_about
     Dim login_count As Integer = 0
-    Dim bgw_close_status As Integer = 0
     Dim bgw_plg_ykinv_status As Integer = 0
     Dim Agent_frms As New List(Of Form)
+    Public machinekey_cache As String
 
     ' Context Menu strip item on click event to show version and copyright
 
@@ -33,7 +33,6 @@ Public Class frm_main
 
     Private Sub cms_notify_agent_open_Click(sender As Object, e As EventArgs) Handles cms_notify_agent_open.Click
         frm_initial.txt_initial_enc_password.Text = ""
-        ' CheckConfigFileAndLoadInitFrm(0)
         ShowHideCMS_Tray()
     End Sub
 
@@ -73,7 +72,7 @@ Public Class frm_main
         Agent_frms.Add(frm_about)
         FillGlobalFixedVariables()
         LoadForms()
-        bgw_close.RunWorkerAsync()
+
         bgw_plg_ykinv_start()
     End Sub
 
@@ -185,54 +184,61 @@ Public Class frm_main
     Private Sub btn_main_admin_login_Click(sender As Object, e As EventArgs) Handles btn_main_admin_login.Click
         Select Case btn_main_admin_login.Text
             Case cfg_lang.btn_main_admin_login_open
-                Dim Integrity As Integer = IntegrityCheck(1)
-                If Integrity = 0 Then
-                    Select Case cfg_config.admin_general_mode
+                '  Dim Integrity As Integer = IntegrityCheck(1)
+                'If Integrity = 0 Then
+                Select Case cfg_config.admin_general_mode
                         Case "Personal"
                             ShowForms("frm_admin_personal")
                         Case "Business"
                             ShowForms("frm_admin")
                     End Select
-                Else
-                    IntegrityFailedFor_btn_admin_login()
-                End If
+                'Else
+                'IntegrityFailedFor_btn_admin_login()
+                'End If
             Case cfg_lang.btn_main_admin_login_close
-                Dim Integrity As Integer = IntegrityCheck(1)
-                If Integrity = 0 Then
-                    ShowForms("frm_monitor")
-                Else
-                    IntegrityFailedFor_btn_admin_login()
-                End If
+                '  Dim Integrity As Integer = IntegrityCheck(1)
+                '  If Integrity = 0 Then
+                ShowForms("frm_monitor")
+                'Else
+                'IntegrityFailedFor_btn_admin_login()
+                'End If
             Case cfg_lang.btn_main_admin_login_save
-                Dim Integrity As Integer = IntegrityCheck(1)
-                If Integrity = 0 Then
-                    ShowForms("frm_admin_save")
-                Else
-                    IntegrityFailedFor_btn_admin_login()
-                End If
+                '  Dim Integrity As Integer = IntegrityCheck(1)
+                'If Integrity = 0 Then
+                ShowForms("frm_admin_save")
+                'Else
+                'IntegrityFailedFor_btn_admin_login()
+                'End If
             Case cfg_lang.btn_main_admin_login_initial
+                Dim machinekey As String = GeneratePassword(16)
+                machinekey_cache = machinekey
+                Dim user As auth_user
+                user.user = My.User.Name.ToString
+                user.role = "admin"
+                user.key = frm_initial.txt_initial_enc_password.Text
+                plg_auth.AddUserToDB(machinekey, user)
                 cfg_config.initial_enabled = 0
                 cfg_config.admin_general_mode = "Personal"
                 cfg_config.admin_general_theme = "Gray (default)"
                 cfg_config.admin_general_lang = "English"
-                Config.Write_Config(cfg_config.config_path_file, frm_initial.txt_initial_enc_password.Text)
-                Config.GetConfig(cfg_config.config_path_file, frm_initial.txt_initial_enc_password.Text)
+                Config.AddConfigGeneralToDB(machinekey, cfg_config)
+                cfg_config = Config.GetConfigGeneralFromDB(machinekey)
+                FillGlobalFixedVariables()
                 FillControlsWithConfig()
                 ShowForms("frm_monitor")
             Case cfg_lang.btn_main_admin_login_login
-                Config.GetConfig(cfg_config.config_path_file, frm_initial.txt_initial_enc_password.Text)
-                If cfg_config.initial_verify = frm_initial.txt_initial_enc_password.Text Then
-                    Dim integrity As Integer = IntegrityCheck(0)
-                    If integrity = 0 Then
-                        btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login_success
-                        btn_main_admin_login.Update()
-                        FillControlsWithConfig()
-                        Threading.Thread.Sleep(1000)
-                        ShowForms("frm_monitor")
-                        login_count = 0
-                    Else
-                        IntegrityFailedFor_btn_admin_login()
-                    End If
+                Dim user_verification As Boolean = plg_auth.VerifyUser(frm_initial.txt_initial_enc_password.Text)
+                If user_verification = True Then
+                    Dim user As auth_user = plg_auth.GetUserFromDB()
+                    machinekey_cache = AES_Decrypt(user.key, frm_initial.txt_initial_enc_password.Text)
+                    cfg_config = Config.GetConfigGeneralFromDB(AES_Decrypt(user.key, frm_initial.txt_initial_enc_password.Text))
+                    btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login_success
+                    btn_main_admin_login.Update()
+                    FillGlobalFixedVariables()
+                    FillControlsWithConfig()
+                    Threading.Thread.Sleep(1000)
+                    ShowForms("frm_monitor")
+                    login_count = 0
                 Else
                     If login_count > 3 Then
                         btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_login_failed_count_reached
@@ -261,21 +267,13 @@ Public Class frm_main
                         login_count = login_count + 1
                     End If
                 End If
-            Case Else
         End Select
     End Sub
 
     Public Function SetLanguage(ByVal lang As String)
-        Dim languagefile As String
-        Select Case lang
-            Case "English"
-                languagefile = cfg_config.integrity_lang_en_file
-            Case "Deutsch"
-                languagefile = cfg_config.integrity_lang_de_file
-            Case Else
-                languagefile = cfg_config.integrity_lang_en_file
-        End Select
-        GetLanguage(languagefile)
+        Dim language As res_lang = GetLanguageFromDatabase(lang)
+        GetLanguage(Application.StartupPath & language.path)
+        FillTextWithLanguagefile()
     End Function
 
     Public Function PositionMainForm()
@@ -379,7 +377,7 @@ Public Class frm_main
     End Function
 
     Public Function DefaultShowForms()
-        '  FillTextWithLanguagefile()
+
         For Each frm In Agent_frms
             If frm.Name = "frm_main" Then
             Else
@@ -403,50 +401,50 @@ Public Class frm_main
         frm_admin_personal.cbx_admin_general_theme.Text = cfg_config.admin_general_theme
     End Function
 
-    Public Function IntegrityCheck(ByVal Mode As Integer) As Integer
-        Dim status As Integer = 0
+    'Public Function IntegrityCheck(ByVal Mode As Integer) As Integer
+    '    Dim status As Integer = 0
 
-        Dim new_integrity_files As New List(Of String)
-        new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_de_file))
-        new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_en_file))
-        new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_tools_file))
-        new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_geoip_file))
+    '    Dim new_integrity_files As New List(Of String)
+    '    new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_de_file))
+    '    new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_en_file))
+    '    new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_tools_file))
+    '    new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_geoip_file))
 
-        Dim org_integrity_files As New List(Of String)
-        org_integrity_files.Add(cfg_config.integrity_lang_de)
-        org_integrity_files.Add(cfg_config.integrity_lang_en)
-        org_integrity_files.Add(cfg_config.integrity_tools)
-        org_integrity_files.Add(cfg_config.integrity_geoip)
+    '    Dim org_integrity_files As New List(Of String)
+    '    org_integrity_files.Add(cfg_config.integrity_lang_de)
+    '    org_integrity_files.Add(cfg_config.integrity_lang_en)
+    '    org_integrity_files.Add(cfg_config.integrity_tools)
+    '    org_integrity_files.Add(cfg_config.integrity_geoip)
 
-        Select Case Mode
-            Case 1
-                If frm_initial.Visible = True Then
-                    status = status + 1
-                End If
-                Dim count As Integer = 0
-                For Each sha1_file As String In new_integrity_files
-                    If sha1_file <> org_integrity_files(count) Then
+    '    Select Case Mode
+    '        Case 1
+    '            If frm_initial.Visible = True Then
+    '                status = status + 1
+    '            End If
+    '            Dim count As Integer = 0
+    '            For Each sha1_file As String In new_integrity_files
+    '                If sha1_file <> org_integrity_files(count) Then
 
-                        status = status + 1
-                        count = count + 1
-                    Else
-                        count = count + 1
-                    End If
-                Next
-            Case 0
-                Dim count As Integer = 0
-                For Each sha1_file As String In new_integrity_files
-                    If sha1_file <> org_integrity_files(count) Then
+    '                    status = status + 1
+    '                    count = count + 1
+    '                Else
+    '                    count = count + 1
+    '                End If
+    '            Next
+    '        Case 0
+    '            Dim count As Integer = 0
+    '            For Each sha1_file As String In new_integrity_files
+    '                If sha1_file <> org_integrity_files(count) Then
 
-                        status = status + 1
-                        count = count + 1
-                    Else
-                        count = count + 1
-                    End If
-                Next
-        End Select
-        Return status
-    End Function
+    '                    status = status + 1
+    '                    count = count + 1
+    '                Else
+    '                    count = count + 1
+    '                End If
+    '            Next
+    '    End Select
+    '    Return status
+    'End Function
 
     Public Function IntegrityFailedFor_btn_admin_login()
         btn_main_admin_login.Text = cfg_lang.btn_main_admin_login_integrity
@@ -460,31 +458,29 @@ Public Class frm_main
     Public Function CheckConfigFileAndLoadInitFrm(ByVal Mode As Integer)
         Select Case Mode
             Case 0
-                If System.IO.File.Exists(cfg_config.config_path_file) Then
-                    ThemeForm(Read_Config(cfg_config.config_path_file, "3"))
-                    SetLanguage(Read_Config(cfg_config.config_path_file, "2"))
-                    LoadStartUpConfig()
+                If Config.CheckIfGeneralinDB() = True Then
+                    ThemeForm(Config.GetSingleValueFromDB("theme"))
+                    SetLanguage(Config.GetSingleValueFromDB("lang"))
+                    FillGlobalFixedVariables()
                 Else
                     ThemeForm("Gray (default)")
                     SetLanguage("English")
+                    FillGlobalFixedVariables()
                 End If
             Case 1
-                If System.IO.File.Exists(cfg_config.config_path_file) Then
-                    If Read_Config(cfg_config.config_path_file, "1") = 1 Then
+                If Config.CheckIfGeneralinDB() = True Then
+                    If plg_auth.CheckIfUsersExists() = False Then
+                        FillGlobalFixedVariables()
                         ShowForms("frm_initial")
                     Else
+                        FillGlobalFixedVariables()
                         ShowForms("frm_initial_login")
                     End If
                 Else
+                    FillGlobalFixedVariables()
                     ShowForms("frm_initial")
                 End If
         End Select
-    End Function
-
-    Public Function LoadStartUpConfig()
-        GetToolsXML(cfg_config.integrity_tools_file)
-        GetGeoIPXML(cfg_config.integrity_geoip_file)
-        FillTextWithLanguagefile()
     End Function
 
     Public Function FillGlobalFixedVariables()
@@ -494,6 +490,8 @@ Public Class frm_main
         cfg_config.integrity_geoip_file = Application.StartupPath & "\Config\geoip.xml"
         cfg_config.config_path_file = Application.StartupPath & "\Config\config.xml"
         cfg_config.temp_path = Application.StartupPath & "\temp\"
+        cfg_tools = plg_tools.GetToolsFromDB
+        GetGeoIPXML(cfg_config.integrity_geoip_file)
 
         If Directory.Exists(cfg_config.temp_path) Then
         Else
@@ -501,70 +499,25 @@ Public Class frm_main
         End If
     End Function
 
-    Private Sub bgw_close_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_close.DoWork
-        Dim count As Integer = 0
-        GetGeoIPXML(cfg_config.integrity_geoip_file)
-        Dim org_externalip As String = GetExternalIP()
-        Do While bgw_close_status = 0
-            Dim geo_info As geoip_data
-            Select Case count
-                Case 150
-                    Dim new_externalip As String = GetExternalIP()
-                    If org_externalip = new_externalip Then
-                    Else
-                        org_externalip = new_externalip
-                        Select Case cfg_geoip.geoip_service_mode
-                            Case "local"
-                                geo_info = GetLocationFromMaxMindDB(new_externalip)
-                            Case "web"
-                                geo_info = GetLocationFromWeb()
-                        End Select
-                    End If
-                Case 0
-                    If org_externalip = "" Then
-                        geo_info = GetLocationFromWeb()
-                    Else
-                        Select Case cfg_geoip.geoip_service_mode
-                            Case "local"
-                                geo_info = GetLocationFromMaxMindDB(org_externalip)
-                            Case "web"
-                                geo_info = GetLocationFromWeb()
-                        End Select
-                    End If
-            End Select
-            If count = 150 Or count = 0 Then
-                If org_externalip <> "" Then
-                    Dim status As Boolean = plg_geoip.AddLocationToDB(geo_info)
-                    If status = False Then
-                    Else
-                    End If
-                End If
-                    count = 0
-            End If
-            count = count + 1
-            If File.Exists(cfg_config.temp_path & "close.bin") Then
-                '   bgw_plg_ykinv_status = 1
-                File.Delete(cfg_config.temp_path & "close.bin")
-                Application.Exit()
-            End If
-            Threading.Thread.Sleep(2000)
-        Loop
-    End Sub
-
     Public Function bgw_plg_ykinv_start()
         If bgw_plg_ykinv.IsBusy Then
         Else
-            If System.IO.File.Exists(cfg_config.config_path_file) Then
-                SetLanguage(Read_Config(cfg_config.config_path_file, "2"))
-                ThemeForm(Read_Config(cfg_config.config_path_file, "3"))
-                LoadStartUpConfig()
-                bgw_plg_ykinv_status = 0
-                bgw_plg_ykinv.RunWorkerAsync()
+            If Config.CheckIfGeneralinDB() = True Then
+                ThemeForm(Config.GetSingleValueFromDB("theme"))
+                SetLanguage(Config.GetSingleValueFromDB("lang"))
+                FillGlobalFixedVariables()
+            Else
+                ThemeForm("Gray (default)")
+                SetLanguage("English")
+                FillGlobalFixedVariables()
             End If
+            bgw_plg_ykinv_status = 0
+            bgw_plg_ykinv.RunWorkerAsync()
         End If
     End Function
 
     Private Sub bgw_plg_ykinv_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_plg_ykinv.DoWork
+        Dim count As Integer = 0
         Try
             Do While bgw_plg_ykinv_status = 0
                 Dim ykinfo As String() = YK_Agent_GetFromykinfo()
@@ -573,9 +526,18 @@ Public Class frm_main
                 res_ykinfo.serial = ykinfo(0)
                 res_ykinfo.firmware = ykinfo(3)
                 res_ykinfo.touch = ykinfo(4)
-                plg_sysinfo.YK_Agent_GetSystemInfo()
-                plg_sysinfo.AddSysInfoToDB(res_sysinfo)
+                Select Case count
+                    Case 0 ' Initial start
+                        plg_sysinfo.YK_Agent_GetSystemInfo()
+                        plg_sysinfo.AddSysInfoToDB(res_sysinfo)
+                        plg_geoip.GatherLocation(res_sysinfo)
+                    Case 120 ' Every 1 minute
 
+                    Case 601 ' Every 5 minutes
+                        plg_sysinfo.YK_Agent_GetSystemInfo()
+                        plg_sysinfo.AddSysInfoToDB(res_sysinfo)
+                        plg_geoip.GatherLocation(res_sysinfo)
+                End Select
                 Dim res_ykinfo_status As Boolean = plg_ykinfo.AddYKInfoToDB(res_ykinfo)
                 If res_ykinfo.serial = "" Then
                 Else
@@ -590,7 +552,17 @@ Public Class frm_main
                         res_ykinv = plg_ykinv.ykinv_serial_get(res_ykinfo.serial)
                     End If
                 End If
-                Threading.Thread.Sleep(1000)
+
+                If File.Exists(cfg_config.temp_path & "close.bin") Then
+                    bgw_plg_ykinv_status = 1
+                    File.Delete(cfg_config.temp_path & "close.bin")
+                    Application.Exit()
+                End If
+                count = count + 1
+                If count > 600 Then
+                    count = 1
+                End If
+                Threading.Thread.Sleep(500)
             Loop
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -601,7 +573,6 @@ Public Class frm_main
         Select Case e.ProgressPercentage
             Case 100
                 If frm_plg_ykinv.Visible = True Then
-                    bgw_plg_ykinv_status = 1
                 Else
                     ShowForms("frm_plg_ykinv")
                 End If

@@ -39,14 +39,14 @@
             Case btn_admin_personal_pivmanager.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
                 btn_admin_personal_pivmanager.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
                 btn_admin_personal_pivmanager.Enabled = False
-                Dim inst_result As Integer = tools.InstallTool(cfg_config.temp_path & cfg_tools.yk_piv_pkg)
+                Dim inst_result As Integer = plg_tools.InstallTool(cfg_config.temp_path & cfg_tools.yk_piv_pkg)
                 If inst_result = "1" Then
                     Dim count As Integer = 0
                     Dim status As Integer = 0
-                    Dim version_array() As String = tools.CheckVersionOfTools()
+                    Dim version_array() As String = plg_tools.CheckVersionOfTools()
                     Do While count < 60
                         Threading.Thread.Sleep(1000)
-                        version_array = tools.CheckVersionOfTools()
+                        version_array = plg_tools.CheckVersionOfTools()
                         If version_array(2) = "0" Then
                             count = count + 1
                         Else
@@ -89,14 +89,14 @@
             Case btn_admin_personal_yubi_personalization.Text.Contains(cfg_lang.frm_admin_personal_btn_admin_personal_install)
                 btn_admin_personal_yubi_personalization.Text = cfg_lang.frm_admin_personal_btn_admin_personal_wait
                 btn_admin_personal_yubi_personalization.Enabled = False
-                Dim inst_result As Integer = tools.InstallTool(cfg_config.temp_path & cfg_tools.yk_personal_pkg)
+                Dim inst_result As Integer = plg_tools.InstallTool(cfg_config.temp_path & cfg_tools.yk_personal_pkg)
                 If inst_result = "1" Then
                     Dim count As Integer = 0
                     Dim status As Integer = 0
-                    Dim version_array() As String = tools.CheckVersionOfTools()
+                    Dim version_array() As String = plg_tools.CheckVersionOfTools()
                     Do While count < 60
                         Threading.Thread.Sleep(1000)
-                        version_array = tools.CheckVersionOfTools()
+                        version_array = plg_tools.CheckVersionOfTools()
                         If version_array(1) = "0" Then
                             count = count + 1
                         Else

@@ -55,7 +55,6 @@ Module plg_sysinfo
             Return result
         End Try
     End Function
-
     Public Function YK_Agent_GetSystemInfo()
         Try
             res_sysinfo.username = My.User.Name
@@ -68,7 +67,6 @@ Module plg_sysinfo
 
         End Try
     End Function
-
     Public Function Generic_GetIP() As String
         Try
             Dim ipaddress As String

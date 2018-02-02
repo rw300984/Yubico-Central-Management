@@ -1,6 +1,6 @@
 ﻿
 
-Module tools
+Module plg_tools
     Public cfg_tools As tools
     Public Structure tools
         Dim yk_minidriver_exec As String
@@ -153,44 +153,36 @@ Module tools
             Return status
         End If
     End Function
-    Public Function GetToolsXML(ByVal config As String)
-        Dim counter As Integer = 0
-        cfg_tools.yk_minidriver_exec = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_personal_exec = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_piv_exec = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_minidriver_exec_sha1 = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_personal_exec_sha1 = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_piv_exec_sha1 = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_minidriver_download = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_personal_download = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_piv_download = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_minidriver_download_sha1 = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_personal_download_sha1 = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_piv_download_sha1 = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_personal_regkey = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_piv_regkey = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_tools_install_dir = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_minidriver_pkg = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_personal_pkg = Read_Config(config, counter)
-        counter = counter + 1
-        cfg_tools.yk_piv_pkg = Read_Config(config, counter)
-        counter = counter + 1
+    Public Function GetToolsFromDB() As tools
+        Dim result As tools
+        Dim sqlitecmd As String = "Select * FROM ykconfig_tools WHERE id='1'"
+        Try
+            Dim res_array As Object() = db.ExecuteReaderSingleRow("\database\data.db", sqlitecmd, 18)
+            With result
+                .yk_minidriver_exec = TryCast(res_array(1), String)
+                .yk_personal_exec = TryCast(res_array(2), String)
+                .yk_piv_exec = TryCast(res_array(3), String)
+                .yk_minidriver_exec_sha1 = TryCast(res_array(4), String)
+                .yk_personal_exec_sha1 = TryCast(res_array(5), String)
+                .yk_piv_exec_sha1 = TryCast(res_array(6), String)
+                .yk_minidriver_download = TryCast(res_array(7), String)
+                .yk_personal_download = TryCast(res_array(8), String)
+                .yk_piv_download = TryCast(res_array(9), String)
+                .yk_minidriver_download_sha1 = TryCast(res_array(10), String)
+                .yk_personal_download_sha1 = TryCast(res_array(11), String)
+                .yk_piv_download_sha1 = TryCast(res_array(12), String)
+                .yk_personal_regkey = TryCast(res_array(13), String)
+                .yk_piv_regkey = TryCast(res_array(14), String)
+                .yk_tools_install_dir = TryCast(res_array(15), String)
+                .yk_minidriver_pkg = TryCast(res_array(16), String)
+                .yk_personal_pkg = TryCast(res_array(17), String)
+                .yk_piv_pkg = TryCast(res_array(18), String)
+            End With
+            Return result
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return result
+        End Try
     End Function
     Public Function VerifyChecksum()
 

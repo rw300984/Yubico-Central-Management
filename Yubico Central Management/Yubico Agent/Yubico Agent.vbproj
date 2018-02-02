@@ -203,15 +203,16 @@
     </Compile>
     <Compile Include="modules\db.vb" />
     <Compile Include="modules\Downloader.vb" />
-    <Compile Include="modules\Localization.vb" />
+    <Compile Include="modules\plg_lang.vb" />
     <Compile Include="modules\Others.vb" />
+    <Compile Include="modules\plg_auth.vb" />
     <Compile Include="modules\plg_geoip.vb" />
     <Compile Include="modules\plg_notify.vb" />
     <Compile Include="modules\plg_sysinfo.vb" />
     <Compile Include="modules\plg_ykinfo.vb" />
     <Compile Include="modules\plg_ykinv.vb" />
     <Compile Include="modules\themes.vb" />
-    <Compile Include="modules\tools.vb" />
+    <Compile Include="modules\plg_tools.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -249,6 +250,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frm_main.resx">
       <DependentUpon>frm_main.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frm_monitor.resx">
       <DependentUpon>frm_monitor.vb</DependentUpon>

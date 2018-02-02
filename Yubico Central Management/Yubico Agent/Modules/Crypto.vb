@@ -60,6 +60,21 @@
         Next
         Return Result
     End Function
+    Public Function SHA1StringHash(ByVal text As String) As String
+        Dim SHA1 As New System.Security.Cryptography.SHA1CryptoServiceProvider
+        Dim Hash As Byte()
+        Dim Result As String = ""
+        Dim Tmp As String = ""
+        Dim data As Byte() = System.Text.Encoding.ASCII.GetBytes(text)
+        SHA1.ComputeHash(data)
+        Hash = SHA1.Hash
+        For i As Integer = 0 To Hash.Length - 1
+            Tmp = Hex(Hash(i))
+            If Len(Tmp) = 1 Then Tmp = "0" & Tmp
+            Result += Tmp
+        Next
+        Return Result
+    End Function
     Public Function ValidatePassword(ByVal pwd As String, Optional ByVal minLength As Integer = 8, Optional ByVal numUpper As Integer = 1, Optional ByVal numLower As Integer = 3, Optional ByVal numNumbers As Integer = 2, Optional ByVal numSpecial As Integer = 1) As Boolean
 
         ' Replace [A-Z] with \p{Lu}, to allow for Unicode uppercase letters.
@@ -79,5 +94,19 @@
 
         ' Passed all checks.
         Return True
+    End Function
+    Public Function GeneratePassword(ByVal length As Byte) As String
+        Dim RawChars As String = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuwvxyz!§$%&/()=?*':;,.-_><@"
+        Dim str As New System.Text.StringBuilder
+        Do Until ValidatePassword(str.ToString) = True
+            str.Clear()
+            For t As Byte = 1 To length 'length of req key
+                Dim xx As Integer
+                Randomize()
+                xx = Rnd() * (Len(RawChars) - 1) 'number of rawchars
+                str.Append(RawChars.Trim.Chars(xx))
+            Next
+        Loop
+        Return str.ToString
     End Function
 End Module
