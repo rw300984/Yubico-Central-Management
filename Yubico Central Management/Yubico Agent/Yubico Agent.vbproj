@@ -271,12 +271,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="config\geoip.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="config\tools.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="plugins\ykclient\YubiClientAPI.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

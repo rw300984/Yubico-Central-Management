@@ -100,6 +100,7 @@ Partial Class frm_initial
         Me.Controls.Add(Me.TableLayoutPanel3)
         Me.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.Name = "frm_initial"
         Me.Text = "frm_initial"

@@ -41,12 +41,12 @@ Module Config
         Dim sqlitecmd As String
         Dim state As Boolean = CheckIfGeneralinDB()
         If state = False Then
-            sqlitecmd = "INSERT INTO ykconfig_general (initial,lang,theme,mode,server,auth,user,password) VALUES ('" & SHA1StringHash(key) & "','" & data.admin_general_lang & "','" & data.admin_general_theme & "','" & Crypto.AES_Encrypt(data.admin_general_mode, key) & "','" & Crypto.AES_Encrypt(data.admin_central_server, key) & "','" & Crypto.AES_Encrypt(data.admin_central_auth, key) & "','" & Crypto.AES_Encrypt(data.admin_central_username, key) & "','" & Crypto.AES_Encrypt(data.admin_central_password, key) & "')"
+            sqlitecmd = "INSERT INTO ykconfig_general (initial,lang,theme,mode,server,auth,user,password) VALUES ('" & SHA512StringHash(key) & "','" & data.admin_general_lang & "','" & data.admin_general_theme & "','" & Crypto.AES_Encrypt(data.admin_general_mode, key) & "','" & Crypto.AES_Encrypt(data.admin_central_server, key) & "','" & Crypto.AES_Encrypt(data.admin_central_auth, key) & "','" & Crypto.AES_Encrypt(data.admin_central_username, key) & "','" & Crypto.AES_Encrypt(data.admin_central_password, key) & "')"
         Else
             If data.admin_general_mode = "Business" Then
-                sqlitecmd = "UPDATE ykconfig_general Set initial='" & SHA1StringHash(key) & "',lang='" & data.admin_general_lang & "',theme='" & data.admin_general_theme & "',mode='" & Crypto.AES_Encrypt(data.admin_general_mode, key) & "',server='" & Crypto.AES_Encrypt(data.admin_central_server, key) & "',auth='" & Crypto.AES_Encrypt(data.admin_central_auth, key) & "',user='" & Crypto.AES_Encrypt(data.admin_central_username, key) & "',password='" & Crypto.AES_Encrypt(data.admin_central_password, key) & "' WHERE id=1"
+                sqlitecmd = "UPDATE ykconfig_general Set initial='" & SHA512StringHash(key) & "',lang='" & data.admin_general_lang & "',theme='" & data.admin_general_theme & "',mode='" & Crypto.AES_Encrypt(data.admin_general_mode, key) & "',server='" & Crypto.AES_Encrypt(data.admin_central_server, key) & "',auth='" & Crypto.AES_Encrypt(data.admin_central_auth, key) & "',user='" & Crypto.AES_Encrypt(data.admin_central_username, key) & "',password='" & Crypto.AES_Encrypt(data.admin_central_password, key) & "' WHERE id=1"
             Else
-                sqlitecmd = "UPDATE ykconfig_general Set initial='" & SHA1StringHash(key) & "',lang='" & data.admin_general_lang & "',theme='" & data.admin_general_theme & "',mode='" & Crypto.AES_Encrypt(data.admin_general_mode, key) & "' WHERE id=1"
+                sqlitecmd = "UPDATE ykconfig_general Set initial='" & SHA512StringHash(key) & "',lang='" & data.admin_general_lang & "',theme='" & data.admin_general_theme & "',mode='" & Crypto.AES_Encrypt(data.admin_general_mode, key) & "' WHERE id=1"
             End If
         End If
 

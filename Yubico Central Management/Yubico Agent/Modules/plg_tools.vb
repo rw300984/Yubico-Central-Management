@@ -144,7 +144,8 @@ Module plg_tools
                     Else
                         ps_exec = GetRegistryEntry(hklm_reg_path_32 & cfg_tools.yk_personal_regkey, cfg_tools.yk_tools_install_dir) & "\" & cfg_tools.yk_personal_exec
                     End If
-                    If SHA1FileHash(ps_exec) = cfg_tools.yk_personal_exec_sha1 Then
+
+                    If SHA512FileHash(ps_exec) = cfg_tools.yk_personal_exec_sha1 Then
                         status = 1
                     End If
                 Case "yk_piv"
@@ -153,7 +154,7 @@ Module plg_tools
                     Else
                         ps_exec = GetRegistryEntry(hklm_reg_path_32 & cfg_tools.yk_piv_regkey, cfg_tools.yk_tools_install_dir) & "\" & cfg_tools.yk_piv_exec
                     End If
-                    If SHA1FileHash(ps_exec) = cfg_tools.yk_piv_exec_sha1 Then
+                    If SHA512FileHash(ps_exec) = cfg_tools.yk_piv_exec_sha1 Then
                         status = 1
                     End If
             End Select

@@ -52,7 +52,6 @@ Public Class frm_main
     Public Function ShowHideCMS_Tray()
         Try
             If Me.WindowState = FormWindowState.Minimized Then
-                ' bgw_plg_ykinv_status = 1
                 PositionMainForm()
                 CheckConfigFileAndLoadInitFrm(1)
             Else
@@ -451,10 +450,10 @@ Public Class frm_main
     '    Dim status As Integer = 0
 
     '    Dim new_integrity_files As New List(Of String)
-    '    new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_de_file))
-    '    new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_lang_en_file))
-    '    new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_tools_file))
-    '    new_integrity_files.Add(SHA1FileHash(cfg_config.integrity_geoip_file))
+    '    new_integrity_files.Add(SHA512FileHash(cfg_config.integrity_lang_de_file))
+    '    new_integrity_files.Add(SHA512FileHash(cfg_config.integrity_lang_en_file))
+    '    new_integrity_files.Add(SHA512FileHash(cfg_config.integrity_tools_file))
+    '    new_integrity_files.Add(SHA512FileHash(cfg_config.integrity_geoip_file))
 
     '    Dim org_integrity_files As New List(Of String)
     '    org_integrity_files.Add(cfg_config.integrity_lang_de)
@@ -579,6 +578,7 @@ Public Class frm_main
 
     Private Sub bgw_plg_ykinv_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgw_plg_ykinv.DoWork
         Dim count As Integer = 0
+        Dim divider As Integer = 1
         Try
             Do While bgw_plg_ykinv_status = 0
                 Dim ykinfo As String() = YK_Agent_GetFromykinfo()
@@ -589,17 +589,30 @@ Public Class frm_main
                 res_ykinfo.touch = ykinfo(4)
                 Select Case count
                     Case 0 ' Initial start
+                        Dim res_ykinfo_status As Boolean = plg_ykinfo.AddYKInfoToDB(res_ykinfo)
                         plg_sysinfo.YK_Agent_GetSystemInfo()
                         plg_sysinfo.AddSysInfoToDB(res_sysinfo)
-                        plg_geoip.GatherLocation(res_sysinfo)
-                    Case 120 ' Every 1 minute
+                        If cfg_config.admin_general_mode = "Business" Then
+                            plg_geoip.GatherLocation(res_sysinfo)
+                        End If
+                    Case 60 ' After 1 minute
 
-                    Case 601 ' Every 5 minutes
+                    Case 120 ' After 2 minute
+
+                    Case 601 ' After 10 minutes
                         plg_sysinfo.YK_Agent_GetSystemInfo()
                         plg_sysinfo.AddSysInfoToDB(res_sysinfo)
-                        plg_geoip.GatherLocation(res_sysinfo)
+                        If cfg_config.admin_general_mode = "Business" Then
+                            plg_geoip.GatherLocation(res_sysinfo)
+                        End If
                 End Select
-                Dim res_ykinfo_status As Boolean = plg_ykinfo.AddYKInfoToDB(res_ykinfo)
+                If count / divider = 60 Then ' Every 1 minute
+                    Dim res_ykinfo_status As Boolean = plg_ykinfo.AddYKInfoToDB(res_ykinfo)
+                    divider = divider + 1
+                ElseIf count = 601 Then
+                    divider = 1
+                End If
+
                 If res_ykinfo.serial = "" Then
                 Else
                     res_ykinv.GUID = ""
@@ -623,7 +636,7 @@ Public Class frm_main
                 If count > 600 Then
                     count = 1
                 End If
-                Threading.Thread.Sleep(500)
+                Threading.Thread.Sleep(1000)
             Loop
         Catch ex As Exception
             plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)

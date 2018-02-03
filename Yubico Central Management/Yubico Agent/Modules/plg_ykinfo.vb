@@ -52,6 +52,18 @@
             Return result
         End Try
     End Function
+    Public Function GetYKInfoSingleColumnFromDB(ByVal column As String) As String
+        Dim result As String
+        Dim sqlitecmd As String = "Select " & column & " FROM ykresult_info WHERE id='1'"
+        Try
+            Dim res_array As Object() = db.ExecuteReaderSingleRow("\database\data.db", sqlitecmd, 0)
+            result = TryCast(res_array(0), String)
+            Return result
+        Catch ex As Exception
+            plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
+            Return result
+        End Try
+    End Function
     Public Function YK_Agent_GetFromykinfo() As String()
         Try
             Dim ykinfo_result(9) As String

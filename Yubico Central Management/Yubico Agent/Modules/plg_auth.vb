@@ -69,7 +69,7 @@
             Dim user_exists As Boolean = plg_auth.CheckIfUserInDB()
             If user_exists = True Then
                 user = plg_auth.GetUserFromDB()
-                Dim SHA1_Machinekey As String = SHA1StringHash(AES_Decrypt(user.key, userpassword))
+                Dim SHA1_Machinekey As String = SHA512StringHash(AES_Decrypt(user.key, userpassword))
                 If SHA1_Machinekey = Config.GetSingleValueFromDB("initial") Then
                     result = True
                 End If

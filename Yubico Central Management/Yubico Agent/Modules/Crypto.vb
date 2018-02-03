@@ -1,53 +1,46 @@
 ﻿Module Crypto
     Public Function AES_Encrypt(ByVal input As String, ByVal pass As String) As String
+        Dim AES As New System.Security.Cryptography.RijndaelManaged
+        Dim SHA256 As New System.Security.Cryptography.SHA256Cng
+        Dim ciphertext As String = ""
         Try
-            If input Is Nothing Or input = "" Then
-                Return ""
-            Else
-                Dim AES As New System.Security.Cryptography.RijndaelManaged
-                Dim Hash_AES As New System.Security.Cryptography.MD5CryptoServiceProvider
-                Dim encrypted As String = ""
-                Dim hash(31) As Byte
-                Dim temp As Byte() = Hash_AES.ComputeHash(System.Text.ASCIIEncoding.ASCII.GetBytes(pass))
-                Array.Copy(temp, 0, hash, 0, 16)
-                Array.Copy(temp, 0, hash, 15, 16)
-                AES.Key = hash
-                AES.Mode = Security.Cryptography.CipherMode.ECB
-                Dim DESEncrypter As System.Security.Cryptography.ICryptoTransform = AES.CreateEncryptor
-                Dim Buffer As Byte() = System.Text.ASCIIEncoding.ASCII.GetBytes(input)
-                encrypted = Convert.ToBase64String(DESEncrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
-                Return encrypted
-            End If
+            AES.GenerateIV()
+            AES.Key = SHA256.ComputeHash(System.Text.ASCIIEncoding.ASCII.GetBytes(pass))
+            AES.Mode = Security.Cryptography.CipherMode.CBC
+            Dim DESEncrypter As System.Security.Cryptography.ICryptoTransform = AES.CreateEncryptor
+            Dim Buffer As Byte() = System.Text.ASCIIEncoding.ASCII.GetBytes(input)
+            ciphertext = Convert.ToBase64String(DESEncrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
+            Return Convert.ToBase64String(AES.IV) & Convert.ToBase64String(DESEncrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
         Catch ex As Exception
             plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
+            '  Return ex.Message
         End Try
     End Function
     Public Function AES_Decrypt(ByVal input As String, ByVal pass As String) As String
+        Dim AES As New System.Security.Cryptography.RijndaelManaged
+        Dim SHA256 As New System.Security.Cryptography.SHA256Cng
+        Dim plaintext As String = ""
+        Dim iv As String = ""
         Try
-            If input Is Nothing Or input = "" Then
-                Return ""
-            Else
-                Dim AES As New System.Security.Cryptography.RijndaelManaged
-                Dim Hash_AES As New System.Security.Cryptography.MD5CryptoServiceProvider
-                Dim decrypted As String = ""
-                Dim hash(31) As Byte
-                Dim temp As Byte() = Hash_AES.ComputeHash(System.Text.ASCIIEncoding.ASCII.GetBytes(pass))
-                Array.Copy(temp, 0, hash, 0, 16)
-                Array.Copy(temp, 0, hash, 15, 16)
-                AES.Key = hash
-                AES.Mode = Security.Cryptography.CipherMode.ECB
-                Dim DESDecrypter As System.Security.Cryptography.ICryptoTransform = AES.CreateDecryptor
-                Dim Buffer As Byte() = Convert.FromBase64String(input)
-                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(DESDecrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
-                Return decrypted
-            End If
+            Dim ivct = input.Split({"=="}, StringSplitOptions.None)
+            iv = ivct(0) & "=="
+            input = If(ivct.Length = 3, ivct(1) & "==", ivct(1))
+            AES.Key = SHA256.ComputeHash(System.Text.ASCIIEncoding.ASCII.GetBytes(pass))
+            AES.IV = Convert.FromBase64String(iv)
+            AES.Mode = Security.Cryptography.CipherMode.CBC
+            Dim DESDecrypter As System.Security.Cryptography.ICryptoTransform = AES.CreateDecryptor
+            Dim Buffer As Byte() = Convert.FromBase64String(input)
+            plaintext = System.Text.ASCIIEncoding.ASCII.GetString(DESDecrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
+            Return plaintext
         Catch ex As Exception
             plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
+            ' Return ex.Message
         End Try
     End Function
-    Public Function SHA1FileHash(ByVal File As String) As String
+
+    Public Function SHA512FileHash(ByVal File As String) As String
         Try
-            Dim SHA1 As New System.Security.Cryptography.SHA1CryptoServiceProvider
+            Dim SHA1 As New System.Security.Cryptography.SHA512CryptoServiceProvider
             Dim Hash As Byte()
             Dim Result As String = ""
             Dim Tmp As String = ""
@@ -65,9 +58,9 @@
             plg_debuglog.WriteLog(ex.Message, 4, System.Reflection.MethodBase.GetCurrentMethod().Name)
         End Try
     End Function
-    Public Function SHA1StringHash(ByVal text As String) As String
+    Public Function SHA512StringHash(ByVal text As String) As String
         Try
-            Dim SHA1 As New System.Security.Cryptography.SHA1CryptoServiceProvider
+            Dim SHA1 As New System.Security.Cryptography.SHA512CryptoServiceProvider
             Dim Hash As Byte()
             Dim Result As String = ""
             Dim Tmp As String = ""

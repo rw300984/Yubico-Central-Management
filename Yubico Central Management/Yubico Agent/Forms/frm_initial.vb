@@ -1,5 +1,6 @@
 ﻿Public Class frm_initial
     Dim old_btn_text
+
     Private Sub frm_initial_Load(sender As Object, e As EventArgs) Handles Me.Load
         txt_initial_enc_password.AutoSize = False
         txt_initial_enc_password.Size = New System.Drawing.Size(121, 25)
@@ -10,6 +11,13 @@
             old_btn_text = frm_main.btn_main_admin_login.Text
         End If
     End Sub
+
+    Private Sub txt_initial_enc_password_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txt_initial_enc_password.KeyPress
+        If e.KeyChar = ChrW(Keys.Return) Then
+            My.Forms.frm_main.btn_main_admin_login.PerformClick()
+        End If
+    End Sub
+
     Private Sub txt_initial_enc_password_TextChanged(sender As Object, e As EventArgs) Handles txt_initial_enc_password.TextChanged
         cfg_config.initial_verify = txt_initial_enc_password.Text
         Dim mode As Integer
